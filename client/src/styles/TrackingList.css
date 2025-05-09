@@ -1,0 +1,93 @@
+
+.tracking-list {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px var(--shadow-color);
+  width: 100%;
+  box-sizing: border-box;
+  height: 100%;
+  overflow-y: scroll;
+  box-shadow:
+    0 1px 3px var(--shadow-color),
+    inset 0 0 0 20px #f8f9fa;
+  padding: 30px;
+  position: relative;
+}
+.tracking-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.tracking-inputs input {
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.tracking-inputs button {
+  align-self: flex-end;
+  padding: 8px 12px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.mutation-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mutation-list li {
+  margin-bottom: 10px;
+}
+
+.mutation-button {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 8px;
+  text-align: left;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.mutation-button:hover {
+  background: var(--background-color);
+}
+
+.mutation-details {
+  padding: 10px 15px;
+  background: var(--card-background);
+  border-left: 3px solid var(--primary-color);
+  margin-top: 5px;
+  border-radius: 4px;
+}
+
+.alert-error{
+  font-size: 0.7rem;
+  color: red;
+  margin-bottom: 0.2rem;
+}
+
+.delete-button {
+  margin-left: 0.5rem;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+.delete-button:hover {
+  background: #c0392b;
+}

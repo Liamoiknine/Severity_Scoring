@@ -1,0 +1,20 @@
+#autoComplete-allele_1, #autoComplete-allele_2{
+    width: 100%;
+    padding: 0.5em 1em;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+    color: black;
+}
+
+#autoComplete-allele_1:hover, #autoComplete-allele_2:hover, #autoComplete-allele_1:focus, #autoComplete-allele_2:focus{
+    background-color: #f0f0f0;
+    border: 2px solid #6b2fb3;
+    width: 100%;
+}
+
+#autoComplete-allele_1::placeholder, #autoComplete-allele_2::placeholder{
+    color: grey;
+}
+

@@ -1,0 +1,214 @@
+id,sex,age,inheritance,hu,allele_1,allele_1_c,allele_1_p,mutation_1,position_1,tmem_1,allele_2,allele_2_c,allele_2_p,mutation_2,position_2,tmem_2,n_nsfs,n_tm,has_dm,has_oa,has_di,has_hl,severity,dm,oa,di,hl
+1,0,27,Recessive,0,c.2663 C>A; p.S888X,c.2663,p.S888X,nonsense,888,1,c.1060_1062delTTC; p.Phe354del,c.1060_1062delTTC,p.Phe354del,ins/del,354,1,1,2,Y,Y,Y,Y,5,3.5,5,9,9
+2,1,46,Recessive,0,p.Arg560Cys,,p.Arg560Cys,missense,560,0,,,,,,,,,Y,Y,Y,Y,,13,14,25,
+3,1,19,Recessive,0,c.1839G>A (p.Trp613*),c.1839G>A,p.Trp613*,nonsense,613,0,c.2416G>C (p.Ala806Pro),c.2416G>C,p.Ala806Pro,missense,806,0,1,0,N,N,N,N,4,,,,
+4,1,21,Recessive,0,"c.2140_2163dup24, p.N714_N721dup","c.2140_2163dup24,",p.N714_N721dup,duplication,714,0,"c.2140_2163dup24, p.N714_N721dup","c.2140_2163dup24,",p.N714_N721dup,duplication,714,0,0,0,Y,Y,Y,Y,1,2.7,6.83,,9.7
+5,0,36,Recessive,0,c.2015T>C (p.Leu672Pro),c.2015T>C,p.Leu672Pro,missense,672,0,c.2015T>C (p.Leu672Pro),c.2015T>C,p.Leu672Pro,missense,672,0,0,0,Y,Y,Y,Y,1,4.11,5.11,18.11,
+6,0,24,Recessive,0,c.1251_1252delCTinsG; p.Phe417Leufsx25,c.1251_1252delCTinsG,p.Phe417Leufsx25,"frameshift, nonsense",417,1,c.1885C>T; p.Arg629Trp,c.1885C>T,p.Arg629Trp,missense,629,0,1,1,Y,Y,Y,Y,4,5.1,10.1,11.9,
+7,1,26,Recessive,0,c.817G>T; p.E273X,c.817G>T,p.E273X,nonsense,273,0,c.1839G>A; p.W613X,c.1839G>A,p.W613X,nonsense,613,0,2,0,Y,Y,Y,Y,6,6.3,7.9,11.3,10.1
+8,1,28,Recessive,0,c.605A>G (p.Glu202Gly),c.605A>G,p.Glu202Gly,missense,202,0,c.631G>A (p.Asp211Asn),c.631G>A,p.Asp211Asn,missense,211,0,0,0,Y,Y,Y,Y,1,14,13,,
+9,0,51,Recessive,0,c.1243_1245delGTC (p.Val415del),c.1243_1245delGTC,p.Val415del,ins/del,415,1,c.2254G>T (p.Glu752Stop),c.2254G>T,p.Glu752Stop,nonsense,752,0,1,1,Y,Y,Y,Y,5,4.3,15.11,27.11,8.11
+10,0,29,Recessive,0,c.376G>A; p.A126T,c.376G>A,p.A126T,missense,126,0,c.1838G>A; p.W613X,c.1838G>A,p.W613X,Nonsense,613,0,1,0,Y,Y,Y,Y,4,10.8,11,14,
+11,1,58,Recessive,0,c.977C>T (p.Ala326Val),c.977C>T,p.Ala326Val,missense,326,1,c.2590G>T (p.Glu864X),c.2590G>T,p.Glu864X,nonsense,864,0,1,1,Y,Y,Y,Y,5,38.3,17,,33
+12,1,20,Recessive,0,"c.599delT,p. Leu200Argfs*87","c.599delT,p.",,frameshift,200,0,"c.2254G>T, p.Glu752*","c.2254G>T,",p.Glu752*,nonsense,752,0,2,0,Y,Y,Y,Y,6,4.8,5.2,6,
+13,1,38,Recessive,0,c. 1112G>A; p. W371X,c.1112G>A,,nonsense,371,0,c.1885C>T; p.R629W,c.1885C>T,p.R629W,missense,629,0,1,0,Y,Y,Y,Y,4,2.3,5,12,
+14,0,20,Recessive,0,"c.1943G>A,p.W648*","c.1943G>A,p.W648*",p.W648*,nonsense,648,1,"c.1943G>A,p.W648*","c.1943G>A,p.W648*",p.W648*,nonsense,648,1,2,2,Y,Y,Y,Y,6,5.7,8.7,,
+15,0,21,Recessive,0,c.2002C>T (p.Glu668*),c.2002C>T,p.Glu668*,nonsense,668,0,c.2002C>T (p.Glu668*),c.2002C>T,p.Glu668*,nonsense,668,0,2,0,Y,Y,Y,Y,6,2.7,9,7,
+16,1,31,Recessive,0,c.1549del (p.Arg517Alafs*5),c.1549del,p.Arg517Alafs*5,"frameshift, nonsense",517,0,c.150T>A (p.Val501Asp),c.150T>A,p.Val501Asp,missense,501,1,1,1,Y,Y,Y,Y,5,5.1,7.11,12.2,12.6
+17,1,28,Dominant,1,"c.937C>T, (p.His313Tyr)","c.937C>T,",p.His313Tyr,missense,313,0,,,,,,,,,Y,Y,Y,Y,,3.8,12,,1.7
+18,1,27,Recessive,0,c.1367G>A (p.Arg456His) and c.1973delA in exon 8,c.1367G>A,p.Arg456His,missense,456,0,c.1289C>T (p.Ser430Leu) in Exon 8,c.1289C>T,p.Ser430Leu,missense,430,1,0,1,Y,Y,Y,Y,2,8.1,9.7,,
+19,1,22,Recessive,0,c.1060_1062delITTC (p.Phe354del),c.1060_1062delITTC,p.Phe354del,ins/del,354,1,p.Phe354del,,p.Phe354del,ins/del,354,1,0,2,Y,Y,N,Y,3,3,7,,8
+20,0,36,Recessive,0,"c.1652C>T, p.S551F","c.1652C>T,",p.S551F,missense,551,0,"c.1652C>T, p.S551F","c.1652C>T,",p.S551F,missense,551,0,0,0,Y,Y,Y,Y,1,18.7,,,
+21,1,42,Recessive,0,c.1652C>T (p.Ser551Phe),c.1652C>T,p.Ser551Phe,missense,551,0,c.1652C>T (p.Ser551Phe),c.1652C>T,p.Ser551Phe,missense,551,0,0,0,Y,Y,Y,Y,1,21.5,28.6,,
+22,0,23,Carrier,0,c.1652C>T (p.Ser551Phe),c.1652C>T,p.Ser551Phe,missense,551,0,,,,,,,,,Y,Y,Y,Y,,,,,
+23,1,61,Carrier,0,c.1652C>T (p.Ser551Phe),c.1652C>T,p.Ser551Phe,missense,551,0,,,,,,,,,Y,Y,Y,Y,,,,,
+24,1,33,Recessive,0,c.757A>T (p.Lys253*),c.757A>T,p.Lys253*,nonsense,253,0,c.2648_2651delTCTT (p.Phe883Serfs*?),c.2648_2651delTCTT,p.Phe883Serfs*?,frameshift,883,1,2,1,Y,Y,Y,Y,6,6.11,18.11,,
+25,0,30,Recessive,0,c.1620delGTG p.(Val540del),c.1620delGTG,,ins/del,541,1,c.2020C>A (p.Gly674Arg),c.2020C>A,p.Gly674Arg,missense,674,0,0,1,Y,Y,Y,Y,2,14.11,11.9,,
+26,1,26,Recessive,0,p.Val644fs64*,,p.Val644fs64*,"frameshift, nonsense",644,1,p.Val644fs64*,,p.Val644fs64*,"frameshift, nonsense",644,1,2,2,Y,Y,Y,Y,6,6.11,11.3,,
+27,0,56,Recessive,0,c.1549delC p.(Arg517Alafs*5),c.1549delC,,"frameshift, nonsense",517,0,c.1597C>T p.(Pro533Ser),c.1597C>T,,missense,533,1,1,1,Y,Y,Y,Y,5,,31,,25
+28,1,39,Recessive,0,c.1240_1242delTTC (p.Phe414del),c.1240_1242delTTC,p.Phe414del,ins/del,414,1,c.1689_1694delCTTCCT; p.Phe564del; p.Leu565del,c.1689_1694delCTTCCT,p.Phe564del,ins/del,565,1,0,2,Y,Y,Y,Y,3,13.1,13.6,14.6,25.8
+29,0,32,Recessive,0,c.1230_1233delCTCT (p.Val412Serfs*29),c.1230_1233delCTCT,p.Val412Serfs*29,"frameshift, nonsense",412,1,c.1243_1245delGTC (p.Val415del),c.1243_1245delGTC,p.Val415del,ins/del,415,1,1,2,Y,Y,Y,Y,5,5,6,6,6
+30,1,47,Recessive,0,c.2648_2651delTCTT (p.F883fs),c.2648_2651delTCTT,p.F883fs,frameshift,883,1,c.928G>C (p.Ala310Pro),c.928G>C,p.Ala310Pro,missense,310,0,1,1,Y,Y,Y,Y,4,14,23,,
+31,1,22,Recessive,0,c.1348_1350delinsTAG (p.His450*),c.1348_1350delinsTAG,p.His450*,nonsense,459,0,c.1348_1350delinsTAG (p.His450*),c.1348_1350delinsTAG,p.His450*,nonsense,450,0,2,0,Y,Y,Y,Y,6,5.11,10.3,10.3,10.3
+32,1,27,Recessive,0,c.1230-1233delCTCT p.(Ser411del),c.1230-1233delCTCT,,"frameshift, nonsense",411,1,c.1619G>A (p.Trp540*),c.1619G>A,p.Trp540*,nonsense,540,1,2,1,Y,Y,Y,Y,6,3.1,6.3,6.9,
+33,1,18,Dominant,0,c.2492G>C (p.Gly831Ala),c.2492G>C,p.Gly831Ala,missense,831,0,,,,,,,,,Y,Y,Y,Y,,,6,,0.5
+34,1,27,Recessive,0,c.1885C>T (p.Arg629Trp),c.1885C>T,p.Arg629Trp,missense,629,0,c.1941C>A (p.Cys647X),c.1941C>A,p.Cys647X,nonsense,647,1,1,1,Y,Y,Y,Y,4,4.8,12.9,,12.8
+35,1,23,Recessive,0,"c.439delC, p.Arg147Glyfs*163","c.439delC,",p.Arg147Glyfs*163,"frameshift, nonsense",147,0,"c.1620G>A, p.Trp540*","c.1620G>A,",p.Trp540*,nonsense,540,1,2,1,Y,Y,Y,Y,6,2.8,7,10,9
+36,1,20,Recessive,0,c.1049_1051del (p.Phe350del),c.1049_1051del,p.Phe350del,ins/del,250,1,c.1174C>T; p.Q392*,c.1174C>T,p.Q392*,nonsense,392,0,1,1,Y,Y,Y,Y,5,7,10,10,5
+37,0,21,Recessive,0,c.1243_1245delGTC (p.Val415del),c.1243_1245delGTC,p.Val415del,ins/del,415,1,c.1243_1245delGTC (p.Val415del),c.1243_1245delGTC,p.Val415del,ins/del,415,1,0,2,Y,Y,Y,Y,3,13,13,13,13
+38,1,33,Recessive,0,"c.1369A>G, (p.Arg457Gly) (var. of uncertain sig)","c.1369A>G,",p.Arg457Gly,missense,457,0,"c.2104G>A, (p.Gly702Ser) (uncert. Likely pathogenic)","c.2104G>A,",p.Gly702Ser,missense,702,0,0,0,N,N,N,N,1,,,,
+39,1,25,Recessive,0,c.1240_1242delTTC (p.Phe414del),c.1240_1242delTTC,p.Phe414del,ins/del,414,1,c.1240_1242delTTC (p.Phe414del),c.1240_1242delTTC,p.Phe414del,ins/del,414,1,0,2,N,N,N,N,3,,,,
+40,1,49,Recessive,0,c.2648_2651del (p.Phe883fs),c.2648_2651del,p.Phe883fs,frameshift,883,1,c.2263T>C (p.Cys755Arg),c.2263T>C,p.Cys755Arg,missense,755,0,1,1,Y,Y,Y,Y,4,,10,,
+41,1,30,Recessive,0,c.845T>C (p.Leu282Pro),c.845T>C,p.Leu282Pro,missense,282,0,c.1836G>A (p.Trp613Stop),c.1836G>A,p.Trp613Stop,nonsense,613,0,1,0,Y,Y,Y,Y,4,6,17,17,16
+42,1,34,Recessive,0,c.505G>A  (p.Glu169Lys),c.505G>A,p.Glu169Lys,missense,169,0,c.1243_1245delGTC (p.Val415del),c.1243_1245delGTC,p.Val415del,ins/del,415,1,0,1,Y,Y,Y,Y,2,9,15,,8
+43,1,25,Recessive,0,c.505G>A (p.Glu169Lys),c.505G>A,p.Glu169Lys,missense,169,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,0,0,Y,Y,Y,Y,1,13,9,14,
+44,1,35,Recessive,0,c.1240_1242delTTC (p.Phe414del),c.1240_1242delTTC,p.Phe414del,ins/del,414,1,c.1240_1242delTTC (p.Phe414del),c.1240_1242delTTC,p.Phe414del,ins/del,414,1,0,2,Y,N,Y,Y,3,17,,,10
+45,0,7,Dominant,0,c.2425G>A (p.Glu809Lys),c.2425G>A,p.Glu809Lys,missense,809,0,,,,,,,,,Y,Y,Y,Y,,2.3,1.3,,0.25
+46,1,22,Recessive,0,c.409_424dup16 (p.Val142fs*251),c.409_424dup16,p.Val142fs*251,"frameshift, nonsense",142,0,c.409_424dup16 (p.Val142fs*251),c.409_424dup16,p.Val142fs*251,"frameshift, nonsense",142,0,2,0,N,N,N,N,6,,,,
+47,0,37,Recessive,0,c.320G>A (p.Gly107Glu),c.320G>A,p.Gly107Glu,missense,107,0,c.1885C>T (p.Arg629Trp),c.1885C>T,p.Arg629Trp,missense,629,0,0,0,Y,Y,Y,Y,1,7,7,17,7
+48,0,15,Recessive,0,c.2356G>A (p.Gly786Ser),c.2356G>A,p.Gly786Ser,missense,786,0,c.2596G>A (p.Asp866Asn),c.2596G>A,p.Asp866Asn,missense,866,0,0,0,N,Y,Y,Y,1,,3,0.25,0
+49,0,26,Recessive,0,c.643C>T (Gln215*),c.643C>T,,nonsense,215,0,c.1010C>T (p.Thre337Ile),c.1010C>T,p.Thre337Ile,missense,337,0,1,0,Y,Y,Y,Y,4,4,9,,9
+50,0,24,Recessive,0,c.643C>T (p.Gln215*),c.643C>T,p.Gln215*,nonsense,215,0,c.1010C>T (p.Thr336Ile),c.1010C>T,p.Thr336Ile,missense,336,0,1,0,Y,Y,Y,Y,4,2,2,8,8
+51,1,62,Recessive,0,c.1052A>G (p.Tyr351Cys),c.1052A>G,p.Tyr351Cys,missense,351,1,c.1839G>A (p.Trp613*),c.1839G>A,p.Trp613*,nonsense,613,0,1,1,Y,Y,Y,Y,5,,49,,48
+52,1,60,Recessive,0,c.1052A>G (p.Tyr351Cys),c.1052A>G,p.Tyr351Cys,missense,351,1,c.1839G>A (p.Trp613*),c.1839G>A,p.Trp613*,nonsense,613,0,1,1,Y,Y,Y,Y,5,,52,,
+53,0,27,Dominant,0,c.2051C>T (p.Ala684Val),c.2051C>T,p.Ala684Val,missense,684,0,,,,,,,,,Y,Y,Y,Y,,,19,,2
+54,1,26,Recessive,0,c.409_424dup16 (p.Val142Glyfs*110),c.409_424dup16,p.Val142Glyfs*110,"frameshift, nonsense",142,0,c.2007T>G (p.Tyr669*),c.2007T>G,p.Tyr669*,nonsense,669,0,2,0,Y,Y,N,Y,6,,,,12
+55,1,24,Recessive,0,c.2339G>C (p.Gly780Ala),c.2339G>C,p.Gly780Ala,missense,780,0,c.2452C>T (p.Arg818Cys),c.2452C>T,p.Arg818Cys,missense,818,0,0,0,Y,Y,Y,Y,1,,5,,5
+56,1,17,Carrier,0,"c.6303849, (p.Glu776Val)","c.6303849,",p.Glu776Val,missense,776,0,,,,,,,,,N,N,N,N,,,,,
+57,1,27,Recessive,0,c.2206G>A (p.Gly736Ser),c.2206G>A,p.Gly736Ser,missense,736,0,c.2206G>A (p.Gly736Ser),c.2206G>A,p.Gly736Ser,missense,736,0,0,0,Y,Y,N,N,1,17,17,,
+58,1,61,Recessive,0,"c.1698_1703del6, (p.L567_F568del)","c.1698_1703del6,",p.L567_F568del,ins/del,567,1,"c.605A>G, (p.Glu202Gly)","c.605A>G,",p.Glu202Gly,missense,202,0,0,1,Y,Y,Y,Y,2,8,40,,
+59,0,22,Recessive,0,c.1367G>A (p.Arg456His),c.1367G>A,p.Arg456His,missense,456,0,c.1367G>A (p.Arg456His),c.1367G>A,p.Arg456His,missense,456,0,0,0,N,N,N,N,1,,,,
+60,1,16,Recessive,0,c.409_424dupGGCCGTCGCGAGGCTG (p.Val142Glyfs*110),c.409_424dupGGCCGTCGCGAGGCTG,p.Val142Glyfs*110,nonsense,142,0,c.1255_1260dupTTCCCC,c.1255_1260dupTTCCCC,,duplication,419,1,1,1,Y,Y,Y,Y,5,3,6,,7
+61,0,38,Recessive,0,c.1240_1242delTTC (p.Phe414del),c.1240_1242delTTC,p.Phe414del,ins/del,414,1,c.1240_1242delTTC (p.Phe414del),c.1240_1242delTTC,p.Phe414del,ins/del,414,1,0,2,Y,Y,Y,Y,3,7,,,
+62,1,21,Recessive,0,c.1107_1108insA (p.Ala370Sfs*173),c.1107_1108insA,p.Ala370Sfs*173,nonsense,370,0,c.1107_1108insA (p.Ala370Sfs*173 ),c.1107_1108insA,p.Ala370Sfs*173,nonsense,370,0,2,0,Y,Y,Y,Y,6,5,6,,
+63,0,30,Recessive,0,c.1385_1393delAGGTCACCG (p.Glu462_Thr464del),c.1385_1393delAGGTCACCG,p.Glu462_Thr464del,ins/del,462,0,c.1385_1393delAGGTCACCG (p.Glu462_Thr464del),c.1385_1393delAGGTCACCG,p.Glu462_Thr464del,ins/del,462,0,0,0,Y,Y,Y,Y,1,5,20,10,10
+64,1,30,Recessive,0,c.599T>C (p.Leu200Pro),c.599T>C,p.Leu200Pro,missense,200,0,c.695G>C (p.Arg232Pro),c.695G>C,p.Arg232Pro,missense,232,0,0,0,Y,Y,N,Y,1,5,,,
+65,0,22,Recessive,0,c.505G>A (p.Glu169Lys),c.505G>A,p.Glu169Lys,missense,169,0,c.409_424dup (p.Val142Glyfs*110),c.409_424dup,p.Val142Glyfs*110,frameshift,142,0,1,0,Y,Y,Y,Y,4,9,9,,
+66,0,22,Recessive,0,c.376G>A (p.Ala126Thr),c.376G>A,p.Ala126Thr,missense,126,0,c.1838G>A (p.Trp613X),c.1838G>A,p.Trp613X,nonsense,613,0,1,0,Y,Y,Y,Y,4,7,9,11,
+67,1,26,Recessive,0,c.376G>A (p.Ala126Thr),c.376G>A,p.Ala126Thr,missense,126,0,c.1838G>A (p.Trp613X),c.1838G>A,p.Trp613X,nonsense,613,0,1,0,Y,Y,Y,Y,4,7.5,6,10,8
+68,1,15,Recessive,0,c.599T>C (p.Leu200Pro),c.599T>C,p.Leu200Pro,missense,200,0,c.695G>C (p.Arg232Pro),c.695G>C,p.Arg232Pro,missense,232,0,0,0,Y,Y,Y,Y,1,5,15.3,,16.3
+69,1,19,Recessive,0,c.1243_1245delGTC (p.Val415del),c.1243_1245delGTC,p.Val415del,ins/del,415,1,c.740_741delTT (p.Phe247fs*5),c.740_741delTT,p.Phe247fs*5,"frameshift, nonsense",247,0,1,1,Y,Y,Y,Y,5,7,9,,8
+70,1,28,Recessive,0,c.740_741delTT (p.Phe247fsX251),c.740_741delTT,p.Phe247fsX251,"frameshift, nonsense",247,0,c.1243_1245delGTC (p.Val415del),c.1243_1245delGTC,p.Val415del,ins/del,415,1,1,1,Y,Y,Y,Y,5,,,4,15
+71,1,29,Recessive,0,c.740_741delTT (p.Phe247Cfs*5),c.740_741delTT,p.Phe247Cfs*5,"frameshift, nonsense",247,0,c.1243_1245delGTC (p.V415del),c.1243_1245delGTC,p.V415del,ins/del,415,1,1,1,Y,Y,Y,Y,5,6,,,
+72,0,18,Recessive,0,c.1230_1233delCTCT (p.Val412Serfs*29),c.1230_1233delCTCT,p.Val412Serfs*29,"frameshift, nonsense",412,1,c.1243_1245delGTC (p.Val415del),c.1243_1245delGTC,p.Val415del,ins/del,415,1,1,2,Y,Y,N,Y,5,6,9,,7
+73,0,21,Recessive,0,c.1230_1233delCTCT (p.Val412Serfs*29),c.1230_1233delCTCT,p.Val412Serfs*29,"frameshift, nonsense",412,1,c.1243_1245delGTC (p.Val415del),c.1243_1245delGTC,p.Val415del,ins/del,415,1,1,2,Y,Y,Y,Y,5,4,8,9,12
+74,0,35,Recessive,0,c.1698_1703del6 (p.Leu567_Phe568del),c.1698_1703del6,p.Leu567_Phe568del,ins/del,567,1,c.1400T>G (p.Leu467Arg),c.1400T>G,p.Leu467Arg,missense,467,1,0,2,Y,Y,Y,N,3,5,13,7,
+75,0,35,Recessive,0,c.1698_1703del (p.Leu567_Phe568),c.1698_1703del,p.Leu567_Phe568,ins/del,567,1,c.1400T>G (p.Leu467Arg),c.1400T>G,p.Leu467Arg,missense,467,1,0,2,Y,Y,Y,N,3,5,13,7,
+77,0,22,Dominant,0,c.2402A>T (p.Asp801Val),c.2402A>T,p.Asp801Val,missense,801,0,,,,,,,,,Y,Y,Y,Y,,7,7,,0.7
+78,0,17,Recessive,0,c.1230_1233delCTCT (p.Val412SerfsX29),c.1230_1233delCTCT,p.Val412SerfsX29,"frameshift, nonsense",412,1,c.1230_1233delCTCT (p.Val412SerfsX29),c.1230_1233delCTCT,p.Val412SerfsX29,nonsense,412,1,2,2,Y,Y,Y,Y,6,6,,,5.3
+79,1,24,Recessive,0,c.1941C>A (p.Cys647*),c.1941C>A,p.Cys647*,nonsense,647,1,c.1941C>A (p.Cys647*),c.1941C>A,p.Cys647*,nonsense,647,1,2,2,Y,Y,Y,Y,6,3.5,13,12,3
+80,1,27,Recessive,0,c.1941C>A (p.Cys647*),c.1941C>A,p.Cys647*,nonsense,647,1,c.1941C>A (p.Cys647*),c.1941C>A,p.Cys647*,nonsense,647,1,2,2,Y,Y,Y,Y,6,3.5,13,,4
+81,1,20,Recessive,0,c.1230_1233delCTCT (p.Val412Serfs*29),c.1230_1233delCTCT,p.Val412Serfs*29,"frameshift, nonsense",412,1,c.1230_1233delCTCT (p.Val412Serfs*29),c.1230_1233delCTCT,p.Val412Serfs*29,"frameshift, nonsense",412,1,2,2,N,N,N,N,6,,,,
+82,0,23,Recessive,0,c.460+G>A,c.460+G>A,,missense,154,0,c.1523_1524delAT (p.Tyr508Cysfs*34),c.1523_1524delAT,p.Tyr508Cysfs*34,"frameshift, nonsense",508,1,1,1,Y,Y,Y,Y,4,7,12,7,12
+83,0,33,Dominant,0,c.937C>T (p.His313Tyr),c.937C>T,p.His313Tyr,missense,313,0,,,,,,,,,Y,Y,Y,Y,,12,14,,0.5
+84,0,49,Recessive,0,c.1558C>T (p.Gln520),c.1558C>T,p.Gln520,nonsense,520,0,c.2206G>A (p.Gly736Ser),c.2206G>A,p.Gly736Ser,missense,736,0,1,0,Y,Y,Y,Y,4,8,27,,
+85,0,16,Recessive,0,c.505G>A (p.Glu169Lys),c.505G>A,p.Glu169Lys,missense,169,0,c.505G>A (p.Glu169Lys),c.505G>A,p.Glu169Lys,missense,169,0,0,0,Y,Y,Y,Y,1,4,5,6,8
+86,1,42,Recessive,0,"c.1230_1233delCTCT, p.(Val412SerfsX29)","c.1230_1233delCTCT,",,"frameshift, nonsense",412,1,c.425 ins16 in exon 4,c.425,,ins/del,142,0,1,1,Y,Y,Y,Y,4,4,15,31,
+87,1,43,Recessive,0,c.631G>A (p.Asp211Asn),c.631G>A,p.Asp211Asn,missense,211,0,c.1243_1245delGTC (p.Val415del),c.1243_1245delGTC,p.Val415del,ins/del,415,1,0,1,Y,Y,Y,Y,2,8,20,,
+88,1,34,Recessive,0,c.409_424dupGGCCGTCGCGAGGCTG (p.Val142Glyfs*110),c.409_424dupGGCCGTCGCGAGGCTG,p.Val142Glyfs*110,"frameshift, nonsense",142,0,c.506G>A (p.Glu169Lys),c.506G>A,p.Glu169Lys,missense,169,0,1,0,Y,Y,Y,N,4,11,20,,
+89,0,21,Dominant,0,"c.2389G>T, (p.Asp797Tyr)","c.2389G>T,",p.Asp797Tyr,missense,797,0,,,,,,,,,Y,Y,Y,Y,,,10,,2
+90,1,19,Recessive,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,c.2654C>T (p.Pro885Leu),c.2654C>T,p.Pro885Leu,missense,885,1,0,1,Y,Y,Y,Y,2,9,11,,
+91,0,17,Recessive,0,c.2648_2651delTCTT (p.Phe883Serfs*68),c.2648_2651delTCTT,p.Phe883Serfs*68,"frameshift, nonsense",883,1,c.1661_1687delTGGGGCTGCTCCGCGCCTCCATCGGCT (p.Leu554_Tyr563delinsHis),c.1661_1687delTGGGGCTGCTCCGCGCCTCCATCGGCT,p.Leu554_Tyr563delinsHis,ins/del,554,0,1,1,Y,Y,Y,Y,4,4,7,11,7
+92,1,40,Recessive,0,c.2369C>A (p.Ser790*),c.2369C>A,p.Ser790*,nonsense,790,0,c.1698_1703del (p.Leu567_Phe568del),c.1698_1703del,p.Leu567_Phe568del,ins/del,567,1,1,1,Y,Y,Y,Y,5,7,11,,
+94,0,29,Recessive,0,c.1237-1245delTTCTTCGTC (p.Phe413_Val415del),c.1237-1245delTTCTTCGTC,p.Phe413_Val415del,ins/del,413,1,c.2648_2651delTCTT (p.Phe883Serfs*68),c.2648_2651delTCTT,p.Phe883Serfs*68,"frameshift, nonsense",883,1,1,2,Y,Y,Y,Y,5,5,8,16,8
+95,1,23,Recessive,0,c.605A>G (p.Glu202Gly),c.605A>G,p.Glu202Gly,missense,202,0,c.1049_1051delTCT (p.Phe350del),c.1049_1051delTCT,p.Phe350del,ins/del,350,1,0,1,Y,Y,Y,Y,2,,,,
+96,0,18,Recessive,0,c.2325delT (p.Phe775Leufs*87),c.2325delT,p.Phe775Leufs*87,"frameshift, nonsense",775,0,c.505G>A (p.Glu169Lys),c.505G>A,p.Glu169Lys,missense,169,0,1,0,Y,Y,Y,Y,4,5,9,,7
+97,0,28,Recessive,0,c.387G>A (p.Trp129Stop),c.387G>A,p.Trp129Stop,nonsense,129,0,c.1620G>A (p.Trp540*),c.1620G>A,p.Trp540*,nonsense,540,1,2,1,Y,Y,Y,Y,6,5,16,16,16
+98,0,44,Recessive,0,c.1243_1245delGTC (p. Val415del),c.1243_1245delGTC,,ins/del,415,1,c.1243_1245delGTC (p. Val415del),c.1243_1245delGTC,,ins/del,415,1,0,2,Y,Y,Y,Y,3,5.5,23,,12
+99,1,16,Dominant,0,c.2419A>C (p.Ser607Arg),c.2419A>C,p.Ser607Arg,missense,607,1,,,,,,,,,Y,Y,N,Y,,,7,,5
+100,1,48,Recessive,0,p.Glu752*,,p.Glu752*,nonsense,752,0,p.Glu717Lys,,p.Glu717Lys,missense,717,0,1,0,Y,Y,N,Y,4,16,32,,
+101,1,20,Recessive,0,c.605A>G (p.Glu202Gly),c.605A>G,p.Glu202Gly,missense,202,0,c.1049_1051delTCT (p.Phe350del),c.1049_1051delTCT,p.Phe350del,ins/del,350,1,0,1,Y,N,N,N,2,5,,,
+102,0,54,Dominant,0,c.923C>G (p.Ser308Cys),c.923C>G,p.Ser308Cys,missense,308,0,,,,,,,,,Y,Y,Y,Y,,,42,,2
+103,1,15,Carrier,0,c.202G>A (p.Gly674Arg),c.202G>A,p.Gly674Arg,missense,674,0,,,,,,,,,N,N,N,N,,,,,
+104,1,55,Recessive,0,c.1049_1051delTCT (p.Phe350del),c.1049_1051delTCT,p.Phe350del,ins/del,350,1,c.1549C>T (p.Arg517Cys) & c.1775T>C (p.Leu592Pro),c.1549C>T,p.Arg517Cys,missense,592,1,0,1,Y,Y,N,N,2,11,13,,
+105,0,13,Recessive,0,c.124delC (p.Arg42GlufsX101),c.124delC,p.Arg42GlufsX101,"frameshift, nonsense",42,0,c.2648_2651delTCTT (p.Phe883SerfsX68),c.2648_2651delTCTT,p.Phe883SerfsX68,"frameshift, nonsense",883,1,2,1,Y,Y,Y,Y,6,4,11,,
+106,0,16,Recessive,0,c.409_424dup (p.Val142Glyfs*110),c.409_424dup,p.Val142Glyfs*110,"frameshift, nonsense",142,0,c.1243_1245del (p.Val415del),c.1243_1245del,p.Val415del,ins/del,415,1,1,1,Y,Y,Y,Y,5,4.9,8.9,,8
+107,0,15,Recessive,0,c.409_424dup (p.Val142Glyfs*110),c.409_424dup,p.Val142Glyfs*110,"frameshift, nonsense",142,0,c.1243_1245del (p.Val415del),c.1243_1245del,p.Val415del,ins/del,415,1,1,1,Y,Y,Y,Y,5,4.4,6,6,7
+108,1,10,Recessive,0,c.409_424dup (p.Val142Glyfs*110),c.409_424dup,p.Val142Glyfs*110,"frameshift, nonsense",142,0,"c.1243_1245del, (p.Val415del)","c.1243_1245del,",p.Val415del,ins/del,415,1,1,1,Y,Y,N,Y,5,2,5,,4
+109,1,29,Recessive,0,"c.817G>T, (p.Glu273*)","c.817G>T,",p.Glu273*,nonsense,273,0,"c.2020G>A, (p.Gly674Arg)","c.2020G>A,",p.Gly674Arg,missense,674,0,1,0,Y,Y,Y,Y,4,,22,,
+110,1,28,Recessive,0,c.1525_1539del (p.Val509_Tyr513del),c.1525_1539del,p.Val509_Tyr513del,ins/del,509,1,c.1525_1539del (p.Val509_Tyr513del),c.1525_1539del,p.Val509_Tyr513del,ins/del,509,1,0,2,N,N,N,N,3,,,,
+111,0,16,Recessive,0,c.2257G>T (p.Glu753*),c.2257G>T,p.Glu753*,nonsense,753,0,c.2648_2651del (p.Phe883Serfs*68),c.2648_2651del,p.Phe883Serfs*68,"frameshift, nonsense",883,1,2,1,N,N,N,N,6,,,,
+112,0,10,Recessive,0,c.2257G>T (p.Glu753*),c.2257G>T,p.Glu753*,nonsense,753,0,c.2648_2651del (p.Phe883Serfs*68),c.2648_2651del,p.Phe883Serfs*68,"frameshift, nonsense",883,1,2,1,N,N,N,N,6,,,,
+113,0,10,Recessive,0,c.2257G>T (p.Glu753*),c.2257G>T,p.Glu753*,nonsense,753,0,c.2648_2651del (p.Phe883Serfs*68),c.2648_2651del,p.Phe883Serfs*68,"frameshift, nonsense",883,1,2,1,N,N,N,N,6,,,,
+114,0,40,Recessive,0,c.467C>T (p.Thr156Met),c.467C>T,p.Thr156Met,missense,156,0,c.505G>A (p.Glu169Lys),c.505G>A,p.Glu169Lys,missense,169,0,0,0,Y,Y,Y,Y,1,14,28,18,
+115,1,36,Recessive,0,c.2002C>T (p.Gln668*),c.2002C>T,p.Gln668*,nonsense,668,0,c.2485C>G (p.Leu829Val),c.2485C>G,p.Leu829Val,missense,829,0,1,0,Y,Y,N,Y,4,6,27,,
+116,1,42,Recessive,0,c.439delC (p.Arg147Glyfsx17),c.439delC,p.Arg147Glyfsx17,"frameshift, nonsense",147,0,c.577_579delAAG (p.Lys193del),c.577_579delAAG,p.Lys193del,ins/del,193,0,1,0,Y,Y,Y,Y,4,13,15,,
+117,0,36,Recessive,0,c.439del (p.Arg147Glyfs*17),c.439del,p.Arg147Glyfs*17,"frameshift, nonsense",147,0,c.577_579del (p.Lys193del),c.577_579del,p.Lys193del,ins/del,193,0,1,0,Y,Y,Y,Y,4,23,13,,
+118,1,24,Dominant,0,c.631+2T>G,c.631+2T>G,,missense,211,0,,,,,,,,,Y,Y,Y,Y,,3,5,17,17
+119,1,42,Recessive,0,c.621C>A (p.Val207Val),c.621C>A,p.Val207Val,missense,207,0,c.1943G>T (p.Trp648Leu),c.1943G>T,p.Trp648Leu,missense,648,1,0,1,Y,Y,Y,Y,2,6,36,7,
+120,1,35,Recessive,0,c.2099G>A (p.Trp700Ter),c.2099G>A,p.Trp700Ter,missense,700,0,c.2648_2651del (p.Phe883Serfs*68),c.2648_2651del,p.Phe883Serfs*68,"frameshift, nonsense",883,1,1,1,N,N,N,N,4,,,,
+121,0,51,Dominant,0,c.2389G>A  (p.Asp797Asn),c.2389G>A,p.Asp797Asn,missense,797,0,,,,,,,,,Y,Y,Y,Y,,,44,,0
+122,1,24,Dominant,0,c.2389G>A (p.Asp797Asn),c.2389G>A,p.Asp797Asn,missense,797,0,,,,,,,,,N,Y,N,Y,,,16,,5
+123,0,18,Dominant,0,c.2389G>A (p.Asp797Asn),c.2389G>A,p.Asp797Asn,missense,797,0,,,,,,,,,Y,Y,Y,Y,,,12,,4
+124,0,20,Recessive,0,c.1243_1245del (p.Val415del),c.1243_1245del,p.Val415del,ins/del,415,1,c.2455_2502del (p.Gln819_Gly834del),c.2455_2502del,p.Gln819_Gly834del,ins/del,819,0,0,1,Y,N,Y,Y,2,7,,,
+125,1,18,Recessive,0,c.1243_1245del (p.Val415del),c.1243_1245del,p.Val415del,ins/del,415,1,c.2455_2502del (p.Gln819_Gly834del),c.2455_2502del,p.Gln819_Gly834del,ins/del,819,0,0,1,Y,Y,Y,Y,2,7,,,8
+126,1,13,Recessive,0,c.2648_2651delTCTT (p.Phe883SerfsX68),c.2648_2651delTCTT,p.Phe883SerfsX68,"frameshift, nonsense",883,1,c.2621C>A (p.Ala874Asp),c.2621C>A,p.Ala874Asp,missense,874,1,1,2,Y,Y,Y,Y,5,10,6,,
+127,1,32,Recessive,0, c.1525_1539del (p.Val509_Tyr513del),c.1525_1539del,p.Val509_Tyr513del,ins/del,509,1,c.2648_2651del (p.Phe883Serfs*68) ,c.2648_2651del,p.Phe883Serfs*68,"frameshift, nonsense",883,1,1,2,Y,Y,Y,Y,5,8,22,27,
+128,1,37,Recessive,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,557,0,0,0,Y,Y,Y,Y,1,27,16,,
+129,0,21,Recessive,0,p.Ala133Tyr,,p.Ala133Tyr,missense,133,0,p.Leu514lfs*9,,p.Leu514lfs*9,"frameshift, nonsense",514,1,1,1,Y,Y,Y,Y,4,12.9,9.6,12.9,13.1
+130,0,10,Recessive,0,c.1230_1233del (p.Val412Serfs*29),c.1230_1233del,p.Val412Serfs*29,"frameshift, nonsense",412,1,c.1049_1051del (p.Phe350del),c.1049_1051del,p.Phe350del,ins/del,350,1,1,2,N,N,N,N,5,,,,
+131,1,27,Dominant,0,c.2051C>T (p.Ala684Val),c.2051C>T,p.Ala684Val,missense,684,0,,,,,,,,,N,N,N,N,,,,,
+133,0,32,Recessive,0,c.1243_1245delGTC (p.Val415del),c.1243_1245delGTC,p.Val415del,ins/del,415,1,c.2648_2651delTCTT (p.Phe883Serfs*68),c.2648_2651delTCTT,p.Phe883Serfs*68,"frameshift, nonsense",883,1,1,2,Y,Y,Y,Y,5,12,27,,
+134,1,38,Recessive,0,c.670C>T (p.Gln224X),c.670C>T,p.Gln224X,nonsense,224,0,c.1230-1233del4 (p.Val412SerfsX29),c.1230-1233del4,p.Val412SerfsX29,"frameshift, nonsense",412,1,2,1,Y,Y,Y,Y,6,5,8,,25
+135,1,20,Recessive,0,c.1549del (p.Arg517Alafs*5),c.1549del,p.Arg517Alafs*5,"frameshift, nonsense",517,0,c.605A>G (p.Glu202Gly),c.605A>G,p.Glu202Gly,missense,202,0,1,0,Y,Y,Y,Y,4,8,13,,
+136,0,18,Recessive,0,c.1230_1233delCTCT (p.Val412Ser*29),c.1230_1233delCTCT,p.Val412Ser*29,"frameshift, nonsense",412,1,c.1230_1233delCTCT (p.Val412Ser*29),c.1230_1233delCTCT,p.Val412Ser*29,"frameshift, nonsense",412,1,2,2,Y,Y,Y,Y,6,1.5,13,13,10
+137,1,10,Recessive,0,c.1839G>A (p.Trp613*),c.1839G>A,p.Trp613*,nonsense,613,0,c.2648_2651del (p.Phe883Serfs*68),c.2648_2651del,p.Phe883Serfs*68,"frameshift, nonsense",883,1,1,1,Y,Y,Y,N,4,4,,,
+138,0,34,Recessive,0,c.2643_2644delCT (p. Phe882del),c.2643_2644delCT,,ins/del,882,1,c.2643_2644delCT (p. Phe882del),c.2643_2644delCT,,ins/del,882,1,0,2,Y,Y,Y,Y,3,9,23,,
+139,1,42,Recessive,0,c.2452C>T (p. Arg818Cys),c.2452C>T,,missense,818,0,c.1515-1529del15 (p.505Cys_510Tyr),c.1515-1529del15,p.505Cys_510Tyr,ins/del,505,1,0,1,Y,Y,Y,Y,2,,37,,
+140,1,30,Recessive,0,c.1060_1062delTTC (p.Phe354del),c.1060_1062delTTC,p.Phe354del,ins/del,354,1,c.1699_1704delCTCTTT (p.Leu567_568del),c.1699_1704delCTCTTT,p.Leu567_568del,ins/del,567,1,0,2,Y,Y,Y,Y,3,5,14,18,
+141,1,39,Recessive,0,c.505G>A (p.Glu169Lys),c.505G>A,p.Glu169Lys,missense,169,0,c.1052A>G (p.Tyr351Cys),c.1052A>G,p.Tyr351Cys,missense,351,1,0,1,Y,Y,Y,Y,2,17,24,35,
+142,1,13,Recessive,0,"c.1230_1233delCTCT, p.(val412SerfsTer29)","c.1230_1233delCTCT,",,"frameshift, nonsense",412,1,"c.1230_1233delCTCT, p.(val412SerfsTer29)","c.1230_1233delCTCT,",,"frameshift, nonsense",412,1,2,2,Y,Y,Y,N,6,5,9,,
+143,0,11,Dominant,0,"c.2590G>A (p.Glu864Lys), EXON 8, WFS1, Pathogenic",c.2590G>A,p.Glu864Lys,missense,864,0,,,,,,,,,N,N,N,Y,,,,,5
+145,0,19,Dominant,0,c.2590G>A (p.Glu864Lys),c.2590G>A,p.Glu864Lys,missense,864,0,,,,,,,,,Y,N,Y,Y,,,,,0
+146,1,8,Dominant,1,c.937C>T (p.His313Tyr) ,c.937C>T,p.His313Tyr,missense,313,0,,,,,,,,,Y,Y,Y,Y,,,4,,2
+147,1,39,Recessive,0,c.892C>T (p.Arg298Cys),c.892C>T,p.Arg298Cys,missense,298,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,0,0,Y,Y,Y,Y,1,29,,,
+148,1,19,Dominant,0,c.2051C>T (p.Ala684Val),c.2051C>T,p.Ala684Val,missense,684,0,,,,,,,,,Y,Y,Y,Y,,,15,,2
+149,0,23,Recessive,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,c.1373T>G (p.V458G),c.1373T>G,p.V458G,missense,458,0,0,0,Y,Y,Y,Y,1,14,11,,
+151,0,7,Recessive,0,c.2099G>A (p.Trp700*),c.2099G>A,p.Trp700*,nonsense,700,0,c.2099G>A (p.Trp700*),c.2099G>A,p.Trp700*,nonsense,700,0,2,0,Y,Y,Y,Y,6,3.5,4.5,,
+152,1,27,Recessive,0,c.1230_1233del (p.Val412Serfs*29),c.1230_1233del,p.Val412Serfs*29,"frameshift, nonsense",412,1,c.505G>A (p.Glu169Lys),c.505G>A,p.Glu169Lys,missense,169,0,1,1,Y,Y,Y,Y,4,10,15,,
+153,0,10,Dominant,0,c.2575 C>G (p.Arg859Gly),c.2575,p.Arg859Gly,missense,859,0,,,,,,,,,Y,Y,Y,Y,,,,,5
+154,0,33,Dominant,0,c.2051C>T (p.Ala684Val),c.2051C>T,p.Ala684Val,missense,684,0,,,,,,,,,Y,Y,Y,Y,,16,10,,1.25
+155,0,66,Recessive,0,"c.2068T>C, (p.Cys690Arg)","c.2068T>C,",p.Cys690Arg,missense,690,0,"c.2074C>T, (p.His692Tyr)","c.2074C>T,",p.His692Tyr,missense,692,0,0,0,Y,Y,Y,Y,1,,58,,
+156,1,26,Recessive,0,c.505G>A (p.Glu169Lys),c.505G>A,p.Glu169Lys,missense,169,0,c.316-2A>G (splice acceptor),c.316-2A>G,,missense,106,0,0,0,N,N,N,N,1,,,,
+157,1,68,Recessive,0,c.1672 C>T (p.Arg558Cys),c.1672,p.Arg558Cys,missense,558,0,c.1672 C>T (p.Arg558Cys),c.1672,p.Arg558Cys,missense,558,0,0,0,Y,Y,Y,Y,1,,63,,
+158,1,21,Carrier,0,c.2558A>C (p.Gln853Pro),c.2558A>C,p.Gln853Pro,missense,853,0,,,,,,,,,Y,Y,Y,Y,,18,,,
+159,0,35,Recessive,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,0,0,Y,Y,Y,Y,1,30,32,,
+160,0,37,Recessive,0,c.1529_1543del (p.Tyr510_Leu514del),c.1529_1543del,p.Tyr510_Leu514del,ins/del,510,1,c.2078T>C (p.Leu693Pro),c.2078T>C,p.Leu693Pro,missense,693,0,0,1,N,N,N,N,2,,,,
+161,1,27,Dominant,0,c.2051C>T (p.Ala684Val),c.2051C>T,p.Ala684Val,missense,684,0,,,,,,,,,Y,N,Y,Y,,,,,
+162,0,11,Recessive,0,c.1228delC(p.L410Sfs*32),c.1228delC,p.L410Sfs*32,"frameshift, nonsense",410,1,c.472G>A,c.472G>A,,missense,158,0,1,1,Y,Y,Y,Y,4,8,,,
+163,1,43,Dominant,0,c.2590 G>A (p.Glu864Lys),c.2590,p.Glu864Lys,missense,864,0,,,,,,,,,Y,Y,Y,Y,,,13,,4
+164,1,21,Recessive,0,c.1904_1907dup (p.Leu637Hisfs*76),c.1904_1907dup,p.Leu637Hisfs*76,"frameshift, nonsense",637,1,c.1037C>T (p.Pro346Leu),c.1037C>T,p.Pro346Leu,missense,346,1,1,2,Y,Y,Y,Y,5,5,11,,
+165,0,11,Recessive,0,"c.1096 C>T, (p.Gln366*)",c.1096,p.Gln366*,nonsense,366,0,"c.2560 G>A, (p.Cys847Tyr)",c.2560,p.Cys847Tyr,missense,847,0,1,0,Y,Y,Y,Y,4,,8,,9
+166,1,14,Recessive,0,c.977C>T (p.Ala326Val),c.977C>T,p.Ala326Val,missense,326,1,c.2524C>T (p.Leu842Phe),c.2524C>T,p.Leu842Phe,missense,842,0,0,1,Y,Y,Y,Y,2,13,11,,
+167,1,13,Recessive,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,c.1999C>T (p.Gln667Ter),c.1999C>T,p.Gln667Ter,missense,667,0,0,0,Y,Y,Y,Y,1,10,11,,
+168,0,12,Recessive,0,c.2141_2164del (p.Asn714_Met722),c.2141_2164del,p.Asn714_Met722,ins/del,714,0,c.2141_2164del (p.Asn714_Met722),c.2141_2164del,p.Asn714_Met722,ins/del,714,0,0,0,Y,Y,Y,Y,1,1.83,9,,
+169,0,23,Recessive,0,c.376G>A (p.Ala126Thr),c.376G>A,p.Ala126Thr,missense,126,0,c.2648_2651del (p.Phe883SerfsTer68),c.2648_2651del,p.Phe883SerfsTer68,"frameshift, nonsense",883,1,1,1,Y,Y,Y,Y,4,,8,,
+170,1,19,Recessive,0,c.376G>A (p.Ala126Thr),c.376G>A,p.Ala126Thr,missense,126,0,c.2648_2651del (p.Phe883SerfsTer68),c.2648_2651del,p.Phe883SerfsTer68,"frameshift, nonsense",883,1,1,1,Y,Y,Y,Y,4,,15,,
+171,0,14,Recessive,0,c.1254_1255del (p.Phe419Profs*123),c.1254_1255del,p.Phe419Profs*123,"frameshift, nonsense",419,1,c.1260dup (p.Ile421Hisfs*122),c.1260dup,p.Ile421Hisfs*122,"frameshift, nonsense",421,1,2,2,Y,N,N,Y,6,2,,,
+172,0,21,Recessive,0,c.1243_1245del (p.Val415del),c.1243_1245del,p.Val415del,ins/del,415,1,c.1243_1245del (p.Val415del),c.1243_1245del,p.Val415del,ins/del,415,1,0,2,Y,Y,Y,Y,3,4,12,,11
+173,1,13,Recessive,0,c.1243_1245del (p.Val415del),c.1243_1245del,p.Val415del,ins/del,415,1,c.1243_1245del (p.Val415del),c.1243_1245del,p.Val415del,ins/del,415,1,0,2,Y,Y,Y,Y,3,6,6,,
+174,1,9,Recessive,0,c.1230_1233del (p.Val412Serfs*29),c.1230_1233del,p.Val412Serfs*29,"frameshift, nonsense",412,1,c.1839G>A (p.Trp613*),c.1839G>A,p.Trp613*,nonsense,613,0,2,1,Y,Y,Y,Y,6,3,,,6
+175,1,33,Recessive,0,c.1243_1245del (p.Val415del),c.1243_1245del,p.Val415del,ins/del,415,1,c.605A>G (p.Glu202Gly),c.605A>G,p.Glu202Gly,missense,202,0,0,1,Y,Y,Y,Y,2,11,12,,
+176,1,10,Dominant,0,c.2051C>T (p.Ala684Val),c.2051C>T,p.Ala684Val,missense,684,0,,,,,,,,,Y,Y,Y,Y,,,6.5,,2
+177,0,48,Dominant,0,c.2051C>T (p.Ala684Val),c.2051C>T,p.Ala684Val,missense,684,0,,,,,,,,,N,Y,N,Y,,,,,
+178,0,5,Dominant,0,c.2051C>T (p.Ala684Val),c.2051C>T,p.Ala684Val,missense,684,0,,,,,,,,,Y,Y,Y,Y,,,3,,0
+179,1,28,Recessive,0,c.505 G>A (p.Glu169Lys),c.505,p.Glu169Lys,missense,169,0,c.2020 G>A (p.Gly674Arg),c.2020,p.Gly674Arg,missense,674,0,0,0,Y,Y,Y,Y,1,9,22,,
+180,1,22,Recessive,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,0,0,Y,Y,Y,Y,1,20,20,,
+181,1,55,Recessive,0,c.505G>A (p.Glu169Lys),c.505G>A,p.Glu169Lys,missense,169,0,c.2314_2315insT (p.Arg772Leufs*5),c.2314_2315insT,p.Arg772Leufs*5,"frameshift, nonsense",772,0,1,0,Y,Y,Y,Y,4,4,20,,17
+182,1,35,Recessive,0,c.397G>A (p.Ala133Thr),c.397G>A,p.Ala133Thr,missense,133,0,c.1682T>G (p.Ile561Ser),c.1682T>G,p.Ile561Ser,missense,561,0,0,0,Y,Y,Y,Y,1,33,28,,
+183,1,8,Recessive,0,c.517G>T (p.Glu173Ter),c.517G>T,p.Glu173Ter,missense,173,0,c.1314_1316delCTT (p.Phe439del),c.1314_1316delCTT,p.Phe439del,missense,439,1,0,1,Y,Y,Y,Y,2,1.5,,1.5,
+184,1,8,Recessive,0,c.517G>T (p.Glu173Ter),c.517G>T,p.Glu173Ter,missense,173,0,c.1314_1316delCTT (p.Phe439del),c.1314_1316delCTT,p.Phe439del,missense,439,1,0,1,Y,Y,Y,Y,2,5,5,5,
+185,0,30,Recessive,0,c.1230_1233del (p.Val412Serfs*29),c.1230_1233del,p.Val412Serfs*29,"frameshift, nonsense",412,1,c.505G>A (p.Glu169Lys),c.505G>A,p.Glu169Lys,missense,169,0,1,1,Y,Y,N,N,4,,,,
+187,0,17,Recessive,0,c.1944G>A (p.Trp648Ter),c.1944G>A,p.Trp648Ter,missense,648,1,c.2648_2651del (p.Phe883Serfs*68),c.2648_2651del,p.Phe883Serfs*68,"frameshift, nonsense",883,1,1,2,Y,Y,Y,Y,5,5,14,14,
+188,0,5,Dominant,0,c.1336A>C (p.Ser446Arg),c.1336A>C,p.Ser446Arg,missense,446,1,,,,,,,,,Y,Y,Y,Y,,,3,,0.083
+189,1,35,Recessive,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,0,0,N,N,N,N,1,,,,
+190,1,58,Recessive,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,0,0,Y,Y,Y,Y,1,54,,,
+191,1,10,Recessive,0,c.2385G>C (p.Glu795Asp),c.2385G>C,p.Glu795Asp,missense,795,0,c.2390A>T (p.Asp797Val),c.2390A>T,p.Asp797Val,missense,797,0,0,0,Y,Y,Y,Y,1,8,3,,0
+192,1,53,Recessive,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,0,0,Y,Y,Y,Y,1,49,52,,
+193,0,5,Dominant,0,c.2051C>T (p.Ala684Val),c.2051C>T,p.Ala684Val,missense,684,0,,,,,,,,,Y,Y,Y,Y,,,3,,0
+194,1,62,Recessive,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,0,0,Y,Y,Y,Y,1,,59,,
+195,1,33,Carrier,0,c. 1672C>T (p.Arg558Cys) ,c.1672C>T,p.Arg558Cys,missense,558,0,,,,,,,,,N,N,N,N,,,,,
+196,0,53,Recessive,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,c.967_969del (p.His323del),c.967_969del,p.His323del,ins/del,323,1,0,1,Y,Y,N,Y,2,12,35,,
+197,1,8,Recessive,0,c.1230_1233delCTCT (p.Val412SerfsX29),c.1230_1233delCTCT,p.Val412SerfsX29,"frameshift, nonsense",412,1,c.1230_1233delCTCT (p.Val412SerfsX29),c.1230_1233delCTCT,p.Val412SerfsX29,"frameshift, nonsense",412,1,2,2,N,N,N,N,6,,,,
+198,1,44,Dominant,0,c.2456 A>C (p.Gln819Pro),c.2456,p.Gln819Pro,missense,819,0,,,,,,,,,Y,Y,Y,Y,,,42,,10
+199,1,9,Dominant,0,c.2456 A>C (p.Gln819Pro),c.2456,p.Gln819Pro,missense,819,0,,,,,,,,,Y,Y,Y,Y,,,8,,4
+200,1,4,Recessive,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,0,0,N,N,N,N,1,,,,
+201,0,20,Recessive,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,0,0,Y,Y,Y,Y,1,,,,
+202,0,13,Recessive,0,c.977C>T p.(A326V),c.977C>T,,missense,326,1,c.2284A>T p.(K762*),c.2284A>T,,nonsense,762,0,1,1,Y,Y,Y,N,5,11,12,,
+203,0,17,Recessive,0,c.1511C>T (p.Pro504Leu),c.1511C>T,p.Pro504Leu,missense,504,1,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,0,1,Y,Y,N,Y,2,16,15,,
+205,0,2,Dominant,0,c.2051C>T (p. Ala684Val),c.2051C>T,,missense,684,0,,,,,,,,,Y,Y,Y,Y,,,,,0.1
+206,1,26,Dominant,0,c.2074C>T (p.His692Tyr),c.2074C>T,p.His692Tyr,missense,692,0,,,,,,,,,N,N,N,N,,,,,
+207,0,19,Recessive,0,c.2168T>C (p.Leu723Pro),c.2168T>C,p.Leu723Pro,missense,723,0,c.2168T>C (p.Leu723Pro),c.2168T>C,p.Leu723Pro,missense,723,0,0,0,N,N,N,N,1,,,,
+208,1,37,Recessive,0,c.409_424dup (p.Val142GlyfsTer110),c.409_424dup,p.Val142GlyfsTer110,"framseshift, nonsense",142,0,c.1672C>T(p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,1,0,N,N,N,N,4,,,,
+209,0,17,Recessive,0,c.2168T>C (p.Leu723Pro),c.2168T>C,p.Leu723Pro,Missense,723,0,c.2168T>C (p.Leu723Pro),c.2168T>C,p.Leu723Pro,missense,723,0,0,0,Y,N,Y,Y,1,5,,,
+210,1,30,Recessive,0,c.1698_1703del (p.Leu567_Phe568del),c.1698_1703del,p.Leu567_Phe568del,"frameshift, deletion",567,1,c.1037C>T (p.Pro346Leu),c.1037C>T,p.Pro346Leu,missense,346,1,1,2,Y,Y,Y,N,5,16,29,,
+211,1,20,Recessive,0,c.1238_1240delTCT(exon 8) p.Phe413del,c.1238_1240delTCT,p.Phe413del,inframe deletion,413,1,c.1238_1240delTCT(exon 8) p.Phe413del,c.1238_1240delTCT,p.Phe413del,inframe deletion,413,1,0,2,Y,Y,Y,N,3,6,10,13,
+212,1,17,Recessive,0,c.1525_1539del (p.Val509_Tyr513del),c.1525_1539del,p.Val509_Tyr513del,ins/del,509,1,"c.1941C>A (p.Cys647*)	",c.1941C>A,p.Cys647*,nonsense,647,1,1,2,Y,Y,N,Y,5,1,15,,
+213,0,32,Dominant,0,c.2402A>G (p.Asp801Gly),c.2402A>G,p.Asp801Gly,missense,801,0,,,,,,,,,Y,Y,Y,Y,,25,25,,4.5
+214,0,52,Dominant,0,c.1698_1703del (p.Leu567_Phe568del),c.1698_1703del,p.Leu567_Phe568del,inframe deletion,567,1,,,,,,,,,N,N,N,N,,,,,
+215,1,0,Recessive,0,c.631G>A; (p.Asp211Asn),c.631G>A,p.Asp211Asn,missense,211,0,c.817G>T; (p.Glu273*),c.817G>T,p.Glu273*,nonsense,273,0,1,0,N,N,N,N,4,,,,
+216,1,31,Carrier,0,c.631G>A; (p.Asp211Asn),c.631G>A,p.Asp211Asn,missense,211,0,,,,,,,,,N,N,N,N,,,,,
+217,0,33,Carrier,0,c.817G>T; (p.Glu273*),c.817G>T,p.Glu273*,nonsense,273,0,,,,,,,,,N,N,N,N,,,,,
+218,0,56,Carrier,0,c.1672C>T (p.Arg558Cys),c.1672C>T,p.Arg558Cys,missense,558,0,,,,,,,,,N,N,N,N,,,,,
+219,1,28,Recessive,0,"c.2411T>C, (p.Leu804Pro)","c.2411T>C,",p.Leu804Pro,missense,804,0,"c.2411T>C, (p.Leu804Pro)","c.2411T>C,",p.Leu804Pro,missense,804,0,0,0,N,N,N,N,1,,,,
+220,1,48,Recessive,0,c.2648_2651delTCTT (p.F883Sfs*68),c.2648_2651delTCTT,p.F883Sfs*68,"frameshift, nonsense",883,1,c.1597C>T (p.P533S),c.1597C>T,p.P533S,missense,533,1,1,2,N,N,N,N,5,,,,

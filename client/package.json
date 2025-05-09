@@ -1,0 +1,30 @@
+{
+  "name": "wolfram-client",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@tarekraafat/autocomplete.js": "^10.2.9",
+    "firebase": "^9.22.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.0",
+    "react-scripts": "5.0.1",
+    "recharts": "^2.5.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

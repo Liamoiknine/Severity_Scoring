@@ -1,0 +1,6 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/20FWPQk8)
+# CSE330
+Liam Oiknine, 521644, Liamoiknine
+Justin Park, 518535, junjpark
+
+Description of Project: Our project is designed for dynamic visualization and analysis of a unique dataset of Wolfram Syndrome patients. We provide the option to generate scatter plots, box plots, and violin plots. Our input options include: age of onset of diabetes mellitus, optic atrophy, diabetes insipidus, or hearing loss; sex; and severity [1-6]. Each combination of input parameters generates a unique plot where users can zoom in/out and scroll around to interactively explore the data distribution. Each combination of inputs also generates a specific set of statistics related to that subgroup of data, which are visable at the bottom of the screen. We also provide the option for users to open a list of specific patients whom they wish to track. Those patietns persist throughout each user's session, wherein all "tracked" patients included in a given graph appear highlighted. This allows users to visualize where specific patients fall within the distribution of data.
