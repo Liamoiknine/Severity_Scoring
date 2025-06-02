@@ -1,13 +1,15 @@
-import React, { useState, useEffect, useCallback} from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import AutoCompleteSearch from './AutoCompleteSearch';
 import '../styles/TrackingList.css';
 
-// Tracks a list of patients using server-side sessions, displays them in a collapsable sidebar
 export default function TrackingList({ onListChange }) {
   const [allele1, setAllele1] = useState('');
   const [allele2, setAllele2] = useState('');
   const [mutations, setMutations] = useState([]);
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(null);
+
+  const allele1Ref = useRef();
+  const allele2Ref = useRef();
 
   const getCurrentList = useCallback(async () => {
     try {
@@ -19,64 +21,69 @@ export default function TrackingList({ onListChange }) {
         throw new Error(err.error || 'Failed to load list');
       }
       const list = await res.json();
-      let updated = list.map((item, idx) => ({
-          ...item,
-          expanded: false,
-          name: "Variant ("+(idx +1)+ ")"
-        }));
-      
+      const updated = list.map((item, idx) => ({
+        ...item,
+        expanded: false,
+        name: `Patient ${idx + 1}`
+      }));
       setMutations(updated);
       onListChange?.(updated);
-
     } catch (err) {
       console.error(err);
       setError(err.message);
     }
   }, [onListChange]);
 
-
-  // On load, query get current mutation list
   useEffect(() => {
-    getCurrentList()
+    getCurrentList();
   }, [getCurrentList]);
 
-  // Add a new mutation (with collapsed details)
   const handleAdd = async () => {
-    setError(null)
-    if (!allele1){
-      setError("Must input a value for allele 1")
+    setError(null);
+    if (!allele1) {
+      setError('Must input a value for allele 1');
       return;
-    };
-    
+    }
 
-    // Query the database to see if the input alleles match a patient
-    try{
-      // Build query parameters based on selected inputs
+    try {
+      const prevCount = mutations.length;
+
       const queryParams = new URLSearchParams();
       queryParams.append('allele1', allele1);
-      queryParams.append('allele2', allele2 ?? null)
+      queryParams.append('allele2', allele2 ?? null);
 
       const url = `http://localhost:3456/api/check_alleles?${queryParams.toString()}`;
-      console.log('Fetching data from:', url);
       const res = await fetch(url, { credentials: 'include' });
-      
       if (!res.ok) {
-        setError("Process Failed, try again.")
         const err = await res.json();
         throw new Error(`${res.status}: ${err.error || res.statusText}`);
       }
 
-      setAllele1('');
-      setAllele2('');
+      const resList = await fetch('http://localhost:3456/api/get_mutation_list', {
+        credentials: 'include'
+      });
+      const newList = await resList.json();
+      const updated = newList.map((item, idx) => ({
+        ...item,
+        expanded: false,
+        name: `Patient ${idx + 1}`
+      }));
 
-      await getCurrentList()
+      if (updated.length > prevCount) {
+        setAllele1('');
+        setAllele2('');
+        allele1Ref.current?.clear();
+        allele2Ref.current?.clear();
+      }
+
+      setMutations(updated);
+      onListChange?.(updated);
     } catch (err) {
       console.error('Error fetching data:', err);
-      setError('Error fetching data:', err.message);
+      setError('Error fetching data: ' + err.message);
     }
   };
 
-  // Delete a mutation, then re-fetch
   const handleDelete = async (a1, a2) => {
     try {
       const res = await fetch('http://localhost:3456/api/remove_mutation', {
@@ -96,66 +103,66 @@ export default function TrackingList({ onListChange }) {
     }
   };
 
-  // Toggle expansion for a given mutation
   const toggleExpand = index => {
     setMutations(prev => {
       const updated = prev.map((m, i) =>
         i === index ? { ...m, expanded: !m.expanded } : m
       );
-      onListChange?.(updated); // CHANGED: notify parent of toggled list
+      onListChange?.(updated);
       return updated;
     });
-    setError(null)
+    setError(null);
   };
 
   return (
     <div className="tracking-list">
-      <h3>Tracking List</h3>
-      { error &&
-        (<div className="alert-error">{error}</div>)
-      }
-      
+      <h3>Add a Patient</h3>
+      {error && <div className="alert-error">{error}</div>}
+
       <div className="tracking-inputs">
         <AutoCompleteSearch
-          placeholder='First Allele'
-          dataKey = "allele_1"
+          ref={allele1Ref}
+          placeholder="First Allele"
+          dataKey="allele_1"
           onSelect={val => setAllele1(val)}
         />
         <AutoCompleteSearch
-          placeholder='Second Allele (optional)'
-          dataKey = "allele_2"
+          key={allele1} // Forces re-init when allele1 changes
+          ref={allele2Ref}
+          placeholder="Second Allele (optional)"
+          dataKey="allele_2"
+          a1_value={allele1}
           onSelect={val => setAllele2(val)}
         />
-        <button onClick={handleAdd}>
-          Add
-        </button>
+        <button onClick={handleAdd}>Add</button>
       </div>
+
+      <h3>Tracking List</h3>
       <ul className="mutation-list">
         {mutations.map((m, idx) => (
           <li key={idx}>
             <button
               className="mutation-button"
               onClick={() => toggleExpand(idx)}
-            ><strong>{m.name}</strong>
+            >
+              <strong>{m.name}</strong>
             </button>
-
             <button
               className="delete-button"
               onClick={() => handleDelete(m.allele1, m.allele2)}
             >
               Delete
             </button>
-
             {m.expanded && (
               <div className="mutation-details">
                 <p><strong>First Allele:</strong> {m.allele1}</p>
                 <p><strong>Second Allele:</strong> {m.allele2 || '—'}</p>
-                <p><strong>Sex:</strong> {(m.sex == 0 ? "Male" : "Female" )|| '—'}</p>
+                <p><strong>Sex:</strong> {(m.sex === 0 ? "Male" : "Female") || '—'}</p>
                 <p><strong>Severity:</strong> {m.severity || '—'}</p>
-                <p><strong>Diabetes Mellitus:</strong> { m.dm || 'None'}</p>
-                <p><strong>Optic Atrophy</strong> { m.oa || 'None'}</p>
-                <p><strong>Diabetes Insipidus</strong> { m.di || 'None'}</p>
-                <p><strong>Hearing Loss</strong> { m.hl || 'None'}</p>
+                <p><strong>Diabetes Mellitus:</strong> {m.dm || 'None'}</p>
+                <p><strong>Optic Atrophy:</strong> {m.oa || 'None'}</p>
+                <p><strong>Diabetes Insipidus:</strong> {m.di || 'None'}</p>
+                <p><strong>Hearing Loss:</strong> {m.hl || 'None'}</p>
               </div>
             )}
           </li>

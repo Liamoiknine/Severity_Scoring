@@ -1,0 +1,122 @@
+/* src/components/ScoreCard.css */
+
+.score-card {
+    background: #fff;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .score-card-header {
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .score-card-title {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #4a5568;
+  }
+  
+  .score-card-content {
+    padding: 16px;
+  }
+  
+  .centered-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 0;
+    text-align: center;
+  }
+  
+  .loader {
+    width: 115px;
+    height: 115px;
+    border: 10px solid #f3f3f3;
+    border-top: 10px solid #4f46e5;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 16px;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  .loading-text {
+    margin: 0;
+    font-size: 1rem;
+    color: #4a5568;
+  }
+  
+  .help-icon {
+    font-size: 48px;
+    color: #a0aec0;
+    margin-bottom: 16px;
+  }
+  
+  .help-text {
+    margin: 0;
+    font-size: 1rem;
+    color: #4a5568;
+  }
+  
+  .score-display {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+  }
+  
+  .score-circle {
+    width: 128px;
+    height: 128px;
+    border: 8px solid rgba(79, 70, 229, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .score-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #4f46e5;
+  }
+  
+  .progress-container {
+    margin: 16px 0;
+  }
+  
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #eee;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .progress-indicator {
+    height: 100%;
+  }
+  
+  .progress-green { background: #48bb78; }
+  .progress-amber { background: #f6ad55; }
+  .progress-red   { background: #f56565; }
+  
+  .progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #a0aec0;
+    margin-top: 4px;
+  }
+  
+  .description {
+    text-align: center;
+    color: #4a5568;
+    margin-top: 16px;
+  }
+  

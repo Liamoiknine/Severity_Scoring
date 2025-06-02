@@ -8,7 +8,7 @@ export default function D3BoxPlot({
     xKey,
     yKey,
     title,
-    color = '#8884d8',
+    color = '#4f46e5',
     showGrid = true,
     showLegend = true,
     filteredData = []

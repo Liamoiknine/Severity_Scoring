@@ -1,81 +1,120 @@
-// AutoCompleteSearch.jsx
-import React, { useRef, useEffect, useState } from 'react';
+import React, {
+  useRef,
+  useEffect,
+  useState,
+  forwardRef,
+  useImperativeHandle
+} from 'react';
 import autoComplete from '@tarekraafat/autocomplete.js';
 import '@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css';
 import '../styles/AutoComplete.css';
 
-// This Component is an individual search bar that contians autocomplete for either allele_1 or allele_2 based on props passed
-export default function AutoCompleteSearch({
-  dataKey,      
-  placeholder, 
-  onSelect 
-}) {
+const AutoCompleteSearch = forwardRef(function AutoCompleteSearch({
+  dataKey,
+  placeholder,
+  onSelect,
+  a1_value
+}, ref) {
   const inputRef = useRef(null);
   const acInstance = useRef(null);
   const [dataset, setDataset] = useState([]);
 
-    // Grab all the alleles from the dataset for autcomplete to compare against. Store in dataset.
-    useEffect(() => {
-        let isMounted = true;
+  useImperativeHandle(ref, () => ({
+    clear: () => {
+      if (inputRef.current) {
+        inputRef.current.value = '';
+      }
+    }
+  }));
 
-        async function loadDataset() {
-        try {
-            const response = await fetch('http://localhost:3456/api/get_alleles');
-            if (!response.ok) {
-            throw new Error(`Failed to load alleles (status ${response.status})`);
-            }
-            const json = await response.json();
-            if (!isMounted) return;
-            const list = json[dataKey]
-            setDataset(list);
-        } catch (err) {
-            console.error('AutoCompleteSearch fetch error:', err);
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadDataset() {
+      try {
+        const response = await fetch('http://localhost:3456/api/get_alleles');
+        if (!response.ok) throw new Error(`Failed to load alleles`);
+
+        const list = await response.json(); // list of { allele_1, allele_2 }
+        if (!isMounted) return;
+
+        if (dataKey === 'allele_1') {
+          const a1List = list.map(item => item.allele_1);
+          setDataset(a1List);
+        } else {
+          if (!a1_value) {
+            setDataset([]);
+            return;
+          }
+
+          const a2List = list
+            .filter(item => item.allele_1 === a1_value && item.allele_2)
+            .map(item => item.allele_2);
+
+          setDataset(a2List);
         }
+      } catch (err) {
+        console.error('AutoCompleteSearch fetch error:', err);
+      }
+    }
+
+    loadDataset();
+    return () => {
+      isMounted = false;
+    };
+  }, [dataKey, a1_value]);
+
+  useEffect(() => {
+    if (!dataset.length) return;
+
+    const id = `autoComplete-${dataKey}`;
+    inputRef.current.id = id;
+
+    // Proper cleanup to avoid DOM mutation errors
+    try {
+      acInstance.current?.unInit?.();
+      acInstance.current?.destroy?.();
+    } catch (e) {
+      console.warn('AutoComplete cleanup failed:', e);
+    }
+
+    acInstance.current = new autoComplete({
+      selector: `#${id}`,
+      placeHolder: placeholder,
+      data: { src: dataset, cache: true },
+      resultItem: { highlight: true },
+      events: {
+        input: {
+          selection: ({ detail }) => {
+            const value = detail.selection.value;
+            inputRef.current.value = value;
+            onSelect?.(value);
+          }
         }
+      }
+    });
 
-        loadDataset();
-
-        return () => {
-            isMounted = false;
-        };
-    }, [dataKey]);
-
-    // Create the autocomplete object
-    useEffect(() => {
-        if (!dataset.length) return;
-
-        // Assign a unique ID and destroy any prior instance
-        const id = `autoComplete-${dataKey}`;
-        inputRef.current.id = id;
-        acInstance.current?.destroy();
-
-        acInstance.current = new autoComplete({
-        selector: `#${id}`,            
-        placeHolder: placeholder,
-        data: { src: dataset, cache: true },
-        resultItem: { highlight: true },
-        events: {
-            input: {
-            selection: ({ detail }) => {
-                const value = detail.selection.value;
-                inputRef.current.value = value;
-                onSelect?.(value);
-            }
-            }
-        }
-        });
-
-        return () => {
-        acInstance.current = null;
-        };
-    }, [dataset, dataKey, placeholder, onSelect]);
+    return () => {
+      try {
+        acInstance.current?.unInit?.();
+        acInstance.current?.destroy?.();
+      } catch (e) {
+        console.warn('AutoComplete cleanup error:', e);
+      }
+      acInstance.current = null;
+    };
+  }, [dataset, dataKey, placeholder, onSelect]);
 
   return (
-    <input
-      type="search"
-      ref={inputRef}
-      className="my-autocomplete-input"
-      placeholder={placeholder}
-    />
+    <div className="autocomplete-wrapper">
+      <input
+        type="search"
+        ref={inputRef}
+        className="my-autocomplete-input"
+        placeholder={placeholder}
+      />
+    </div>
   );
-}
+});
+
+export default AutoCompleteSearch;

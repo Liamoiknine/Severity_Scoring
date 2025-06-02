@@ -6,5 +6,13 @@ export async function fetchData(query) {
   Object.entries(query).forEach(([k, v]) => url.searchParams.append(k, v));
   const res = await fetch(url);
   if (!res.ok) throw new Error(`API error ${res.status}`);
-  return res.json();  // { data: [...], stats: {...} }
+  return res.json();
+}
+
+export async function getScore(m1, m2){
+  const url = new URL(`${BASE}/score`);
+  url.searchParams.set('m1', m1);
+  url.searchParams.set('m2', m2);
+  const res = await fetch(url)
+  return res.json();
 }

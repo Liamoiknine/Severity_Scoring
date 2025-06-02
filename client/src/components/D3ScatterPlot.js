@@ -167,6 +167,32 @@ export default function D3ScatterPlot({
                     setSelectedPoint(selectedPoint === d ? null : d);
                 });
 
+                // LINEAR REGRESSION LINE
+                if (data.length > 1) {
+                    const xMean = d3.mean(data, d => d[xKey]);
+                    const yMean = d3.mean(data, d => d[yKey]);
+                    const slope = d3.sum(data, d => (d[xKey] - xMean) * (d[yKey] - yMean)) /
+                                d3.sum(data, d => Math.pow(d[xKey] - xMean, 2));
+                    const intercept = yMean - slope * xMean;
+
+                    const xVals = d3.extent(data, d => d[xKey]);
+                    const linePoints = xVals.map(x => ({
+                        x,
+                        y: slope * x + intercept
+                    }));
+
+                    plotGroup.selectAll('.regression-line').remove(); // Remove previous line if zooming
+                    plotGroup.append('line')
+                        .attr('class', 'regression-line')
+                        .attr('x1', currentXScale(linePoints[0].x))
+                        .attr('y1', currentYScale(linePoints[0].y))
+                        .attr('x2', currentXScale(linePoints[1].x))
+                        .attr('y2', currentYScale(linePoints[1].y))
+                        .attr('stroke', '#4f46e5')
+                        .attr('stroke-width', 2);
+                }
+
+
             if (filteredData && filteredData.length > 0) {
                 filteredData.forEach((item, index) => {
                     let xValue, yValue;
@@ -210,11 +236,10 @@ export default function D3ScatterPlot({
                             .attr('class', 'tracked-variant-point')
                             .attr('cx', currentXScale(xValue))
                             .attr('cy', currentYScale(yValue))
-                            .attr('r', 7)
+                            .attr('r', 5)
                             .attr('fill', 'none')
                             .attr('stroke', '#ff0000')
-                            .attr('stroke-width', 3)
-                            .attr('stroke-dasharray', '5,3');
+                            .attr('stroke-width', 2)
 
                         plotGroup.append('text')
                             .attr('x', currentXScale(xValue) + 10)
@@ -299,7 +324,7 @@ export default function D3ScatterPlot({
                                     width: '8px',
                                     height: '8px',
                                     borderRadius: '50%',
-                                    border: '2px dashed #ff0000',
+                                    border: '2px solid #ff0000',
                                     margin: '0 5px 0 10px'
                                 }}></div>
                                 <span>Tracked Variant</span>

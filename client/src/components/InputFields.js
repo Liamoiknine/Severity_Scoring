@@ -12,32 +12,7 @@ export default function InputFields({ config, inputs, onInputChange, selectedPlo
           {Object.entries(fields).map(([field, options]) => {
             // Determine which control to render based on the field
             let control;
-            if (field === 'Age_Range') {
-              // Two number inputs for min and max
-              control = (
-                <>
-                  <input
-                    type="number"
-                    min={options[0]}
-                    max={options[1]}
-                    value={inputs[group][field].min}
-                    onChange={e =>
-                      onInputChange(group, field, { min: Number(e.target.value) })
-                    }
-                  />
-                  <span>to</span>
-                  <input
-                    type="number"
-                    min={options[0]}
-                    max={options[1]}
-                    value={inputs[group][field].max}
-                    onChange={e =>
-                      onInputChange(group, field, { max: Number(e.target.value) })
-                    }
-                  />
-                </>
-              );
-            } else if (field === 'Age_of_Onset_of') {
+            if (field === 'Age_of_Onset_of') {
               // Special handling for manifestations selection
               const selectedManifestations = inputs[group][field] || [];
               const selectedCount = Array.isArray(selectedManifestations) ? selectedManifestations.length : 0;
@@ -68,8 +43,8 @@ export default function InputFields({ config, inputs, onInputChange, selectedPlo
                       key={opt}
                       className={
                         Array.isArray(selectedManifestations)
-                          ? selectedManifestations.includes(opt) ? 'selected' : ''
-                          : selectedManifestations === opt ? 'selected' : ''
+                          ? selectedManifestations.includes(opt) ? 'selected aoo' : 'aoo'
+                          : selectedManifestations === opt ? 'selected aoo' : 'aoo'
                       }
                       onClick={() => onInputChange(group, field, opt)}
                     >
@@ -84,7 +59,7 @@ export default function InputFields({ config, inputs, onInputChange, selectedPlo
               control = options.map(opt => (
                 <button
                   key={opt}
-                  className={inputs[group][field] === opt ? 'selected' : ''}
+                  className={inputs[group][field] === opt ? `selected ${field}` : field}
                   onClick={() => onInputChange(group, field, opt)}
                 >
                   {opt}
@@ -93,6 +68,7 @@ export default function InputFields({ config, inputs, onInputChange, selectedPlo
             }
 
             return (
+              
               <div key={field} className="input-field">
                 <label className="field-label">
                   {field

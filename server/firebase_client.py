@@ -38,18 +38,15 @@ def get_feature_grouped(value_feature, group_feature):
 
 # Get all of allele_1 and all of allele_2
 def get_allele_data():
-    data = {
-        "allele_1": [],
-        "allele_2": []
-    }
+    data = []
     for record in _patients_cache:
         a1 = record.get("allele_1")
         a2 = record.get("allele_2")
-        if a1 is not None:
-            data["allele_1"].append(a1)
-        if a2 is not None:
-            data["allele_2"].append(a2)
-
+        if a1 is not None and a2 is not None:
+            data.append({
+                "allele_1": a1,
+                "allele_2": a2
+            })
     return data
 
 # Get the full patient data associated with a given combination of alleles
