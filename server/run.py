@@ -10,10 +10,10 @@ def create_app():
     app.config.from_object(Config)
 
     CORS(
-      app,
-      origins="http://localhost:3000",
-      supports_credentials=True,
-      resources={r"/api/*": {"origins": "http://localhost:3000"}}
+        app,
+        origins=["http://localhost:3000", "https://liamoiknine.github.io"],
+        supports_credentials=True,
+        resources={r"/api/*": {"origins": "*"}}
     )
     init_firebase(app) 
 
