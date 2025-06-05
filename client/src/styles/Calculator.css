@@ -211,3 +211,26 @@
   cursor: pointer;
 }
 
+@media (max-width: 885px) {
+  .info-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-side,
+  .right-side {
+    width: 100%;
+    max-width: 400px;
+    min-width: unset;
+  }
+
+  .right-side h4{
+    margin-top: 0;
+  }
+
+  table {
+    min-width: unset;
+  }
+}
+
+

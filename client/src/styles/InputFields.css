@@ -123,21 +123,6 @@
   line-height: 2rem;
 }
 
-@media (max-width: 600px) {
-  .button-control {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .button-control button {
-    width: 100%;
-  }
-
-  .button-control span {
-    display: none;
-  }
-}
-
 .plot-selector {
   width: 100%;
   margin: 0;

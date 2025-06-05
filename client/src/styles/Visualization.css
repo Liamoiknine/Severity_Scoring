@@ -197,7 +197,7 @@ body {
   font-size: 1.1rem;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .visualization-main {
     grid-template-columns: 1fr;
   }
@@ -214,9 +214,7 @@ body {
     padding: 15px;
     /* revert horizontal padding for mobile */
   }
-}
 
-@media (max-width: 768px) {
   .hero h1 {
     font-size: 2rem;
   }
@@ -257,7 +255,6 @@ body {
 /* simple toggle button styling */
 
 .reset-button {
-  margin: 0 0 20px;
   padding: 8px 12px;
   background-color: var(--primary-color);
   color: white;
@@ -300,3 +297,43 @@ body {
   align-items: start;
 }
 
+
+@media (max-width: 1100px) {
+  .visualization-main,
+  .visualization-main.with-tracking {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adds space between stacked rows */
+    height: auto;
+  }
+
+  .controls-panel,
+  .visualization-area,
+  .statistics-panel {
+    width: 100%;
+    height: auto;
+    flex-shrink: 0;
+    min-width: 100%; /* ensure full-width stacking */
+    min-width: 300px;
+  }
+
+  .controls-panel {
+    overflow-y: auto;
+    max-height: 550px;
+  }
+
+  .Sex {
+    margin-bottom: 0;
+  }
+
+  .visualization-area {
+    min-height: 300px;
+    min-width: 300px;
+  }
+
+  .tracking-toggle {
+    position: static;
+    margin-top: 1rem;
+    align-self: flex-end;
+  }
+}

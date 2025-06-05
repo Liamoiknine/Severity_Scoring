@@ -49,6 +49,7 @@
 
   background-color: var(--background-color);
   padding: 0.4rem 0.4rem;
+  position: relative;
 }
 
 .mutation-button {
@@ -91,4 +92,40 @@
 }
 .delete-button:hover {
   background: #282387;
+}
+
+@media (max-width: 1100px) {
+
+  .delete-button{
+    position: absolute;
+    left: 85%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 5rem;
+  }
+
+  .tracking-inputs button{
+    width: 7rem;
+    align-self: flex-start;
+  }
+
+
+}
+
+@media (max-width: 600px){
+  .tracking-inputs button{
+    width: 100%;
+  }
+
+  .delete-button{
+    width: 4rem;
+    text-align: center;
+    left: 80%;
+  }
+}
+
+@media (max-width: 450px){
+  .delete-button{
+    left: 75%;
+  }
 }

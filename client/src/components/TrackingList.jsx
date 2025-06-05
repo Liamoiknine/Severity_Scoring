@@ -56,6 +56,7 @@ export default function TrackingList({ onListChange }) {
       const res = await fetch(url, { credentials: 'include' });
       if (!res.ok) {
         const err = await res.json();
+        setError('Query Failed. Try again later.')
         throw new Error(`${res.status}: ${err.error || res.statusText}`);
       }
 
@@ -70,6 +71,13 @@ export default function TrackingList({ onListChange }) {
       }));
 
       if (updated.length > prevCount) {
+        setAllele1('');
+        setAllele2('');
+        allele1Ref.current?.clear();
+        allele2Ref.current?.clear();
+      }
+      else{
+        setError("Invalid entry. Try again with a valid combination of alleles that exist in our registry.")
         setAllele1('');
         setAllele2('');
         allele1Ref.current?.clear();
@@ -134,7 +142,7 @@ export default function TrackingList({ onListChange }) {
           a1_value={allele1}
           onSelect={val => setAllele2(val)}
         />
-        <button onClick={handleAdd}>Add</button>
+        <button className="add-button" onClick={handleAdd}>Add</button>
       </div>
 
       <h3>Tracking List</h3>

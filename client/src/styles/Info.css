@@ -27,8 +27,8 @@
 
 .info-component {
     display: grid;
-    grid-template-columns: 2fr 3fr 2fr;
-    gap: 8rem;
+    grid-template-columns: 2fr 4.7fr 2fr;
+    gap: 4rem; /* was 8rem */
     background-color: transparent;
     width: 100%;
     color: #7a7a7a;
@@ -56,10 +56,11 @@
     color: white;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .info-component {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto;
+        gap: 0; /* smaller gap for stacked layout */
         max-width: 100%;
     }
 }
@@ -79,7 +80,12 @@ h1 {
     position: relative;
     text-align: justify;
     overflow-y: scroll;
-    line-height: 1.4rem;
+    line-height: 1.2rem; /* was 1.4rem */
+
+    p{
+        margin: 0.5rem;
+        padding: 0;
+    }
 }
 
 .close {
