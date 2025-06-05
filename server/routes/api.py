@@ -5,7 +5,7 @@ from firebase_client import get_patients, get_feature, get_feature_grouped, chec
 import numpy as np
 import re
 
-
+# new comment
 # Get a dict of patients and their data filtered based on passed parameters
 # Returns {"age": x, "allele_1": xxx, etc...}, {"age": x, "allele_1": xxx, etc...}, ...
 @api_bp.route('/patients')
