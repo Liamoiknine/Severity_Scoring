@@ -61,7 +61,7 @@ export default function StatsTable({ manifestation, sex, severity, selectedPlot 
           }
         }
 
-        const url = `http://localhost:3456/api/stats/${manifestationKey}?${params.toString()}`;
+        const url = `${process.env.REACT_APP_API_URL}/stats/${manifestationKey}?${params.toString()}`;
         const res = await fetch(url);
 
         if (!res.ok) {

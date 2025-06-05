@@ -13,7 +13,7 @@ export default function TrackingList({ onListChange }) {
 
   const getCurrentList = useCallback(async () => {
     try {
-      const res = await fetch('http://localhost:3456/api/get_mutation_list', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/get_mutation_list`, {
         credentials: 'include'
       });
       if (!res.ok) {
@@ -52,7 +52,7 @@ export default function TrackingList({ onListChange }) {
       queryParams.append('allele1', allele1);
       queryParams.append('allele2', allele2 ?? null);
 
-      const url = `http://localhost:3456/api/check_alleles?${queryParams.toString()}`;
+      const url = `${process.env.REACT_APP_API_URL}/check_alleles?${queryParams.toString()}`;
       const res = await fetch(url, { credentials: 'include' });
       if (!res.ok) {
         const err = await res.json();
@@ -60,7 +60,7 @@ export default function TrackingList({ onListChange }) {
         throw new Error(`${res.status}: ${err.error || res.statusText}`);
       }
 
-      const resList = await fetch('http://localhost:3456/api/get_mutation_list', {
+      const resList = await fetch(`${process.env.REACT_APP_API_URL}/get_mutation_list`, {
         credentials: 'include'
       });
       const newList = await resList.json();
@@ -94,7 +94,7 @@ export default function TrackingList({ onListChange }) {
 
   const handleDelete = async (a1, a2) => {
     try {
-      const res = await fetch('http://localhost:3456/api/remove_mutation', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/remove_mutation`, {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },

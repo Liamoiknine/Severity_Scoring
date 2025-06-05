@@ -32,7 +32,7 @@ const AutoCompleteSearch = forwardRef(function AutoCompleteSearch({
 
     async function loadDataset() {
       try {
-        const response = await fetch('http://localhost:3456/api/get_alleles');
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/get_alleles`);
         if (!response.ok) throw new Error(`Failed to load alleles`);
 
         const list = await response.json(); // list of { allele_1, allele_2 }

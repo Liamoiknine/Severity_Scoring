@@ -88,7 +88,7 @@ function Visualization() {
           queryParams.append('manifestation', inputs.Manifestations.Age_of_Onset_of);
         }
 
-        const url = `http://localhost:3456/api/patients?${queryParams.toString()}`;
+        const url = `${process.env.REACT_APP_API_URL}/patients?${queryParams.toString()}`;
         console.log('Fetching data from:', url);
         const patientsResponse = await fetch(url);
         //error handling
