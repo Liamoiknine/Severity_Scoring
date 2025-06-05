@@ -1,0 +1,15 @@
+# server/nixpacks.toml
+
+[phases.setup]
+# We only need Python; skip Node or other providers
+packs = ["python"]
+
+[phases.build]
+# Tell Nixpacks to install your requirements without re-making /opt/venv
+commands = [
+  "pip install -r requirements.txt"
+]
+
+[phases.start]
+# Exactly how to launch your Flask app via Gunicorn
+command = "gunicorn wsgi:app"
