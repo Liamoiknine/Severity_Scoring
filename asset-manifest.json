@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Severity_Scoring/static/css/main.cc8956e9.css",
-    "main.js": "/Severity_Scoring/static/js/main.fd11b5b6.js",
+    "main.js": "/Severity_Scoring/static/js/main.c07d31b9.js",
     "index.html": "/Severity_Scoring/index.html",
     "main.cc8956e9.css.map": "/Severity_Scoring/static/css/main.cc8956e9.css.map",
-    "main.fd11b5b6.js.map": "/Severity_Scoring/static/js/main.fd11b5b6.js.map"
+    "main.c07d31b9.js.map": "/Severity_Scoring/static/js/main.c07d31b9.js.map"
   },
   "entrypoints": [
     "static/css/main.cc8956e9.css",
-    "static/js/main.fd11b5b6.js"
+    "static/js/main.c07d31b9.js"
   ]
 }
