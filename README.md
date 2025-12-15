@@ -23,4 +23,3 @@ The app is built with a React frontend and Flask backend. Patient data is stored
 
 **Frontend:** React, D3.js, React Router  
 **Backend:** Flask (Python), Firebase Admin SDK, NumPy  
-**Deployment:** GitHub Pages (frontend), backend hosted separately
