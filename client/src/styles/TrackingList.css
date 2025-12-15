@@ -1,14 +1,13 @@
 
 .tracking-list {
-  padding: 20px;
+  padding: 10px 30px 30px 30px;
   border-radius: 8px;
-  background-color: var(--card-background);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: var(--bg-secondary);
+  box-shadow: 0 2px 4px var(--shadow-md);
   width: 100%;
   box-sizing: border-box;
   height: 100%;
   overflow-y: scroll;
-  padding: 30px;
   position: relative;
 }
 .tracking-inputs {
@@ -19,23 +18,486 @@
   width: 100%;
 }
 
-.tracking-inputs input {
+/* Style regular inputs in tracking list */
+.tracking-inputs input:not(.my-autocomplete-input) {
   padding: 8px;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-primary);
   border-radius: 4px;
   width: 100%;
   box-sizing: border-box;
+}
+
+/* Ensure autocomplete inputs in tracking list are styled consistently */
+.tracking-inputs .autocomplete-wrapper {
+  width: 100%;
+}
+
+.tracking-inputs .my-autocomplete-input {
+  width: 100% !important;
+  padding: 0.5em 1em !important;
+  border: none !important;
+  border-bottom: 2px solid var(--accent-purple) !important;
+  border-radius: 4px !important;
+  font-size: 1rem !important;
+  transition: border-color 0.2s ease, background-color 0.2s ease !important;
+  color: var(--text-black) !important;
+  box-sizing: border-box !important;
+  background-color: var(--bg-tertiary) !important;
+}
+
+.tracking-inputs .my-autocomplete-input:hover,
+.tracking-inputs .my-autocomplete-input:focus {
+  background-color: var(--bg-tertiary) !important;
+  border: 2px solid var(--accent-purple) !important;
+}
+
+.tracking-inputs .my-autocomplete-input::placeholder {
+  color: var(--text-secondary) !important;
+}
+
+.tracking-inputs [id^="autoComplete-"] {
+  width: 100% !important;
+  padding: 0.5em 1em !important;
+  border: none !important;
+  border-bottom: 2px solid var(--accent-purple) !important;
+  border-radius: 4px !important;
+  font-size: 1rem !important;
+  transition: border-color 0.2s ease, background-color 0.2s ease !important;
+  color: var(--text-black) !important;
+  box-sizing: border-box !important;
+  background-color: var(--bg-tertiary) !important;
+}
+
+.tracking-inputs [id^="autoComplete-"]:hover,
+.tracking-inputs [id^="autoComplete-"]:focus {
+  background-color: var(--bg-tertiary) !important;
+  border: 2px solid var(--accent-purple) !important;
+}
+
+.tracking-inputs [id^="autoComplete-"]::placeholder {
+  color: var(--text-secondary) !important;
 }
 
 .tracking-inputs button {
   align-self: flex-end;
   padding: 8px 12px;
   background-color: var(--primary-color);
-  color: white;
+  color: var(--text-white);
   border: none;
   border-radius: 4px;
   cursor: pointer;
   width: 100%;
+}
+
+.tracking-inputs .see-full-list-button {
+  align-self: flex-end;
+  padding: 8px 12px;
+  background-color: #ffffff !important;
+  color: #001f3f !important;
+  border: 2px solid #001f3f !important;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 15px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.tracking-inputs .see-full-list-button:hover {
+  background-color: #f5f5f5 !important;
+  color: #001f3f !important;
+  border-color: #001f3f !important;
+}
+
+.see-full-list-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-primary);
+  margin: 5px 0;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-container {
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  width: 95%;
+  max-width: 1200px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 2px solid var(--border-primary);
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: var(--text-black);
+}
+
+.modal-tabs {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-bottom: 2px solid var(--border-primary);
+  background-color: var(--bg-secondary);
+}
+
+.modal-tab {
+  background: none;
+  border: none;
+  padding: 15px 20px;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.modal-tab:hover {
+  color: var(--text-black);
+}
+
+.modal-tab.active {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.modal-tab-separator {
+  width: 1px;
+  height: 20px;
+  background-color: var(--border-primary);
+  margin: 0 10px;
+}
+
+.modal-close-button {
+  background: none;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.modal-close-button:hover {
+  background-color: var(--bg-primary);
+  color: var(--text-black);
+}
+
+.modal-search-filters {
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border-primary);
+  background-color: var(--bg-primary);
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.modal-search-input-wrapper {
+  flex: 1;
+  min-width: 200px;
+}
+
+.modal-search-input-wrapper label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.modal-search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border-primary);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: var(--text-black);
+  background-color: var(--bg-secondary);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.modal-search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(26, 61, 130, 0.1);
+}
+
+.modal-search-input:disabled {
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+}
+
+.modal-content {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Edit Modal Styles */
+.edit-modal-container {
+  max-width: 600px;
+}
+
+.edit-modal-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.edit-patient-info {
+  border-bottom: 1px solid var(--border-primary);
+  padding-bottom: 20px;
+}
+
+.edit-patient-info h4 {
+  margin: 0 0 15px 0;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+}
+
+.edit-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.edit-info-item {
+  font-size: 0.9rem;
+  color: var(--text-black);
+}
+
+.edit-info-item strong {
+  color: var(--text-secondary);
+  margin-right: 8px;
+}
+
+.edit-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.edit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.edit-field label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-black);
+}
+
+.edit-input {
+  padding: 10px 12px;
+  border: 1px solid var(--border-primary);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: var(--text-black);
+  background-color: var(--bg-secondary);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.edit-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(26, 61, 130, 0.1);
+}
+
+.color-picker-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.color-picker {
+  width: 60px;
+  height: 40px;
+  border: 1px solid var(--border-primary);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.color-preview {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-primary);
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.color-value {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-family: monospace;
+}
+
+.edit-modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-primary);
+}
+
+.edit-save-button,
+.edit-cancel-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.edit-save-button {
+  background-color: var(--primary-color);
+  color: var(--text-white);
+}
+
+.edit-save-button:hover {
+  background-color: var(--primary-darker);
+}
+
+.edit-cancel-button {
+  background-color: var(--bg-tertiary);
+  color: var(--text-black);
+}
+
+.edit-cancel-button:hover {
+  background-color: var(--bg-primary);
+}
+
+.modal-section {
+  margin-bottom: 30px;
+}
+
+.modal-section:last-child {
+  margin-bottom: 0;
+}
+
+.modal-section-title {
+  margin: 0 0 15px 0;
+  padding: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-black);
+  border-bottom: 2px solid var(--border-primary);
+  padding-bottom: 8px;
+}
+
+.allele-combinations-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.allele-combination-item {
+  padding: 12px;
+  margin-bottom: 0;
+  border-radius: 0;
+  color: var(--text-black);
+  transition: background-color 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.allele-combination-text {
+  flex: 1;
+}
+
+.allele-combination-item.added {
+  opacity: 0.5;
+  color: #999999;
+  background-color: #e8e8e8 !important;
+}
+
+.allele-combination-item.added strong {
+  color: #999999;
+}
+
+.added-badge {
+  color: #666666;
+  font-size: 0.9em;
+  font-weight: normal;
+  margin-left: 8px;
+}
+
+.add-patient-button {
+  opacity: 0;
+  padding: 6px 12px;
+  background-color: var(--primary-color);
+  color: var(--text-white);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: opacity 0.2s, background-color 0.2s;
+  white-space: nowrap;
+}
+
+.allele-combination-item:not(.added):hover .add-patient-button {
+  opacity: 1;
+}
+
+.add-patient-button:hover {
+  background-color: var(--primary-darker);
+}
+
+.allele-combination-item:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+.allele-combination-item:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.allele-combination-item:not(.added):hover {
+  background-color: #e0e0e0;
+}
+
+.allele-combination-item.added:hover {
+  background-color: #e8e8e8 !important;
+}
+
+.allele-combination-item strong {
+  color: var(--text-black);
 }
 
 .mutation-list {
@@ -46,10 +508,18 @@
 
 .mutation-list li {
   margin-bottom: 10px;
-
-  background-color: var(--background-color);
+  background-color: var(--bg-primary);
   padding: 0.4rem 0.4rem;
   position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.mutation-list li > div:first-of-type {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .mutation-button {
@@ -61,47 +531,91 @@
   cursor: pointer;
   border-radius: 4px;
   transition: background 0.2s;
+  flex: 1;
 }
 
 .mutation-button:hover {
-  background: var(--background-color);
+  background: var(--bg-primary);
 }
 
 .mutation-details {
   padding: 10px 10px;
   margin-top: 5px;
   border-top: 2px solid var(--primary-color);
+  width: 100%;
 }
 
 .alert-error{
   font-size: 0.7rem;
-  color: red;
+  color: var(--status-error);
   margin-bottom: 0.2rem;
 }
 
-.delete-button {
-  margin-left: 0.5rem;
-  background: var(--primary-color);
-  color: white;
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  margin-left: auto;
+}
+
+.edit-button {
+  background: transparent;
+  color: var(--primary-color);
   border: none;
-  padding: 0.25rem 0.5rem;
+  padding: 0.4rem 0.3rem;
   border-radius: 0.25rem;
   cursor: pointer;
-  position: relative;
-  left: 34%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
 }
+
+.edit-button svg {
+  fill: var(--primary-color);
+}
+
+.edit-button:hover {
+  opacity: 0.7;
+}
+
+.delete-button {
+  background: transparent;
+  color: var(--primary-color);
+  border: none;
+  padding: 0.4rem 0.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
+}
+
+.delete-button svg {
+  fill: var(--primary-color);
+}
+
 .delete-button:hover {
-  background: #282387;
+  opacity: 0.7;
 }
 
 @media (max-width: 1100px) {
 
+  .action-buttons {
+    margin-left: auto;
+  }
+
   .delete-button{
-    position: absolute;
-    left: 85%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 5rem;
+    position: static;
+    width: auto;
+  }
+  
+  .edit-button {
+    position: static;
+    width: auto;
   }
 
   .tracking-inputs button{
@@ -109,6 +623,13 @@
     align-self: flex-start;
   }
 
+  .tracking-inputs .see-full-list-button {
+    width: 7rem;
+    align-self: flex-start;
+    background-color: #ffffff !important;
+    color: #001f3f !important;
+    border: 2px solid #001f3f !important;
+  }
 
 }
 
@@ -117,15 +638,41 @@
     width: 100%;
   }
 
+  .tracking-inputs .see-full-list-button {
+    width: 100%;
+    background-color: #ffffff !important;
+    color: #001f3f !important;
+    border: 2px solid #001f3f !important;
+  }
+
+  .action-buttons {
+    margin-left: auto;
+  }
+
   .delete-button{
-    width: 4rem;
-    text-align: center;
-    left: 80%;
+    margin-left: 0;
+  }
+  
+  .edit-button {
+    margin-left: 0;
+  }
+
+  .modal-container {
+    width: 98%;
+    max-height: 95vh;
   }
 }
 
 @media (max-width: 450px){
+  .action-buttons {
+    margin-left: auto;
+  }
+  
   .delete-button{
-    left: 75%;
+    margin-left: 0;
+  }
+  
+  .edit-button {
+    margin-left: 0;
   }
 }

@@ -31,7 +31,7 @@
     gap: 8rem;
     background-color: transparent;
     width: 100%;
-    color: #7a7a7a;
+    color: var(--text-tertiary);
 }
 
 .btn-closed{
@@ -53,7 +53,7 @@
 .btn-closed:hover{
     border-color: transparent;
     background-color: var(--primary-color);
-    color: white;
+    color: var(--text-white);
 }
 
 @media (max-width: 768px) {
@@ -66,7 +66,7 @@
 
 h1 {
     font-size: 1.2rem;
-    color: #4d4d4d;
+    color: var(--text-light);
     margin: 0;
 }
 
@@ -88,9 +88,9 @@ h1 {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 1rem;
-    border: 1px solid #666666;
+    border: 1px solid var(--border-dark);
     background-color: transparent;
-    color: #666666;
+    color: var(--border-dark);
     padding: 0.3rem 2.5rem;
     border-radius: 0.4rem;
     margin-top: 2rem;
@@ -117,6 +117,6 @@ h1 {
 }
 
 .close:hover {
-    color: white;
+    color: var(--text-white);
     border: 1px solid var(--primary-color);
 }

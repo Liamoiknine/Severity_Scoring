@@ -61,16 +61,22 @@ export default function StatsTable({ manifestation, sex, severity, selectedPlot 
           }
         }
 
-        const url = `${process.env.REACT_APP_API_URL}/stats/${manifestationKey}?${params.toString()}`;
+        const BASE = process.env.REACT_APP_API_URL || "http://localhost:3456/api";
+        const url = `${BASE}/stats/${manifestationKey}?${params.toString()}`;
         const res = await fetch(url);
 
         if (!res.ok) {
           const errorData = await res.json();
+          // Check if this is a "no data" case (404 with "No data found" message)
+          if (res.status === 404 && errorData.error && errorData.error.includes('No data found')) {
+            setError('NO_DATA'); // Special flag for no data case
+          } else {
           throw new Error(`API error: ${res.status} - ${errorData.error || res.statusText}`);
         }
-
+        } else {
         const data = await res.json();
         setStatsRaw(data);
+        }
       } catch (err) {
         console.error('Error fetching stats:', err);
         setError(err.message);
@@ -87,30 +93,125 @@ export default function StatsTable({ manifestation, sex, severity, selectedPlot 
       ? manifestation.join(' vs ')
       : manifestation || 'All Data';
 
-  if (loading) {
-    return <p>Loading statistics for {displayManifestation}…</p>;
-  }
+  // Organize stats into logical groups
+  const organizeStats = () => {
+    const groups = {
+      basic: [],
+      quartiles: [],
+      correlation: [],
+      multiManifestation: []
+    };
 
-  if (error) {
-    return <p>Error loading stats for {displayManifestation}: {error}</p>;
-  }
+    STAT_ORDER.forEach((key) => {
+      if (!(key in statsRaw)) return;
+      
+      const value = statsRaw[key];
+      
+      if (key.includes('Quartile') || key === 'Minimum' || key === 'Maximum') {
+        groups.quartiles.push([key, value]);
+      } else if (key.includes('Correlation') || key.includes('Regression')) {
+        groups.correlation.push([key, value]);
+      } else if (key.includes('Mean') && (key.includes('Diabetes') || key.includes('Optic') || key.includes('Hearing') || key.includes('Insipidus'))) {
+        groups.multiManifestation.push([key, value]);
+      } else {
+        groups.basic.push([key, value]);
+      }
+    });
 
-  // Sort the stats into the defined display order
-  const orderedStats = STAT_ORDER
-    .filter((key) => key in statsRaw)
-    .map((key) => [key, statsRaw[key]]);
+    return groups;
+  };
+
+  const statGroups = organizeStats();
 
   return (
     <div className="stats-table-container">
       <h2>Statistics for {displayManifestation}</h2>
+      {loading && (
+        <div className="stats-content">
+          <p>Loading statistics for {displayManifestation}…</p>
+        </div>
+      )}
+      {!loading && error && (
+        <div className="stats-content">
+          {error === 'NO_DATA' ? (
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              height: '100%',
+              padding: '20px',
+              textAlign: 'center'
+            }}>
+              <p>No patients found for this combination of filters.</p>
+            </div>
+          ) : (
+            <p>Error loading stats for {displayManifestation}: {error}</p>
+          )}
+        </div>
+      )}
+      {!loading && !error && (
+      <div className="stats-content">
+        {/* Basic Statistics */}
+        {statGroups.basic.length > 0 && (
+          <div className="stat-group">
+            <h3 className="stat-group-title">Summary Statistics</h3>
+            <div className="stats-grid">
+              {statGroups.basic.map(([key, value]) => (
+                <div className="stats-grid-item" key={key}>
+                  <div className="stat-label">{key}</div>
+                  <div className="stat-value">{value}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Quartiles */}
+        {statGroups.quartiles.length > 0 && (
+          <div className="stat-group">
+            <h3 className="stat-group-title">Distribution</h3>
+            <div className="stats-grid">
+              {statGroups.quartiles.map(([key, value]) => (
+                <div className="stats-grid-item" key={key}>
+                  <div className="stat-label">{key}</div>
+                  <div className="stat-value">{value}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Correlation Stats */}
+        {statGroups.correlation.length > 0 && (
+          <div className="stat-group">
+            <h3 className="stat-group-title">Correlation Analysis</h3>
+            <div className="stats-grid">
+              {statGroups.correlation.map(([key, value]) => (
+                <div className="stats-grid-item" key={key}>
+                  <div className="stat-label">{key}</div>
+                  <div className="stat-value">{value}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Multi-manifestation stats */}
+        {statGroups.multiManifestation.length > 0 && (
+          <div className="stat-group">
+            <h3 className="stat-group-title">Manifestation Comparison</h3>
       <div className="stats-grid">
-        {orderedStats.map(([key, value]) => (
+              {statGroups.multiManifestation.map(([key, value]) => (
           <div className="stats-grid-item" key={key}>
             <div className="stat-label">{key}</div>
             <div className="stat-value">{value}</div>
           </div>
         ))}
       </div>
+          </div>
+        )}
+      </div>
+      )}
     </div>
   );
 }

@@ -1,12 +1,3 @@
-:root {
-  --primary-color: #4f46e5;
-  --text-color: #333;
-  --background-color: #f8f9fa;
-  --card-background: #fff;
-  --border-color: #e0e0e0;
-  --shadow-color: rgba(0, 0, 0, 0.1);
-}
-
 /* Unified box-sizing to avoid overflow issues */
 *,
 *::before,
@@ -17,8 +8,8 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  color: var(--text-color);
-  background: linear-gradient(to bottom, #ebf8ff, #e0e7ff);
+  color: var(--text-primary);
+  background: linear-gradient(to bottom, var(--bg-gradient-start), var(--bg-gradient-end));
   width: 100%;
   overflow-x: hidden;
 }
@@ -48,7 +39,7 @@ body {
   line-height: 1.6;
   max-width: 800px;
   margin: 0 auto;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .scroll-indicator {
@@ -94,7 +85,7 @@ body {
 
 .visualization-section .subtitle {
   text-align: center;
-  color: #666;
+  color: var(--text-secondary);
   margin-bottom: 40px;
 }
 
@@ -110,7 +101,7 @@ body {
   gap: 0.5rem;
   align-items: start;
   height: 88vh;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 .visualization-main>* {
@@ -123,11 +114,12 @@ body {
 
 .visualization-main.with-tracking {
   grid-template-columns: auto 1fr auto;
+  gap: 10px;
 }
 
 .controls-panel {
-  background: var(--card-background);
-  padding: 20px;
+  background: var(--bg-secondary);
+  padding: 10px 20px 20px 20px;
   border-radius: 8px;
   height: 100%;
   display: flex;
@@ -141,33 +133,56 @@ body {
 
 
 .visualization-area {
-  background: var(--card-background);
+  background: var(--bg-secondary);
   border-radius: 8px;
-  padding: 20px;
-  min-height: 400px;
+  padding: 5px;
+  min-height: 600px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   margin-top: 0;
   height: 100%;
   min-width: 300px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .visualization-area>div {
   width: 100%;
   height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .visualization-area .placeholder {
-  color: #666;
+  color: var(--text-secondary);
   text-align: center;
   font-size: 1.5rem;
 }
 
+.panels-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  margin-top: 0;
+  align-items: stretch;
+  min-height: 400px;
+}
+
 .statistics-panel {
-  background: var(--card-background);
-  padding: 20px;
+  background: var(--bg-secondary);
+  padding: 0;
   border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.patient-info-panel-container {
   width: 100%;
 }
 
@@ -182,7 +197,7 @@ body {
   align-items: center;
   margin-bottom: 15px;
   padding-bottom: 15px;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-primary);
 }
 
 .stat-item:last-child {
@@ -250,6 +265,7 @@ body {
 /* when tracking-list is open, switch to 3 columns: sidebar | graph | tracking */
 .visualization-main.with-tracking {
   grid-template-columns: 300px 1fr 300px;
+  gap: 10px;
 }
 
 /* simple toggle button styling */
@@ -257,7 +273,7 @@ body {
 .reset-button {
   padding: 8px 12px;
   background-color: var(--primary-color);
-  color: white;
+  color: var(--text-white);
   border: none;
   border-radius: 4px;
   max-width: 150px;
@@ -277,23 +293,23 @@ body {
   border: 2px solid var(--primary-color);
   border-bottom: 2px solid transparent;
   background-color: var(--primary-color);
-  color: white;
+  color: var(--text-white);
 }
 
 .tracking-toggle:hover{
-  background-color: #3b35b3;
+  background-color: var(--primary-dark);
 }
 
 
 .reset-button:active {
-  background-color: #4a2280;
+  background-color: var(--primary-darker);
 }
 
 /* keep your original 2‑column layout when closed */
 .visualization-main {
   display: grid;
   grid-template-columns: 300px 1fr;
-  gap: 25px;
+  gap: 10px;
   align-items: start;
 }
 
@@ -309,12 +325,17 @@ body {
 
   .controls-panel,
   .visualization-area,
-  .statistics-panel {
+  .statistics-panel,
+  .patient-info-panel-container {
     width: 100%;
     height: auto;
     flex-shrink: 0;
     min-width: 100%; /* ensure full-width stacking */
     min-width: 300px;
+  }
+
+  .panels-row {
+    grid-template-columns: 1fr;
   }
 
   .controls-panel {

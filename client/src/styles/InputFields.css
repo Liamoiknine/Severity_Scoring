@@ -1,8 +1,8 @@
 .input-fields-container {
   padding: 10px;
-  background-color: #f8f9fa;
+  background-color: var(--bg-primary);
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px var(--shadow-md);
 }
 
 .input-section {
@@ -15,6 +15,11 @@
   gap: 0.5rem;
 }
 
+.input-group h3 {
+  color: black;
+  margin: 1rem 0 10px 0;
+}
+
 .input-field {
   display: flex;
   flex-direction: column;
@@ -22,13 +27,13 @@
 }
 
 .input-field label {
-  color: #495057;
+  color: var(--text-lighter);
   font-size: 0.9rem;
   font-weight: 500;
 }
 
 .value-display {
-  color: #2196f3;
+  color: var(--accent-blue);
   font-size: 0.9rem;
   font-weight: 500;
   text-align: right;
@@ -64,8 +69,8 @@
 
 .button-control button {
   padding: 0.5rem 1rem;
-  border: 1px solid #ced4da;
-  background-color: #ffffff;
+  border: 1px solid var(--border-secondary);
+  background-color: var(--bg-secondary);
   border-radius: 0.3rem;
   font-size: 0.9rem;
   cursor: pointer;
@@ -91,13 +96,13 @@
 .button-control
 
 .button-control button:hover {
-  background-color: #e9ecef;
+  background-color: var(--bg-hover);
 }
 
 .button-control button.selected {
-  background-color: #4f46e5;
-  color: white;
-  border-color: #4f46e5;
+  background-color: var(--primary-color);
+  color: var(--text-white);
+  border-color: var(--primary-color);
 }
 
 .selection-message {
@@ -107,8 +112,8 @@
   font-size: 0.9rem;
   font-weight: 500;
   text-align: center;
-  background-color: #f0f0f0;
-  border-left: 4px solid #4f46e5;
+  background-color: var(--bg-tertiary);
+  border-left: 4px solid var(--primary-color);
   width: 100%;
 }
 
@@ -119,7 +124,7 @@
 .button-control span {
   margin: 0 6px;
   font-weight: 500;
-  color: #495057;
+  color: var(--text-lighter);
   line-height: 2rem;
 }
 
@@ -130,16 +135,16 @@
 
 .plot-selector h4 {
   color: black;
-  margin: 0 0 10px 0;
+  margin: 1rem 0 10px 0;
 }
 
 .plot-selector select {
   width: 100%;
   padding: 8px;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-primary);
   border-radius: 4px;
-  background-color: white;
-  color: var(--text-color);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
   font-size: 0.9rem;
   cursor: pointer;
   outline: none;
@@ -152,5 +157,5 @@
 
 .plot-selector select:focus {
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(107, 47, 179, 0.1);
+  box-shadow: 0 0 0 2px var(--shadow-primary);
 }

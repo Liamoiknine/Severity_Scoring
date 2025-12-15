@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import '../styles/Plots.css';
+import colors from '../config/colors';
 
 //guidance from react-graph-gallery.com/boxplot
 export default function D3BoxPlot({
@@ -8,13 +9,14 @@ export default function D3BoxPlot({
     xKey,
     yKey,
     title,
-    color = '#4f46e5',
+    color = colors.primary,
     showGrid = true,
     showLegend = true,
     filteredData = []
 }) {
     const svgRef = useRef();
     const containerRef = useRef();
+    const zoomRef = useRef(null);
     const [selectedManifestation, setSelectedManifestation] = useState(null);
     const [zoomTransform, setZoomTransform] = useState(null);
 
@@ -67,8 +69,8 @@ export default function D3BoxPlot({
         const yAxisMax = globalMax + yAxisPadding;
 
         const containerWidth = containerRef.current.clientWidth;
-        const containerHeight = 400;
-        const margin = { top: 50, right: 120, bottom: 70, left: 80 };
+        const containerHeight = containerRef.current.clientHeight || 600;
+        const margin = { top: 50, right: 80, bottom: 50, left: 80 };
         const width = containerWidth - margin.left - margin.right;
         const height = containerHeight - margin.top - margin.bottom;
 
@@ -117,7 +119,7 @@ export default function D3BoxPlot({
             .call(d3.axisBottom(xScale))
             .selectAll('text')
             .style('text-anchor', 'middle')
-            .attr('dy', '1em');
+            .attr('dy', '0.5em');
 
         const yAxis = mainGroup.append('g')
             .call(d3.axisLeft(yScale)
@@ -127,7 +129,7 @@ export default function D3BoxPlot({
 
         mainGroup.append('text')
             .attr('x', width / 2)
-            .attr('y', height + margin.bottom - 10)
+            .attr('y', height + margin.bottom - 5)
             .attr('text-anchor', 'middle')
             .style('font-size', '14px')
             .style('font-weight', 'bold')
@@ -166,7 +168,7 @@ export default function D3BoxPlot({
                     .attr('height', currentYScale(d.q1) - currentYScale(d.q3))
                     .attr('fill', color)
                     .attr('fill-opacity', isSelected ? 0.8 : 0.6)
-                    .attr('stroke', isSelected ? '#ff0000' : color)
+                    .attr('stroke', isSelected ? colors.chartSelected : color)
                     .attr('stroke-width', isSelected ? 2 : 1)
                     .attr('class', 'box-rect')
                     .on('click', () => {
@@ -178,15 +180,15 @@ export default function D3BoxPlot({
                     .attr('x2', boxWidth / 2)
                     .attr('y1', currentYScale(d.median))
                     .attr('y2', currentYScale(d.median))
-                    .attr('stroke', isSelected ? '#ff0000' : '#000')
+                    .attr('stroke', isSelected ? colors.chartSelected : colors.textBlack)
                     .attr('stroke-width', isSelected ? 3 : 2);
 
                 boxGroup.append('circle')
                     .attr('cx', 0)
                     .attr('cy', currentYScale(d.mean))
                     .attr('r', isSelected ? 5 : 4)
-                    .attr('fill', '#ff7300')
-                    .attr('stroke', '#fff')
+                    .attr('fill', colors.chartOutlier)
+                    .attr('stroke', colors.textWhite)
                     .attr('stroke-width', 1)
                     .attr('class', 'mean-point');
 
@@ -195,7 +197,7 @@ export default function D3BoxPlot({
                     .attr('x2', 0)
                     .attr('y1', currentYScale(d.q1))
                     .attr('y2', currentYScale(d.min))
-                    .attr('stroke', isSelected ? '#ff0000' : color)
+                    .attr('stroke', isSelected ? colors.chartSelected : color)
                     .attr('stroke-width', isSelected ? 2 : 1);
 
                 boxGroup.append('line')
@@ -203,7 +205,7 @@ export default function D3BoxPlot({
                     .attr('x2', 0)
                     .attr('y1', currentYScale(d.q3))
                     .attr('y2', currentYScale(d.max))
-                    .attr('stroke', isSelected ? '#ff0000' : color)
+                    .attr('stroke', isSelected ? colors.chartSelected : color)
                     .attr('stroke-width', isSelected ? 2 : 1);
 
                 boxGroup.append('line')
@@ -211,7 +213,7 @@ export default function D3BoxPlot({
                     .attr('x2', boxWidth / 4)
                     .attr('y1', currentYScale(d.min))
                     .attr('y2', currentYScale(d.min))
-                    .attr('stroke', isSelected ? '#ff0000' : color)
+                    .attr('stroke', isSelected ? colors.chartSelected : color)
                     .attr('stroke-width', isSelected ? 2 : 1);
 
                 boxGroup.append('line')
@@ -219,7 +221,7 @@ export default function D3BoxPlot({
                     .attr('x2', boxWidth / 4)
                     .attr('y1', currentYScale(d.max))
                     .attr('y2', currentYScale(d.max))
-                    .attr('stroke', isSelected ? '#ff0000' : color)
+                    .attr('stroke', isSelected ? colors.chartSelected : color)
                     .attr('stroke-width', isSelected ? 2 : 1);
 
                 if (filteredData && filteredData.length > 0) {
@@ -243,12 +245,13 @@ export default function D3BoxPlot({
                         }
 
                         if (ageOfOnset !== null && ageOfOnset !== undefined) {
+                            const patientColor = item.color || colors.chartSelected;
                             boxGroup.append('line')
                                 .attr('x1', -boxWidth / 2)
                                 .attr('x2', boxWidth / 2)
                                 .attr('y1', currentYScale(ageOfOnset))
                                 .attr('y2', currentYScale(ageOfOnset))
-                                .attr('stroke', '#ff0000')
+                                .attr('stroke', patientColor)
                                 .attr('stroke-width', 3)
                                 .attr('stroke-dasharray', '5,3')
                                 .attr('class', 'tracked-variant-line');
@@ -259,7 +262,7 @@ export default function D3BoxPlot({
                                 .attr('dy', '0.35em')
                                 .text(item.name || `Variant (${index + 1})`)
                                 .attr('font-size', '10px')
-                                .attr('fill', '#ff0000')
+                                .attr('fill', patientColor)
                                 .each(function () {
                                     const bbox = this.getBBox();
                                     if (xPos + bbox.x + bbox.width > width) {
@@ -277,8 +280,8 @@ export default function D3BoxPlot({
                         .attr('cx', 0)
                         .attr('cy', currentYScale(outlier))
                         .attr('r', isSelected ? 4 : 3)
-                        .attr('fill', isSelected ? '#ff0000' : color)
-                        .attr('stroke', '#fff')
+                        .attr('fill', isSelected ? colors.chartSelected : color)
+                        .attr('stroke', colors.textWhite)
                         .attr('stroke-width', 1)
                         .attr('class', 'outlier-point');
                 });
@@ -289,7 +292,7 @@ export default function D3BoxPlot({
                     .attr('dy', '0.35em')
                     .text(`Median: ${d.median.toFixed(2)}`)
                     .attr('font-size', '10px')
-                    .attr('fill', isSelected ? '#ff0000' : '#000')
+                    .attr('fill', isSelected ? colors.chartSelected : colors.textBlack)
                     .each(function () {
                         const bbox = this.getBBox();
                         if (xPos + bbox.x + bbox.width > width) {
@@ -305,7 +308,7 @@ export default function D3BoxPlot({
                     .attr('dy', '0.35em')
                     .text(`Mean: ${d.mean.toFixed(2)}`)
                     .attr('font-size', '10px')
-                    .attr('fill', '#ff7300')
+                    .attr('fill', colors.chartOutlier)
                     .each(function () {
                         const bbox = this.getBBox();
                         if (xPos + bbox.x + bbox.width > width) {
@@ -321,7 +324,7 @@ export default function D3BoxPlot({
                     .attr('text-anchor', 'middle')
                     .text(`n=${d.count}`)
                     .attr('font-size', '10px')
-                    .attr('fill', isSelected ? '#ff0000' : '#666');
+                    .attr('fill', isSelected ? colors.chartSelected : colors.textSecondary);
             });
 
             yAxis.call(d3.axisLeft(currentYScale)
@@ -346,29 +349,27 @@ export default function D3BoxPlot({
                 updateBoxPlots();
             });
 
+        zoomRef.current = zoom;
         svg.call(zoom);
 
         updateBoxPlots();
-
-        const resetButton = d3.select(containerRef.current)
-            .append('button')
-            .attr('class', 'reset-button')
-            .text('Reset View')
-            .on('click', () => {
-                svg.transition()
-                    .duration(750)
-                    .call(zoom.transform, d3.zoomIdentity);
-
-                setSelectedManifestation(null);
-
-                updateBoxPlots();
-            });
 
         return () => {
             d3.select('body').selectAll('.tooltip').remove();
         };
 
     }, [data, xKey, yKey, color, showGrid, selectedManifestation, zoomTransform, filteredData]);
+
+    const handleReset = () => {
+        if (svgRef.current && zoomRef.current) {
+            const svg = d3.select(svgRef.current);
+            svg.transition()
+                .duration(750)
+                .call(zoomRef.current.transform, d3.zoomIdentity);
+            setSelectedManifestation(null);
+            setZoomTransform(d3.zoomIdentity);
+        }
+    };
 
     return (
         <div className="box-plot-container" style={{ position: 'relative' }}>
@@ -377,12 +378,17 @@ export default function D3BoxPlot({
                 <div style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    marginBottom: '10px',
+                    alignItems: 'center',
+                    gap: '10px',
+                    marginBottom: '-10px',
                     backgroundColor: 'rgba(255, 255, 255, 0.8)',
                     padding: '5px 10px',
                     borderRadius: '4px',
-                    border: '1px solid #e0e0e0',
-                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+                    border: `1px solid ${colors.borderPrimary}`,
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                    position: 'relative',
+                    zIndex: 5,
+                    pointerEvents: 'auto'
                 }}>
                     <div style={{
                         display: 'flex',
@@ -400,7 +406,7 @@ export default function D3BoxPlot({
                         <div style={{
                             width: '20px',
                             height: '2px',
-                            backgroundColor: '#000',
+                            backgroundColor: colors.textBlack,
                             margin: '0 5px 0 10px'
                         }}></div>
                         <span>Median</span>
@@ -408,7 +414,7 @@ export default function D3BoxPlot({
                             width: '8px',
                             height: '8px',
                             borderRadius: '50%',
-                            backgroundColor: '#ff7300',
+                            backgroundColor: colors.chartOutlier,
                             margin: '0 5px 0 10px'
                         }}></div>
                         <span>Mean</span>
@@ -417,26 +423,39 @@ export default function D3BoxPlot({
                                 <div style={{
                                     width: '20px',
                                     height: '2px',
-                                    backgroundColor: '#ff0000',
+                                    backgroundColor: colors.chartSelected,
                                     margin: '0 5px 0 10px',
-                                    borderTop: '2px dashed #ff0000'
+                                    borderTop: `2px dashed ${colors.chartSelected}`
                                 }}></div>
                                 <span>Tracked Variant</span>
                             </>
                         )}
                     </div>
+                    <button
+                        onClick={handleReset}
+                        style={{
+                            backgroundColor: colors.primary,
+                            color: colors.textWhite,
+                            padding: '4px 8px',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            fontSize: '0.75rem',
+                            fontWeight: '500',
+                            whiteSpace: 'nowrap',
+                            position: 'relative',
+                            zIndex: 10,
+                            pointerEvents: 'auto',
+                            minWidth: '80px',
+                            flexShrink: 0
+                        }}
+                    >
+                        Reset View
+                    </button>
                 </div>
             )}
-            <div ref={containerRef} style={{ width: '100%', height: '400px' }}>
-                <svg ref={svgRef}></svg>
-            </div>
-            <div style={{
-                marginTop: '10px',
-                fontSize: '12px',
-                color: '#666',
-                textAlign: 'center'
-            }}>
-                <p>Interactive features: Zoom with mouse wheel, click on boxes to highlight, click and drag to pan</p>
+            <div ref={containerRef} style={{ width: '100%', flex: '1', minHeight: '500px', maxHeight: '600px', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '-10px' }}>
+                <svg ref={svgRef} style={{ display: 'block' }}></svg>
             </div>
         </div>
     );

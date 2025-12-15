@@ -71,3 +71,28 @@ def check_alleles(a1, a2):
         if record.get("allele_1") == a1 and record.get("allele_2") == a2:
             return True
     return False
+
+# Get all unique allele combinations (including cases where allele_2 is None)
+def get_all_allele_combinations():
+    if _patients_cache is None:
+        return []
+    
+    combinations = set()
+    for record in _patients_cache:
+        a1 = record.get("allele_1")
+        a2 = record.get("allele_2")
+        if a1 is not None:
+            # Create tuple for uniqueness check (None becomes None, not "None")
+            combo = (a1, a2)
+            combinations.add(combo)
+    
+    # Convert set of tuples to list of dicts
+    # Sort by allele1 first, then by allele2 (handling None values)
+    result = []
+    sorted_combos = sorted(combinations, key=lambda x: (x[0], x[1] if x[1] is not None else ''))
+    for combo in sorted_combos:
+        result.append({
+            "allele1": combo[0],
+            "allele2": combo[1]
+        })
+    return result

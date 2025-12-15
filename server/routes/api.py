@@ -1,7 +1,7 @@
 # routes/api.py
 from flask import jsonify, request, session
 from . import api_bp
-from firebase_client import get_patients, get_feature, get_feature_grouped, check_alleles, get_allele_data, get_data_given_alleles
+from firebase_client import get_patients, get_feature, get_feature_grouped, check_alleles, get_allele_data, get_data_given_alleles, get_all_allele_combinations
 import numpy as np
 import re
 
@@ -161,7 +161,7 @@ def get_relative_stats():
     return jsonify(stats_dict)
 
 # Check if the provided combination of alleles exists in db, if so, return the full data associated with that patient
-@api_bp.route('check_alleles')
+@api_bp.route('/check_alleles')
 def  check_allele_validity():
     allele1 = request.args.get('allele1')
     allele2 = request.args.get('allele2')
@@ -182,6 +182,7 @@ def  check_allele_validity():
         "hl":          full_allele_data["hl"][0],
         'sex':         full_allele_data['sex'][0],
         'severity':    full_allele_data['severity'][0],
+        'color':       '#ff0000',  # Default to red to match graph
     }
 
     current = session.get('mutations', [])
@@ -193,10 +194,22 @@ def  check_allele_validity():
     return jsonify(None), 200
 
 # Retrieve a dict of all the values for allele_1 and allele_2
-@api_bp.route('get_alleles')
+@api_bp.route('/get_alleles')
 def get_alleles():
     allele_list = get_allele_data()
     return jsonify(allele_list)
+
+# Retrieve all unique allele combinations (including cases where allele2 is None)
+@api_bp.route('/get_all_allele_combinations')
+def get_all_allele_combinations_endpoint():
+    try:
+        combinations = get_all_allele_combinations()
+        return jsonify(combinations), 200
+    except Exception as e:
+        import traceback
+        print(f"Error in get_all_allele_combinations_endpoint: {str(e)}")
+        print(traceback.format_exc())
+        return jsonify({'error': f'Server error: {str(e)}'}), 500
 
 # Retrieve a list of all patient data - stored in session variable
 @api_bp.route('/get_mutation_list')
@@ -251,6 +264,51 @@ def remove_mutation():
     session['mutations'] = new_list
 
     return jsonify({ 'success': True, 'mutations': new_list }), 200
+
+# Update mutation name and color
+@api_bp.route('/update_mutation', methods=['POST'])
+def update_mutation():
+    data = request.get_json() or {}
+    allele1 = data.get('allele1')
+    allele2 = data.get('allele2')
+    name = data.get('name')
+    color = data.get('color')
+    
+    if not allele1:
+        return jsonify({'error': 'allele1 is required'}), 400
+    
+    # Find and update the mutation
+    current = session.get('mutations', [])
+    updated = False
+    for m in current:
+        if m.get('allele1') == allele1:
+            # Handle allele2 matching (None, empty string, or actual value)
+            m_allele2 = m.get('allele2')
+            check_allele2 = allele2 if allele2 else None
+            
+            # Normalize for comparison
+            if (m_allele2 is None or m_allele2 == '' or m_allele2 == 'null') and (check_allele2 is None or check_allele2 == '' or check_allele2 == 'null'):
+                # Match - update this mutation
+                if name is not None:
+                    m['name'] = name
+                if color is not None:
+                    m['color'] = color
+                updated = True
+                break
+            elif m_allele2 == check_allele2:
+                # Match - update this mutation
+                if name is not None:
+                    m['name'] = name
+                if color is not None:
+                    m['color'] = color
+                updated = True
+                break
+    
+    if not updated:
+        return jsonify({'error': 'Mutation not found'}), 404
+    
+    session['mutations'] = current
+    return jsonify({ 'success': True, 'mutations': current }), 200
 
 
 

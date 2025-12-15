@@ -1,0 +1,75 @@
+/* 
+ * Centralized Color Palette
+ * All colors used throughout the application should be defined here.
+ * Modify these variables to change the entire color scheme.
+ */
+
+:root {
+  /* Primary Colors */
+  --primary-color: #1a3d82;
+  --primary-dark: #153366;
+  --primary-darker: #0f2a5c;
+  --primary-light: #4a6ba8;
+  --primary-lighter: #e6ecf5;
+  
+  /* Accent Colors */
+  --accent-purple: #6b2fb3;
+  --accent-blue: #2196f3;
+  --accent-orange: #ff7300;
+  
+  /* Text Colors */
+  --text-primary: #333;
+  --text-secondary: #666;
+  --text-tertiary: #7a7a7a;
+  --text-muted: #6c757d;
+  --text-dark: #2c3e50;
+  --text-light: #4a5568;
+  --text-lighter: #495057;
+  --text-lightest: #a0aec0;
+  --text-black: #000;
+  --text-white: #fff;
+  
+  /* Background Colors */
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #fff;
+  --bg-tertiary: #f0f0f0;
+  --bg-gradient-start: #ebf8ff;
+  --bg-gradient-end: #e0e7ff;
+  --bg-hover: #e9ecef;
+  --bg-table-header: #f3f4f6;
+  --bg-table-row: #f9fafb;
+  --bg-table-hover: #eef2ff;
+  --bg-loader: #f3f3f3;
+  --bg-progress: #eee;
+  
+  /* Border Colors */
+  --border-primary: #e0e0e0;
+  --border-secondary: #ced4da;
+  --border-tertiary: #ccc;
+  --border-light: #ddd;
+  --border-lighter: #bbb;
+  --border-dark: #666666;
+  --border-white: #fff;
+  --border-nav: #eee;
+  
+  /* Status Colors */
+  --status-success: #48bb78;
+  --status-warning: #f6ad55;
+  --status-error: #f56565;
+  --status-error-red: #ff0000;
+  --status-info: #007bff;
+  
+  /* Shadow Colors */
+  --shadow-sm: rgba(0, 0, 0, 0.05);
+  --shadow-md: rgba(0, 0, 0, 0.1);
+  --shadow-lg: rgba(0, 0, 0, 0.2);
+  --shadow-primary: rgba(107, 47, 179, 0.1);
+  --shadow-primary-light: rgba(26, 61, 130, 0.2);
+  
+  /* Chart/Plot Colors */
+  --chart-primary: #6b2fb3;
+  --chart-selected: #ff0000;
+  --chart-outlier: #ff7300;
+  --chart-default: #8884d8;
+}
+

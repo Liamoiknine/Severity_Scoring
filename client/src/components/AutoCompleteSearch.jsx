@@ -9,6 +9,8 @@ import autoComplete from '@tarekraafat/autocomplete.js';
 import '@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css';
 import '../styles/AutoComplete.css';
 
+const BASE = process.env.REACT_APP_API_URL || "http://localhost:3456/api";
+
 const AutoCompleteSearch = forwardRef(function AutoCompleteSearch({
   dataKey,
   placeholder,
@@ -32,7 +34,7 @@ const AutoCompleteSearch = forwardRef(function AutoCompleteSearch({
 
     async function loadDataset() {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/get_alleles`);
+        const response = await fetch(`${BASE}/get_alleles`);
         if (!response.ok) throw new Error(`Failed to load alleles`);
 
         const list = await response.json(); // list of { allele_1, allele_2 }

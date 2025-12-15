@@ -1,7 +1,7 @@
 /* src/components/ScoreCard.css */
 
 .score-card {
-    background: #fff;
+    background: var(--bg-secondary);
     border-radius: 8px;
     width: 100%;
     max-width: 400px;
@@ -16,7 +16,7 @@
   .score-card-title {
     margin: 0;
     font-size: 1.25rem;
-    color: #4a5568;
+    color: var(--text-light);
   }
   
   .score-card-content {
@@ -35,8 +35,8 @@
   .loader {
     width: 115px;
     height: 115px;
-    border: 10px solid #f3f3f3;
-    border-top: 10px solid #4f46e5;
+    border: 10px solid var(--bg-loader);
+    border-top: 10px solid var(--primary-color);
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-bottom: 16px;
@@ -49,19 +49,19 @@
   .loading-text {
     margin: 0;
     font-size: 1rem;
-    color: #4a5568;
+    color: var(--text-light);
   }
   
   .help-icon {
     font-size: 48px;
-    color: #a0aec0;
+    color: var(--text-lightest);
     margin-bottom: 16px;
   }
   
   .help-text {
     margin: 0;
     font-size: 1rem;
-    color: #4a5568;
+    color: var(--text-light);
   }
   
   .score-display {
@@ -73,7 +73,7 @@
   .score-circle {
     width: 128px;
     height: 128px;
-    border: 8px solid rgba(79, 70, 229, 0.2);
+    border: 8px solid var(--shadow-primary-light);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -83,7 +83,7 @@
   .score-number {
     font-size: 3rem;
     font-weight: bold;
-    color: #4f46e5;
+    color: var(--primary-color);
   }
   
   .progress-container {
@@ -93,7 +93,7 @@
   .progress-bar {
     width: 100%;
     height: 8px;
-    background: #eee;
+    background: var(--bg-progress);
     border-radius: 4px;
     overflow: hidden;
   }
@@ -102,21 +102,21 @@
     height: 100%;
   }
   
-  .progress-green { background: #48bb78; }
-  .progress-amber { background: #f6ad55; }
-  .progress-red   { background: #f56565; }
+  .progress-green { background: var(--status-success); }
+  .progress-amber { background: var(--status-warning); }
+  .progress-red   { background: var(--status-error); }
   
   .progress-labels {
     display: flex;
     justify-content: space-between;
     font-size: 0.75rem;
-    color: #a0aec0;
+    color: var(--text-lightest);
     margin-top: 4px;
   }
   
   .description {
     text-align: center;
-    color: #4a5568;
+    color: var(--text-light);
     margin-top: 16px;
   }
   

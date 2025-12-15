@@ -1,0 +1,102 @@
+.patient-info-panel {
+  background: var(--bg-secondary);
+  padding:20px 20px 20px 20px;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.patient-info-panel h3 {
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: 5px;
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--border-primary);
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.patient-info-panel .no-selection {
+  color: var(--text-secondary);
+  font-style: italic;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.patient-info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.info-section {
+  border-bottom: 1px solid var(--border-primary);
+  padding-bottom: 15px;
+  margin-top: 5Wpx;
+}
+
+.info-section:first-child {
+  margin-top: 0;
+}
+
+.info-section:last-child {
+  border-bottom: none;
+}
+
+.info-section h4 {
+  color: var(--primary-color);
+  margin-bottom: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+  padding: 8px 12px;
+}
+
+.info-row-even {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.info-row-odd {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.info-row:last-child {
+  margin-bottom: 0;
+}
+
+.info-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.info-value {
+  color: var(--text-primary);
+  font-weight: 400;
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .patient-info-panel {
+    padding: 15px;
+  }
+
+  .info-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .info-value {
+    text-align: left;
+  }
+}
+

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import '../styles/Plots.css';
+import colors from '../config/colors';
 
 //guidance from react-graph-gallery.com/violin-plot
 export default function D3ViolinPlot({
@@ -8,13 +9,14 @@ export default function D3ViolinPlot({
     xKey,
     yKey,
     title,
-    color = '#8884d8',
+    color = colors.chartDefault,
     showGrid = true,
     showLegend = true,
     filteredData = []
 }) {
     const svgRef = useRef();
     const containerRef = useRef();
+    const zoomRef = useRef(null);
     const [selectedViolin, setSelectedViolin] = useState(null);
     const [zoomTransform, setZoomTransform] = useState(null);
 
@@ -50,11 +52,11 @@ export default function D3ViolinPlot({
         const yAxisMax = globalMax + yAxisPadding;
 
         const containerWidth = containerRef.current.clientWidth;
-        const containerHeight = 400;
+        const containerHeight = containerRef.current.clientHeight || 600;
         const margin = {
             top: 50,
-            right: 150,  // Increased right margin for labels
-            bottom: 70,
+            right: 80,
+            bottom: 50,
             left: 80
         };
         const width = containerWidth - margin.left - margin.right;
@@ -105,7 +107,7 @@ export default function D3ViolinPlot({
             .call(d3.axisBottom(xScale))
             .selectAll('text')
             .style('text-anchor', 'middle')
-            .attr('dy', '1em');
+            .attr('dy', '0.5em');
 
         const yAxis = mainGroup.append('g')
             .call(d3.axisLeft(yScale)
@@ -115,7 +117,7 @@ export default function D3ViolinPlot({
 
         mainGroup.append('text')
             .attr('x', width / 2)
-            .attr('y', height + margin.bottom - 10)
+            .attr('y', height + margin.bottom - 5)
             .attr('text-anchor', 'middle')
             .style('font-size', '14px')
             .style('font-weight', 'bold')
@@ -192,7 +194,7 @@ export default function D3ViolinPlot({
                     .datum(pathData)
                     .attr('fill', color)
                     .attr('fill-opacity', selectedViolin === d.manifestation ? 0.8 : 0.6)
-                    .attr('stroke', selectedViolin === d.manifestation ? '#ff0000' : 'none')
+                    .attr('stroke', selectedViolin === d.manifestation ? colors.chartSelected : 'none')
                     .attr('stroke-width', selectedViolin === d.manifestation ? 2 : 0)
                     .attr('d', d3.line()
                         .x(p => p.density)
@@ -242,13 +244,14 @@ export default function D3ViolinPlot({
                         if (ageOfOnset !== null && ageOfOnset !== undefined) {
                             const maxDensity = d3.max(kdeData, p => p.density);
                             const lineWidth = maxDensity * scaleFactor * 2;
+                            const patientColor = item.color || colors.chartSelected;
 
                             g.append('line')
                                 .attr('x1', -lineWidth / 2)
                                 .attr('x2', lineWidth / 2)
                                 .attr('y1', currentYScale(ageOfOnset))
                                 .attr('y2', currentYScale(ageOfOnset))
-                                .attr('stroke', '#ff0000')
+                                .attr('stroke', patientColor)
                                 .attr('stroke-width', 3)
                                 .attr('stroke-dasharray', '5,3')
                                 .attr('class', 'tracked-variant-line');
@@ -260,7 +263,7 @@ export default function D3ViolinPlot({
                                 .attr('dy', '0.35em')
                                 .text(item.name || `Variant (${index + 1})`)
                                 .attr('font-size', '10px')
-                                .attr('fill', '#ff0000')
+                                .attr('fill', patientColor)
                                 .each(function () {
                                     const bbox = this.getBBox();
                                     const xPos = xScale(d.manifestation);
@@ -295,7 +298,7 @@ export default function D3ViolinPlot({
                     .attr('x2', xScale.bandwidth() / 2)
                     .attr('y1', currentYScale(d.median))
                     .attr('y2', currentYScale(d.median))
-                    .attr('stroke', selectedViolin === d.manifestation ? '#ff0000' : color)
+                    .attr('stroke', selectedViolin === d.manifestation ? colors.chartSelected : color)
                     .attr('stroke-width', 2);
 
                 //mean line
@@ -304,7 +307,7 @@ export default function D3ViolinPlot({
                     .attr('x2', xScale.bandwidth() / 2)
                     .attr('y1', currentYScale(d.mean))
                     .attr('y2', currentYScale(d.mean))
-                    .attr('stroke', '#ff7300')
+                    .attr('stroke', colors.chartOutlier)
                     .attr('stroke-width', 2);
 
                 //quartile lines
@@ -313,7 +316,7 @@ export default function D3ViolinPlot({
                     .attr('x2', xScale.bandwidth() / 2)
                     .attr('y1', currentYScale(d.q1))
                     .attr('y2', currentYScale(d.q1))
-                    .attr('stroke', selectedViolin === d.manifestation ? '#ff0000' : color)
+                    .attr('stroke', selectedViolin === d.manifestation ? colors.chartSelected : color)
                     .attr('stroke-width', 1)
                     .attr('stroke-dasharray', '3,3');
 
@@ -322,7 +325,7 @@ export default function D3ViolinPlot({
                     .attr('x2', xScale.bandwidth() / 2)
                     .attr('y1', currentYScale(d.q3))
                     .attr('y2', currentYScale(d.q3))
-                    .attr('stroke', selectedViolin === d.manifestation ? '#ff0000' : color)
+                    .attr('stroke', selectedViolin === d.manifestation ? colors.chartSelected : color)
                     .attr('stroke-width', 1)
                     .attr('stroke-dasharray', '3,3');
 
@@ -333,7 +336,7 @@ export default function D3ViolinPlot({
                     .attr('dy', '0.35em')
                     .text(`Median: ${d.median.toFixed(2)}`)
                     .attr('font-size', '10px')
-                    .attr('fill', selectedViolin === d.manifestation ? '#ff0000' : '#000')
+                    .attr('fill', selectedViolin === d.manifestation ? colors.chartSelected : colors.textBlack)
                     .each(function () {
                         const bbox = this.getBBox();
                         const xPos = xScale(d.manifestation);
@@ -353,7 +356,7 @@ export default function D3ViolinPlot({
                     .attr('dy', '0.35em')
                     .text(`Mean: ${d.mean.toFixed(2)}`)
                     .attr('font-size', '10px')
-                    .attr('fill', '#ff7300')
+                    .attr('fill', colors.chartOutlier)
                     .each(function () {
                         const bbox = this.getBBox();
                         const xPos = xScale(d.manifestation);
@@ -378,7 +381,7 @@ export default function D3ViolinPlot({
                     .attr('class', 'tooltip')
                     .style('position', 'absolute')
                     .style('background-color', 'rgba(255, 255, 255, 0.9)')
-                    .style('border', '1px solid #ccc')
+                    .style('border', `1px solid ${colors.borderTertiary}`)
                     .style('border-radius', '4px')
                     .style('padding', '8px')
                     .style('font-size', '12px')
@@ -418,27 +421,27 @@ export default function D3ViolinPlot({
                 updatePlot();
             });
 
+        zoomRef.current = zoom;
         svg.call(zoom);
 
         updatePlot();
-
-        const resetButton = d3.select(containerRef.current)
-            .append('button')
-            .attr('class', 'reset-button')
-            .text('Reset View')
-            .on('click', () => {
-                svg.transition()
-                    .duration(750)
-                    .call(zoom.transform, d3.zoomIdentity);
-                setSelectedViolin(null);
-                updatePlot();
-            });
 
         return () => {
             d3.select('body').selectAll('.tooltip').remove();
         };
 
     }, [data, xKey, yKey, color, showGrid, selectedViolin, zoomTransform, filteredData]);
+
+    const handleReset = () => {
+        if (svgRef.current && zoomRef.current) {
+            const svg = d3.select(svgRef.current);
+            svg.transition()
+                .duration(750)
+                .call(zoomRef.current.transform, d3.zoomIdentity);
+            setSelectedViolin(null);
+            setZoomTransform(d3.zoomIdentity);
+        }
+    };
 
     return (
         <div className="violin-plot-container" style={{ position: 'relative' }}>
@@ -447,12 +450,17 @@ export default function D3ViolinPlot({
                 <div style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    marginBottom: '10px',
+                    alignItems: 'center',
+                    gap: '10px',
+                    marginBottom: '-10px',
                     backgroundColor: 'rgba(255, 255, 255, 0.8)',
                     padding: '5px 10px',
                     borderRadius: '4px',
-                    border: '1px solid #e0e0e0',
-                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+                    border: `1px solid ${colors.borderPrimary}`,
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                    position: 'relative',
+                    zIndex: 5,
+                    pointerEvents: 'auto'
                 }}>
                     <div style={{
                         display: 'flex',
@@ -472,26 +480,39 @@ export default function D3ViolinPlot({
                                 <div style={{
                                     width: '20px',
                                     height: '2px',
-                                    backgroundColor: '#ff0000',
+                                    backgroundColor: colors.chartSelected,
                                     margin: '0 5px 0 10px',
-                                    borderTop: '2px dashed #ff0000'
+                                    borderTop: `2px dashed ${colors.chartSelected}`
                                 }}></div>
                                 <span>Tracked Variant</span>
                             </>
                         )}
                     </div>
+                    <button
+                        onClick={handleReset}
+                        style={{
+                            backgroundColor: colors.primary,
+                            color: colors.textWhite,
+                            padding: '4px 8px',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            fontSize: '0.75rem',
+                            fontWeight: '500',
+                            whiteSpace: 'nowrap',
+                            position: 'relative',
+                            zIndex: 10,
+                            pointerEvents: 'auto',
+                            minWidth: '80px',
+                            flexShrink: 0
+                        }}
+                    >
+                        Reset View
+                    </button>
                 </div>
             )}
-            <div ref={containerRef} style={{ width: '100%', height: '400px' }}>
-                <svg ref={svgRef}></svg>
-            </div>
-            <div style={{
-                marginTop: '10px',
-                fontSize: '12px',
-                color: '#666',
-                textAlign: 'center'
-            }}>
-                <p>Interactive features: Zoom with mouse wheel, click on violins to highlight, click and drag to pan</p>
+            <div ref={containerRef} style={{ width: '100%', flex: '1', minHeight: '500px', maxHeight: '600px', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '-10px' }}>
+                <svg ref={svgRef} style={{ display: 'block' }}></svg>
             </div>
         </div>
     );

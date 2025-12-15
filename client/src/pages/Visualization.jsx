@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import InputFields from '../components/InputFields';
 import TrackingList from '../components/TrackingList';
 import D3ScatterPlot from '../components/D3ScatterPlot';
 import D3ViolinPlot from '../components/D3ViolinPlot';
 import D3BoxPlot from '../components/D3BoxPlot';
 import StatsTable from '../components/StatsTable';
+import PatientInfoPanel from '../components/PatientInfoPanel';
 import Info from '../components/Info';
 import { scroller } from 'react-scroll';
 import '../styles/Visualization.css';
 import Navbar from '../components/Navbar';
+import colors from '../config/colors';
 
 
 // Auxialiary Functions:
@@ -65,6 +67,9 @@ function Visualization() {
   const [isTrackingOpen, setIsTrackingOpen] = useState(true);
   const [trackedMutations, setTrackedMutations] = useState([]);
   const [infoState, setInfoState] = useState("open")
+  const [selectedPatient, setSelectedPatient] = useState(null);
+  const [shouldScrollToPanel, setShouldScrollToPanel] = useState(false);
+  const patientInfoPanelRef = useRef(null);
 
   // runs upon start up
   useEffect(() => {
@@ -88,7 +93,8 @@ function Visualization() {
           queryParams.append('manifestation', inputs.Manifestations.Age_of_Onset_of);
         }
 
-        const url = `${process.env.REACT_APP_API_URL}/patients?${queryParams.toString()}`;
+        const BASE = process.env.REACT_APP_API_URL || "http://localhost:3456/api";
+        const url = `${BASE}/patients?${queryParams.toString()}`;
         console.log('Fetching data from:', url);
         const patientsResponse = await fetch(url);
         //error handling
@@ -99,13 +105,19 @@ function Visualization() {
             statusText: patientsResponse.statusText,
             error: errorData
           });
+          // Check if this is a "no data" case (404 with "No patients found" message)
+          if (patientsResponse.status === 404 && errorData.error && errorData.error.includes('No patients found')) {
+            setError('NO_DATA'); // Special flag for no data case
+            setApiData([]); // Set empty array for no data
+          } else {
           throw new Error(`API error: ${patientsResponse.status} - ${errorData.error || patientsResponse.statusText}`);
         }
-
+        } else {
         const patientsData = await patientsResponse.json();
         //set apiData to the patients data
         setApiData(patientsData);
         console.log('Updated apiData state:', patientsData);
+        }
         setLoading(false);
 
       } catch (err) {
@@ -118,6 +130,22 @@ function Visualization() {
     fetchData();
   }, [inputs]); //runs when inputs change
 
+  // Auto-scroll to patient info panel only when "See All" is clicked
+  useEffect(() => {
+    if (shouldScrollToPanel && selectedPatient && patientInfoPanelRef.current) {
+      // Small delay to ensure the panel is rendered
+      setTimeout(() => {
+        patientInfoPanelRef.current?.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start',
+          inline: 'nearest'
+        });
+        // Reset the scroll flag after scrolling
+        setShouldScrollToPanel(false);
+      }, 100);
+    }
+  }, [shouldScrollToPanel, selectedPatient]);
+
   // Updates the inputs stat variable based on user input changes
   const handleInputChange = (group, field, value) => {
     setInputs(prev => {
@@ -128,11 +156,8 @@ function Visualization() {
         if (updatedGroup[field] === value) {
           updatedGroup[field] = null;
         } else {
-          // deselect all other values
-          Object.keys(updatedGroup).forEach(key => {
-            updatedGroup[key] = null;
-          });
-          // select new value
+          // select new value without clearing other selector fields
+          // This allows both sex and severity to be selected simultaneously
           updatedGroup[field] = value;
         }
       } else if (field === 'Age_of_Onset_of') {
@@ -173,6 +198,9 @@ function Visualization() {
     }
 
     if (error) {
+      if (error === 'NO_DATA') {
+        return <p>No patients found for this combination of filters.</p>;
+      }
       return <p>Error loading data: {error}</p>;
     }
 
@@ -245,12 +273,26 @@ function Visualization() {
         return [];
       }
 
-      // Return a single data point with both manifestations
+      // Return a single data point with both manifestations and full patient data
       return [{
         manifestation1: selectedManifestations[0],
         manifestation2: selectedManifestations[1],
         ageOfOnset1: item[manifestation1Key],
-        ageOfOnset2: item[manifestation2Key]
+        ageOfOnset2: item[manifestation2Key],
+        // Include full patient data for click functionality
+        patientData: {
+          allele_1: item.allele_1,
+          allele_2: item.allele_2,
+          inheritance: item.inheritance,
+          sex: item.sex,
+          age: item.age,
+          severity: item.severity,
+          dm: item.dm,
+          oa: item.oa,
+          di: item.di,
+          hl: item.hl,
+          id: item.id
+        }
       }];
     });
 
@@ -294,8 +336,10 @@ function Visualization() {
             xKey="ageOfOnset1"
             yKey="ageOfOnset2"
             title={`Age of Onset: ${inputs.Manifestations.Age_of_Onset_of[0] || ''} vs ${inputs.Manifestations.Age_of_Onset_of[1] || ''}`}
-            color="#6b2fb3"
+            color={colors.chartPrimary}
             filteredData={filterTracked}
+            onPointClick={setSelectedPatient}
+            onSeeAllClick={() => setShouldScrollToPanel(true)}
           />
         );
       case 'box':
@@ -305,7 +349,7 @@ function Visualization() {
             xKey="manifestation"
             yKey="value"
             title="Age of Onset Distribution by Manifestation"
-            color="#6b2fb3"
+            color={colors.chartPrimary}
             filteredData={filterTracked}
           />
         );
@@ -316,7 +360,7 @@ function Visualization() {
             xKey="manifestation"
             yKey="value"
             title="Age of Onset Patterns by Manifestation"
-            color="#6b2fb3"
+            color={colors.chartPrimary}
             filteredData={filterTracked}
           />
         );
@@ -347,12 +391,6 @@ function Visualization() {
           {/* vis main =  controls panel + the vis-area + tracking list if opened */}
           <div className={`visualization-main${isTrackingOpen ? ' with-tracking' : ''}`}>
             <div className="controls-panel">
-              <InputFields
-                config={selectedPlot === 'scatter' ? { Manifestations: fieldConfig.Manifestations } : fieldConfig}
-                inputs={inputs}
-                onInputChange={handleInputChange}
-                selectedPlot={selectedPlot}
-              />
               <div className="plot-selector">
                 <h4>Visualization Type</h4>
                 <select
@@ -374,7 +412,7 @@ function Visualization() {
                         }
                       }));
                     }
-                    // If switching away from scatter plot, clear all manifestation selections
+                    // If switching away from scatter plot, clear all manifestation selections and reset patient info
                     else if (selectedPlot === 'scatter') {
                       setInputs(prev => ({
                         ...prev,
@@ -382,6 +420,9 @@ function Visualization() {
                           Age_of_Onset_of: null
                         }
                       }));
+                      // Reset patient info panel when switching away from scatter plot
+                      setSelectedPatient(null);
+                      setShouldScrollToPanel(false);
                     }
                   }}
                 >
@@ -390,6 +431,12 @@ function Visualization() {
                   <option value="violin">Violin Plot</option>
                 </select>
               </div>
+              <InputFields
+                config={selectedPlot === 'scatter' ? { Manifestations: fieldConfig.Manifestations } : fieldConfig}
+                inputs={inputs}
+                onInputChange={handleInputChange}
+                selectedPlot={selectedPlot}
+              />
             </div>
 
             <div className="visualization-area">
@@ -402,13 +449,18 @@ function Visualization() {
 
           </div>
         </div>
-        <div className="statistics-panel">
-          <StatsTable
-            manifestation={inputs.Manifestations.Age_of_Onset_of}
-            sex={inputs.Selectors.Sex}
-            severity={inputs.Selectors.Severity_Score}
-            selectedPlot={selectedPlot}
-          />
+        <div className="panels-row">
+          <div className="statistics-panel">
+            <StatsTable
+              manifestation={inputs.Manifestations.Age_of_Onset_of}
+              sex={inputs.Selectors.Sex}
+              severity={inputs.Selectors.Severity_Score}
+              selectedPlot={selectedPlot}
+            />
+          </div>
+          <div className="patient-info-panel-container" ref={patientInfoPanelRef}>
+            <PatientInfoPanel patientData={selectedPatient} />
+          </div>
         </div>
 
 

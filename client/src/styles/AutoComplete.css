@@ -1,24 +1,88 @@
-#autoComplete-allele_1, #autoComplete-allele_2{
-    width: 100%;
-    padding: 0.5em 1em;
-    border: 2px solid transparent;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.2s ease;
-    color: black;
+/* Style autocomplete inputs by class name - this ensures both inputs are styled */
+.my-autocomplete-input {
+    width: 100% !important;
+    padding: 0.5em 1em !important;
+    border: none !important;
+    border-bottom: 2px solid var(--accent-purple) !important;
+    border-radius: 4px !important;
+    font-size: 1rem !important;
+    transition: border-color 0.2s ease, background-color 0.2s ease !important;
+    color: var(--text-black) !important;
+    box-sizing: border-box !important;
+    background-color: var(--bg-tertiary) !important;
 }
 
-#autoComplete-allele_1:hover, #autoComplete-allele_2:hover, #autoComplete-allele_1:focus, #autoComplete-allele_2:focus{
-    background-color: #f0f0f0;
-    border: 2px solid #6b2fb3;
-    width: 100%;
+.my-autocomplete-input:hover, 
+.my-autocomplete-input:focus {
+    background-color: var(--bg-tertiary) !important;
+    border: 2px solid var(--accent-purple) !important;
+    width: 100% !important;
 }
 
-#autoComplete-allele_1::placeholder, #autoComplete-allele_2::placeholder{
-    color: grey;
+.my-autocomplete-input::placeholder {
+    color: var(--text-secondary) !important;
 }
 
-.autoComplete_wrapper{
+/* Also style by ID pattern for when autocomplete library sets the ID */
+[id^="autoComplete-"] {
+    width: 100% !important;
+    padding: 0.5em 1em !important;
+    border: none !important;
+    border-bottom: 2px solid var(--accent-purple) !important;
+    border-radius: 4px !important;
+    font-size: 1rem !important;
+    transition: border-color 0.2s ease, background-color 0.2s ease !important;
+    color: var(--text-black) !important;
+    box-sizing: border-box !important;
+    background-color: var(--bg-tertiary) !important;
+}
+
+[id^="autoComplete-"]:hover, 
+[id^="autoComplete-"]:focus {
+    background-color: var(--bg-tertiary) !important;
+    border: 2px solid var(--accent-purple) !important;
+    width: 100% !important;
+}
+
+[id^="autoComplete-"]::placeholder {
+    color: var(--text-secondary) !important;
+}
+
+/* Specific IDs as fallback */
+#autoComplete-allele_1, 
+#autoComplete-allele_2 {
+    width: 100% !important;
+    padding: 0.5em 1em !important;
+    border: none !important;
+    border-bottom: 2px solid var(--accent-purple) !important;
+    border-radius: 4px !important;
+    font-size: 1rem !important;
+    transition: border-color 0.2s ease, background-color 0.2s ease !important;
+    color: var(--text-black) !important;
+    box-sizing: border-box !important;
+    background-color: var(--bg-tertiary) !important;
+}
+
+#autoComplete-allele_1:hover, 
+#autoComplete-allele_2:hover, 
+#autoComplete-allele_1:focus, 
+#autoComplete-allele_2:focus {
+    background-color: var(--bg-tertiary) !important;
+    border: 2px solid var(--accent-purple) !important;
+    width: 100% !important;
+}
+
+#autoComplete-allele_1::placeholder, 
+#autoComplete-allele_2::placeholder {
+    color: var(--text-secondary) !important;
+}
+
+.autoComplete_wrapper {
     display: inline;
+    width: 100%;
+}
+
+.autocomplete-wrapper {
+    width: 100%;
 }
 
