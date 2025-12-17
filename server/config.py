@@ -9,6 +9,18 @@ load_dotenv()
 class Config:
     SECRET_KEY = os.getenv('SECRET_KEY', 'dev')
     
+    # Session cookie configuration for production
+    # In production (HTTPS), cookies must be Secure
+    SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE', 'False').lower() == 'true'
+    # If Secure=True (production), use 'None' for cross-origin support
+    # If Secure=False (development), use 'Lax' for same-site requests
+    # Note: SameSite='None' REQUIRES Secure=True
+    if SESSION_COOKIE_SECURE:
+        SESSION_COOKIE_SAMESITE = 'None'
+    else:
+        SESSION_COOKIE_SAMESITE = os.getenv('SESSION_COOKIE_SAMESITE', 'Lax')
+    SESSION_COOKIE_HTTPONLY = True
+    
     firebase_json = os.getenv('FIREBASE_CONFIG')
     if firebase_json:
         FIREBASE_CRED = json.loads(firebase_json)

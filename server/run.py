@@ -6,14 +6,22 @@ from firebase_client import init_firebase
 
 # Factory function to create flask instance, add blueprint(s), and add configs
 def create_app():
+    import os
     app = Flask(__name__)
     app.config.from_object(Config)
 
+    # Get allowed origins from environment variable or default to localhost
+    # Format: comma-separated list of origins, e.g., "http://localhost:3000,https://yourdomain.com"
+    allowed_origins_env = os.getenv('CORS_ORIGINS', 'http://localhost:3000')
+    allowed_origins = [origin.strip() for origin in allowed_origins_env.split(',')]
+    
+    # CORS configuration - must use explicit origins when supports_credentials=True
     CORS(
         app,
-        origins=["http://localhost:3000"],
+        origins=allowed_origins,
         supports_credentials=True,
-        resources={r"/api/*": {"origins": "*"}}
+        allow_headers=['Content-Type', 'Authorization'],
+        methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
     )
     init_firebase(app) 
 
