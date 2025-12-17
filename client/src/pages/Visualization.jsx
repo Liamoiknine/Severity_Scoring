@@ -68,6 +68,7 @@ function Visualization() {
   const [isTrackingOpen, setIsTrackingOpen] = useState(true);
   const [trackedMutations, setTrackedMutations] = useState([]);
   const [infoState, setInfoState] = useState("open")
+  const [isInfoClosed, setIsInfoClosed] = useState(true);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [shouldScrollToPanel, setShouldScrollToPanel] = useState(false);
   const patientInfoPanelRef = useRef(null);
@@ -373,12 +374,17 @@ function Visualization() {
 
   return (
     <>
-    <Navbar title="Data Visualization" current="vis"></Navbar>
+    <Navbar 
+      title="Data Visualization" 
+      current="vis"
+      showHelpButton={true}
+      onHelpClick={() => setIsInfoClosed(!isInfoClosed)}
+    ></Navbar>
     <div className="app">
       
       {/*This section contains the (title and subtite) + the toggle button + visualization container + statistics panel */}
       <section className="visualization-header">
-        <Info></Info>
+        <Info isClosed={isInfoClosed} onToggle={() => setIsInfoClosed(true)}></Info>
       </section>
       <section className="visualization-section">
         {/* vis container = container for vis-main */}

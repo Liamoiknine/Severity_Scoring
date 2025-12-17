@@ -1,110 +1,253 @@
-.head {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: var(--bg-secondary);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 2px 4px var(--shadow-md);
-    z-index: 1000;
-  }
+/* Navbar Container */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-secondary);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px var(--shadow-sm);
+  border-bottom: 1px solid var(--border-nav);
+  margin-bottom: 1rem;
+  z-index: 1000;
+  transition: box-shadow 0.3s ease;
+}
 
-  .head h3{
-    color: var(--primary-color);
-    font-size: 1.4rem;
-    margin: 0;
-  }
-  
+.navbar:hover {
+  box-shadow: 0 4px 12px var(--shadow-md);
+}
+
+/* Navbar Container */
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Brand Section */
+.navbar-brand {
+  flex-shrink: 0;
+}
+
+.navbar-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* Desktop Navigation */
+.navbar-nav {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.nav-link {
+  position: relative;
+  padding: 0.625rem 1.25rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  color: var(--primary-color);
+  background-color: var(--primary-lighter);
+}
+
+.nav-link.active {
+  color: var(--primary-color);
+  background-color: var(--primary-lighter);
+  font-weight: 600;
+}
+
+/* Help Button in Navigation */
+.nav-help-button {
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  /* Inherit all nav-link styles */
+  position: relative;
+  padding: 0.625rem 1.25rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-help-button:hover {
+  color: var(--primary-color);
+  background-color: var(--primary-lighter);
+}
+
+.mobile-help-button {
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  /* Inherit all mobile-nav-link styles */
+  padding: 0.875rem 1rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.mobile-help-button:hover {
+  color: var(--primary-color);
+  background-color: var(--primary-lighter);
+  padding-left: 1.25rem;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-button {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+  gap: 4px;
+}
+
+.mobile-menu-button:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 3px;
+  background-color: var(--text-primary);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.mobile-menu-button.open .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.mobile-menu-button.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.mobile-menu-button.open .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  display: none;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-nav);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.mobile-menu.active {
+  display: block;
+  max-height: 300px;
+  padding: 1rem 0;
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 2rem;
+}
+
+.mobile-nav-link {
+  padding: 0.875rem 1rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.mobile-nav-link:hover {
+  color: var(--primary-color);
+  background-color: var(--primary-lighter);
+  padding-left: 1.25rem;
+}
+
+.mobile-nav-link.active {
+  color: var(--primary-color);
+  background-color: var(--primary-lighter);
+  font-weight: 600;
+  border-left-color: var(--primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .navbar-container {
-    margin: 0 auto;
-    padding: 0.6rem 2.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 6.5rem;
-  }
-  
-  .logo img {
-    height: 40px;
-    width: auto;
-  }
-  
-  .desktop-nav {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-  }
-  
-  .desktop-nav a {
-    text-decoration: none;
-    color: var(--text-primary);
-    font-size: 1rem;
-    font-weight: 500;
-    transition: color 0.2s ease;
+    padding: 0.875rem 1.5rem;
   }
 
-  .desktop-nav a strong {
-    font-weight: bolder;
+  .navbar-title {
+    font-size: 1.25rem;
   }
-  
-  .desktop-nav a:hover {
-    color: var(--primary-color); 
+
+  .navbar-nav {
+    display: none;
   }
-  
+
   .mobile-menu-button {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-  }
-  
-  .mobile-menu-button svg {
-    width: 24px;
-    height: 24px;
-    color: var(--text-primary);
-  }
-  
-  .mobile-menu {
-    display: none;
-    background-color: var(--bg-secondary);
-    border-top: 1px solid var(--border-nav);
-    padding: 0.75rem 2rem;
-  }
-  
-  .mobile-menu-links {
     display: flex;
-    flex-direction: column;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-container {
+    padding: 0.75rem 1rem;
     gap: 1rem;
   }
-  
-  .mobile-menu-links a {
-    text-decoration: none;
-    color: var(--text-primary);
-    font-size: 1rem;
-    font-weight: 500;
-    transition: color 0.2s ease;
+
+  .navbar-title {
+    font-size: 1.125rem;
   }
-  
-  .mobile-menu-links a:hover {
-    color: var(--primary-color);
+
+  .mobile-nav {
+    padding: 0 1rem;
   }
-  
-  
-  @media (max-width: 768px) {
-    .desktop-nav {
-      display: none;
-    }
-  
-    .mobile-menu-button {
-      display: block;
-    }
-  
-    .mobile-menu {
-      display: none;
-    }
-  
-    .mobile-menu.active {
-      display: block;
-    }
-  } 
+}
+
+/* Navbar height is approximately 70-80px depending on screen size */
+/* Pages should account for this with margin-top (already handled in their respective CSS files) */
