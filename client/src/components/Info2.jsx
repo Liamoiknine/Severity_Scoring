@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { IoIosHelpCircle } from "react-icons/io";
 import '../styles/Info2.css';
 
 export default function Info() {
@@ -41,7 +42,7 @@ export default function Info() {
                     className='btn-closed'
                     onClick={()=> setIsClosed(false)}
                     >
-                        ?
+                        <IoIosHelpCircle />
                     </button>
                 :  
                 <>
@@ -49,7 +50,7 @@ export default function Info() {
                     className='btn-closed'
                     onClick={()=> setIsClosed(false)}
                     >
-                        ?
+                        <IoIosHelpCircle />
                     </button>
                     <button
                         className='close'

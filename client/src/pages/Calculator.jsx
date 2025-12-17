@@ -5,6 +5,7 @@ import ScoreCard from "../components/ScoreCard";
 import "../styles/Calculator.css";
 import { getScore } from "../services/api";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import Info2 from "../components/Info2";
 
 const Calculator = () => {
@@ -108,13 +109,8 @@ const Calculator = () => {
             </div>
           )}
         </div>
-
-        <footer className="disclaimer">
-          <p>
-            This tool provides only a preliminary assessment. Consult a genetic specialist for clinical use. Email l.j.oiknine@wustl.edu with questions/concerns.
-          </p>
-        </footer>
       </div>
+      <Footer />
     </>
   );
 };

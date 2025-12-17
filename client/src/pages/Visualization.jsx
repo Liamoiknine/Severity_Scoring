@@ -10,6 +10,7 @@ import Info from '../components/Info';
 import { scroller } from 'react-scroll';
 import '../styles/Visualization.css';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import colors from '../config/colors';
 
 
@@ -466,6 +467,7 @@ function Visualization() {
 
       </section>
     </div>
+    <Footer />
     </>
   );
 }
