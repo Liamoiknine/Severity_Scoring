@@ -186,7 +186,22 @@ def  check_allele_validity():
     }
 
     current = session.get('mutations', [])
-    if new_mut not in current:
+    
+    # Check if mutation with same allele1 and allele2 already exists
+    # Normalize allele2 values for comparison (None, empty string, 'null' are equivalent)
+    def normalize_allele2(val):
+        if val is None or val == '' or val == 'null':
+            return None
+        return val
+    
+    new_allele2 = normalize_allele2(new_mut.get('allele2'))
+    already_exists = any(
+        m.get('allele1') == new_mut.get('allele1') and 
+        normalize_allele2(m.get('allele2')) == new_allele2
+        for m in current
+    )
+    
+    if not already_exists:
         current.append(new_mut)
         session['mutations'] = current
         return jsonify(new_mut)
