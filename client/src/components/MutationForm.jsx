@@ -9,8 +9,10 @@ const MutationForm = ({ onSubmit, isCalculating }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (mutation1.trim() && mutation2.trim()) {
-      onSubmit(mutation1, mutation2);
+    const trimmed1 = mutation1.trim();
+    const trimmed2 = mutation2.trim();
+    if (trimmed1 && trimmed2) {
+      onSubmit(trimmed1, trimmed2);
     }
   };
 
@@ -27,6 +29,7 @@ const MutationForm = ({ onSubmit, isCalculating }) => {
           placeholder="e.g., c.2663C>A or p.S888X"
           value={mutation1}
           onChange={(e) => setMutation1(e.target.value)}
+          onBlur={(e) => setMutation1(e.target.value.trim())}
           required
         />
       </div>
@@ -42,6 +45,7 @@ const MutationForm = ({ onSubmit, isCalculating }) => {
           placeholder="e.g., c.1060_1062delTTC or p.Phe354del"          
           value={mutation2}
           onChange={(e) => setMutation2(e.target.value)}
+          onBlur={(e) => setMutation2(e.target.value.trim())}
           required
         />
       </div>

@@ -11,7 +11,7 @@ def create_app():
 
     CORS(
         app,
-        origins=["http://localhost:3000", "https://liamoiknine.github.io"],
+        origins=["http://localhost:3000"],
         supports_credentials=True,
         resources={r"/api/*": {"origins": "*"}}
     )
