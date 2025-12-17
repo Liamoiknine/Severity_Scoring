@@ -17,5 +17,6 @@ build/
 *.egg-info/
 
 client/.env
+server/.env
 firebase.json
 .DS_Store
