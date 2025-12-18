@@ -13,7 +13,12 @@ def create_app():
     # Get allowed origins from environment variable or default to localhost
     # Format: comma-separated list of origins, e.g., "http://localhost:3000,https://yourdomain.com"
     allowed_origins_env = os.getenv('CORS_ORIGINS', 'http://localhost:3000')
-    allowed_origins = [origin.strip() for origin in allowed_origins_env.split(',')]
+    allowed_origins = [origin.strip() for origin in allowed_origins_env.split(',') if origin.strip()]
+    
+    # Log CORS configuration for debugging (this will appear in Render logs)
+    print(f"[CORS] CORS_ORIGINS environment variable: '{allowed_origins_env}'")
+    print(f"[CORS] Parsed allowed origins: {allowed_origins}")
+    print(f"[CORS] Number of origins: {len(allowed_origins)}")
     
     # CORS configuration - must use explicit origins when supports_credentials=True
     CORS(
@@ -23,6 +28,8 @@ def create_app():
         allow_headers=['Content-Type', 'Authorization'],
         methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
     )
+    
+    print(f"[CORS] CORS middleware configured successfully")
     init_firebase(app) 
 
     app.register_blueprint(api_bp, url_prefix='/api')

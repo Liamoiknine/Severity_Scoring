@@ -4,6 +4,17 @@ from . import api_bp
 from firebase_client import get_patients, get_feature, get_feature_grouped, check_alleles, get_allele_data, get_data_given_alleles, get_all_allele_combinations
 import numpy as np
 import re
+import os
+
+# Test endpoint to verify CORS and environment variables
+@api_bp.route('/test-cors')
+def test_cors():
+    cors_origins = os.getenv('CORS_ORIGINS', 'NOT SET')
+    return jsonify({
+        'status': 'ok',
+        'cors_origins_env': cors_origins,
+        'message': 'CORS test endpoint - if you see this, CORS is working'
+    }), 200
 
 # new comment
 # Get a dict of patients and their data filtered based on passed parameters
