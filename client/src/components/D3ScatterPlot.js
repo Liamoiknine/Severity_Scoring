@@ -229,7 +229,7 @@ export default function D3ScatterPlot({
                         .attr('y1', currentYScale(linePoints[0].y))
                         .attr('x2', currentXScale(linePoints[1].x))
                         .attr('y2', currentYScale(linePoints[1].y))
-                        .attr('stroke', colors.primary)
+                        .attr('stroke', 'red')
                         .attr('stroke-width', 2);
                 }
 

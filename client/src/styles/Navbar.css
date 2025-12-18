@@ -7,10 +7,11 @@
   background-color: var(--bg-secondary);
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 8px var(--shadow-sm);
-  border-bottom: 1px solid var(--border-nav);
-  margin-bottom: 1rem;
+  border-bottom: none;
+  margin-bottom: 2rem;
   z-index: 1000;
   transition: box-shadow 0.3s ease;
+  padding: 0 20px;
 }
 
 .navbar:hover {
@@ -21,7 +22,7 @@
 .navbar-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 1rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,6 +32,15 @@
 /* Brand Section */
 .navbar-brand {
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.navbar-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
 }
 
 .navbar-title {
@@ -168,7 +178,7 @@
 .mobile-menu {
   display: none;
   background-color: var(--bg-secondary);
-  border-top: 1px solid var(--border-nav);
+  border-top: none;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease, padding 0.3s ease;
@@ -184,7 +194,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 0 2rem;
+  padding: 0 20px;
 }
 
 .mobile-nav-link {
@@ -213,12 +223,20 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
   .navbar-container {
-    padding: 0.875rem 1.5rem;
+    padding: 0.875rem 0;
   }
 
   .navbar-title {
     font-size: 1.25rem;
+  }
+
+  .navbar-logo {
+    height: 32px;
   }
 
   .navbar-nav {
@@ -235,8 +253,12 @@
 }
 
 @media (max-width: 480px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
   .navbar-container {
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 0;
     gap: 1rem;
   }
 
@@ -244,8 +266,37 @@
     font-size: 1.125rem;
   }
 
+  .navbar-logo {
+    height: 28px;
+  }
+
   .mobile-nav {
     padding: 0 1rem;
+  }
+}
+
+/* Button row spacer - positioned below the fixed navbar */
+.navbar-button-spacer {
+  position: fixed;
+  top: 72px; /* Approximate navbar height */
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 60px;
+  background-color: transparent;
+  z-index: 999;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .navbar-button-spacer {
+    top: 64px; /* Adjusted for smaller navbar on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-button-spacer {
+    top: 56px; /* Adjusted for even smaller navbar on small mobile */
   }
 }
 

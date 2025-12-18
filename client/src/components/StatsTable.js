@@ -123,6 +123,23 @@ export default function StatsTable({ manifestation, sex, severity, selectedPlot 
 
   const statGroups = organizeStats();
 
+  // Count how many sections will be displayed
+  const countSections = () => {
+    let count = 0;
+    if (selectedPlot === 'scatter') {
+      if (statGroups.basic.length > 0 || statGroups.correlation.length > 0) count++;
+    } else {
+      if (statGroups.basic.length > 0) count++;
+      if (statGroups.quartiles.length > 0) count++;
+      if (statGroups.correlation.length > 0) count++;
+    }
+    if (statGroups.multiManifestation.length > 0) count++;
+    return count;
+  };
+
+  const sectionCount = countSections();
+  const showSectionHeaders = sectionCount > 1;
+
   return (
     <div className="stats-table-container">
       <h2>Statistics for {displayManifestation}</h2>
@@ -151,12 +168,12 @@ export default function StatsTable({ manifestation, sex, severity, selectedPlot 
       )}
       {!loading && !error && (
       <div className="stats-content">
-        {/* Basic Statistics */}
-        {statGroups.basic.length > 0 && (
+        {/* For scatter plots: combine basic and correlation into one section */}
+        {selectedPlot === 'scatter' && (statGroups.basic.length > 0 || statGroups.correlation.length > 0) && (
           <div className="stat-group">
-            <h3 className="stat-group-title">Summary Statistics</h3>
+            {showSectionHeaders && <h3 className="stat-group-title">Summary Statistics</h3>}
             <div className="stats-grid">
-              {statGroups.basic.map(([key, value]) => (
+              {[...statGroups.basic, ...statGroups.correlation].map(([key, value]) => (
                 <div className="stats-grid-item" key={key}>
                   <div className="stat-label">{key}</div>
                   <div className="stat-value">{value}</div>
@@ -166,25 +183,45 @@ export default function StatsTable({ manifestation, sex, severity, selectedPlot 
           </div>
         )}
 
-        {/* Quartiles */}
-        {statGroups.quartiles.length > 0 && (
-          <div className="stat-group">
-            <h3 className="stat-group-title">Distribution</h3>
-            <div className="stats-grid">
-              {statGroups.quartiles.map(([key, value]) => (
-                <div className="stats-grid-item" key={key}>
-                  <div className="stat-label">{key}</div>
-                  <div className="stat-value">{value}</div>
+        {/* For box/violin plots: keep separate sections */}
+        {selectedPlot !== 'scatter' && (
+          <>
+            {/* Basic Statistics */}
+            {statGroups.basic.length > 0 && (
+              <div className="stat-group">
+                {showSectionHeaders && <h3 className="stat-group-title">Summary Statistics</h3>}
+                <div className="stats-grid">
+                  {statGroups.basic.map(([key, value]) => (
+                    <div className="stats-grid-item" key={key}>
+                      <div className="stat-label">{key}</div>
+                      <div className="stat-value">{value}</div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
+            )}
+
+            {/* Quartiles */}
+            {statGroups.quartiles.length > 0 && (
+              <div className="stat-group">
+                {showSectionHeaders && <h3 className="stat-group-title">Distribution</h3>}
+                <div className="stats-grid">
+                  {statGroups.quartiles.map(([key, value]) => (
+                    <div className="stats-grid-item" key={key}>
+                      <div className="stat-label">{key}</div>
+                      <div className="stat-value">{value}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
         )}
 
-        {/* Correlation Stats */}
-        {statGroups.correlation.length > 0 && (
+        {/* Correlation Stats - only show for non-scatter plots (if any) */}
+        {selectedPlot !== 'scatter' && statGroups.correlation.length > 0 && (
           <div className="stat-group">
-            <h3 className="stat-group-title">Correlation Analysis</h3>
+            {showSectionHeaders && <h3 className="stat-group-title">Correlation Analysis</h3>}
             <div className="stats-grid">
               {statGroups.correlation.map(([key, value]) => (
                 <div className="stats-grid-item" key={key}>
@@ -199,7 +236,7 @@ export default function StatsTable({ manifestation, sex, severity, selectedPlot 
         {/* Multi-manifestation stats */}
         {statGroups.multiManifestation.length > 0 && (
           <div className="stat-group">
-            <h3 className="stat-group-title">Manifestation Comparison</h3>
+            {showSectionHeaders && <h3 className="stat-group-title">Manifestation Comparison</h3>}
       <div className="stats-grid">
               {statGroups.multiManifestation.map(([key, value]) => (
           <div className="stats-grid-item" key={key}>

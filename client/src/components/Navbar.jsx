@@ -25,80 +25,86 @@ const Navbar = ({ title, current, onHelpClick, showHelpButton }) => {
   };
 
   return (
-    <header className="navbar">
-      <div className="navbar-container">
-        <div className="navbar-brand">
-          <h1 className="navbar-title">{title}</h1>
+    <>
+      <header className="navbar">
+        <div className="navbar-container">
+          <div className="navbar-brand">
+            <img src="/favicon.ico" alt="Lab Logo" className="navbar-logo" />
+            <h1 className="navbar-title">Urano Lab Software</h1>
+          </div>
+
+          {/* Desktop Navigation */}
+          <nav className="navbar-nav">
+            <Link
+              to="/"
+              className={`nav-link ${isActive("/") ? "active" : ""}`}
+            >
+              Visualize Our Data
+            </Link>
+            <Link
+              to="/calculator"
+              className={`nav-link ${isActive("/calculator") ? "active" : ""}`}
+            >
+              Calculate Severity Score
+            </Link>
+            {showHelpButton && (
+              <button
+                className="nav-link nav-help-button"
+                onClick={onHelpClick}
+              >
+                Help
+              </button>
+            )}
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            className={`mobile-menu-button ${isMenuOpen ? "open" : ""}`}
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
+          >
+            <span className="hamburger-line"></span>
+            <span className="hamburger-line"></span>
+            <span className="hamburger-line"></span>
+          </button>
         </div>
 
-        {/* Desktop Navigation */}
-        <nav className="navbar-nav">
-          <Link
-            to="/"
-            className={`nav-link ${isActive("/") ? "active" : ""}`}
-          >
-            Visualize Our Data
-          </Link>
-          <Link
-            to="/calculator"
-            className={`nav-link ${isActive("/calculator") ? "active" : ""}`}
-          >
-            Calculate Severity Score
-          </Link>
-          {showHelpButton && (
-            <button
-              className="nav-link nav-help-button"
-              onClick={onHelpClick}
+        {/* Mobile Menu */}
+        <div className={`mobile-menu ${isMenuOpen ? "active" : ""}`}>
+          <nav className="mobile-nav">
+            <Link
+              to="/"
+              className={`mobile-nav-link ${isActive("/") ? "active" : ""}`}
+              onClick={closeMenu}
             >
-              Help
-            </button>
-          )}
-        </nav>
-
-        {/* Mobile Menu Button */}
-        <button
-          className={`mobile-menu-button ${isMenuOpen ? "open" : ""}`}
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-          aria-expanded={isMenuOpen}
-        >
-          <span className="hamburger-line"></span>
-          <span className="hamburger-line"></span>
-          <span className="hamburger-line"></span>
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      <div className={`mobile-menu ${isMenuOpen ? "active" : ""}`}>
-        <nav className="mobile-nav">
-          <Link
-            to="/"
-            className={`mobile-nav-link ${isActive("/") ? "active" : ""}`}
-            onClick={closeMenu}
-          >
-            Visualize Our Data
-          </Link>
-          <Link
-            to="/calculator"
-            className={`mobile-nav-link ${isActive("/calculator") ? "active" : ""}`}
-            onClick={closeMenu}
-          >
-            Calculate Severity Score
-          </Link>
-          {showHelpButton && (
-            <button
-              className="mobile-nav-link mobile-help-button"
-              onClick={() => {
-                onHelpClick();
-                closeMenu();
-              }}
+              Visualize Our Data
+            </Link>
+            <Link
+              to="/calculator"
+              className={`mobile-nav-link ${isActive("/calculator") ? "active" : ""}`}
+              onClick={closeMenu}
             >
-              Help
-            </button>
-          )}
-        </nav>
-      </div>
-    </header>
+              Calculate Severity Score
+            </Link>
+            {showHelpButton && (
+              <button
+                className="mobile-nav-link mobile-help-button"
+                onClick={() => {
+                  onHelpClick();
+                  closeMenu();
+                }}
+              >
+                Help
+              </button>
+            )}
+          </nav>
+        </div>
+      </header>
+      
+      {/* Button row spacer */}
+      <div className="navbar-button-spacer"></div>
+    </>
   );
 };
 
