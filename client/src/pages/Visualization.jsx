@@ -98,7 +98,7 @@ function Visualization() {
         const BASE = process.env.REACT_APP_API_URL || "http://localhost:3456/api";
         const url = `${BASE}/patients?${queryParams.toString()}`;
         console.log('Fetching data from:', url);
-        const patientsResponse = await fetch(url);
+        const patientsResponse = await fetch(url, { credentials: 'include' });
         //error handling
         if (!patientsResponse.ok) {
           const errorData = await patientsResponse.json();

@@ -34,7 +34,7 @@ const AutoCompleteSearch = forwardRef(function AutoCompleteSearch({
 
     async function loadDataset() {
       try {
-        const response = await fetch(`${BASE}/get_alleles`);
+        const response = await fetch(`${BASE}/get_alleles`, { credentials: 'include' });
         if (!response.ok) throw new Error(`Failed to load alleles`);
 
         const list = await response.json(); // list of { allele_1, allele_2 }

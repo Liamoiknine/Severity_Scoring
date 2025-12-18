@@ -63,7 +63,7 @@ export default function StatsTable({ manifestation, sex, severity, selectedPlot 
 
         const BASE = process.env.REACT_APP_API_URL || "http://localhost:3456/api";
         const url = `${BASE}/stats/${manifestationKey}?${params.toString()}`;
-        const res = await fetch(url);
+        const res = await fetch(url, { credentials: 'include' });
 
         if (!res.ok) {
           const errorData = await res.json();
