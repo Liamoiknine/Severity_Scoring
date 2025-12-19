@@ -3,10 +3,11 @@ import TrackingList from '../components/TrackingList';
 import D3ScatterPlot from '../components/D3ScatterPlot';
 import D3ViolinPlot from '../components/D3ViolinPlot';
 import D3BoxPlot from '../components/D3BoxPlot';
-import StatsTable from '../components/StatsTable';
+import StatsCards from '../components/StatsCards';
 import PatientInfoPanel from '../components/PatientInfoPanel';
 import Info from '../components/Info';
 import FilterBar from '../components/FilterBar';
+import StartupPopup from '../components/StartupPopup';
 import { scroller } from 'react-scroll';
 import '../styles/Visualization.css';
 import Navbar from '../components/Navbar';
@@ -373,6 +374,7 @@ function Visualization() {
 
   return (
     <>
+    <StartupPopup />
     <Navbar 
       title="Data Visualization" 
       current="vis"
@@ -439,18 +441,20 @@ function Visualization() {
 
           </div>
         </div>
-        <div className="panels-row">
-          <div className="statistics-panel">
-            <StatsTable
+        <div className={`stats-row ${selectedPlot === 'scatter' ? 'with-patient-info' : 'full-width'}`}>
+          <div className={`stats-cards-wrapper ${selectedPlot === 'scatter' ? 'half-width' : 'full-width'}`}>
+            <StatsCards
               manifestation={inputs.Manifestations.Age_of_Onset_of}
               sex={inputs.Selectors.Sex}
               severity={inputs.Selectors.Severity_Score}
               selectedPlot={selectedPlot}
             />
           </div>
-          <div className="patient-info-panel-container" ref={patientInfoPanelRef}>
-            <PatientInfoPanel patientData={selectedPatient} />
-          </div>
+          {selectedPlot === 'scatter' && (
+            <div className="patient-info-panel-container" ref={patientInfoPanelRef}>
+              <PatientInfoPanel patientData={selectedPatient} />
+            </div>
+          )}
         </div>
 
 

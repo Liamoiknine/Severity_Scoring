@@ -70,13 +70,15 @@ export default function D3BoxPlot({
 
         const containerWidth = containerRef.current.clientWidth;
         const containerHeight = containerRef.current.clientHeight || 600;
-        const margin = { top: 50, right: 80, bottom: 50, left: 80 };
+        const margin = { top: 40, right: 60, bottom: 60, left: 75 };
         const width = containerWidth - margin.left - margin.right;
         const height = containerHeight - margin.top - margin.bottom;
 
         const svg = d3.select(svgRef.current)
             .attr('width', containerWidth)
-            .attr('height', containerHeight);
+            .attr('height', containerHeight)
+            .style('max-width', '100%')
+            .style('height', '100%');
 
         const mainGroup = svg.append('g')
             .attr('transform', `translate(${margin.left},${margin.top})`);
@@ -372,24 +374,31 @@ export default function D3BoxPlot({
     };
 
     return (
-        <div className="box-plot-container" style={{ position: 'relative' }}>
-            {title && <h3 className="plot-title">{title}</h3>}
-            {showLegend && (
-                <div style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    gap: '10px',
-                    marginBottom: '-10px',
-                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                    padding: '5px 10px',
-                    borderRadius: '4px',
-                    border: `1px solid ${colors.borderPrimary}`,
-                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-                    position: 'relative',
-                    zIndex: 5,
-                    pointerEvents: 'auto'
-                }}>
+        <div className="box-plot-container" style={{ position: 'relative', padding: '5px 15px' }}>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                width: '100%',
+                paddingTop: '10px'
+            }}>
+                {title && <h3 className="plot-title" style={{ margin: 0, textAlign: 'left' }}>{title}</h3>}
+                {showLegend && (
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        alignItems: 'center',
+                        gap: '10px',
+                        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                        padding: '5px 10px',
+                        borderRadius: '4px',
+                        border: `1px solid ${colors.borderPrimary}`,
+                        boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                        position: 'relative',
+                        zIndex: 5,
+                        pointerEvents: 'auto',
+                        flexShrink: 0
+                    }}>
                     <div style={{
                         display: 'flex',
                         alignItems: 'center',
@@ -452,9 +461,10 @@ export default function D3BoxPlot({
                     >
                         Reset View
                     </button>
-                </div>
-            )}
-            <div ref={containerRef} style={{ width: '100%', flex: '1', minHeight: '500px', maxHeight: '600px', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '-10px' }}>
+                    </div>
+                )}
+            </div>
+            <div ref={containerRef} style={{ width: '100%', flex: '1', height: '100%', minHeight: '400px', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <svg ref={svgRef} style={{ display: 'block' }}></svg>
             </div>
         </div>
