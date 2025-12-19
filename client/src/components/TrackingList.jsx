@@ -288,12 +288,17 @@ export default function TrackingList({ onListChange }) {
     <div className="tracking-list">
       {error && <div className="alert-error">{error}</div>}
 
+      <h3>Tracking List</h3>
+      
+      <p className="tracking-instruction">
+        Add patients to track their data across visualizations. Click "Add Patient" to select from available combinations.
+      </p>
+
       <div className="tracking-inputs">
         <button className="see-full-list-button" onClick={fetchAllCombinations}>Add Patient</button>
         <div className="see-full-list-divider"></div>
       </div>
 
-      <h3>Tracking List</h3>
       <ul className="mutation-list">
         {mutations.map((m, idx) => (
           <li key={idx} style={m.color ? { borderLeft: `4px solid ${m.color}` } : {}}>

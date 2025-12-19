@@ -35,18 +35,18 @@ const Navbar = ({ title, current, onHelpClick, showHelpButton }) => {
 
           {/* Desktop Navigation */}
           <nav className="navbar-nav">
-            <Link
-              to="/"
-              className={`nav-link ${isActive("/") ? "active" : ""}`}
-            >
-              Visualize Our Data
-            </Link>
-            <Link
-              to="/calculator"
-              className={`nav-link ${isActive("/calculator") ? "active" : ""}`}
-            >
-              Calculate Severity Score
-            </Link>
+          <Link
+            to="/"
+            className={`nav-link ${isActive("/") ? "active" : ""}`}
+          >
+            Data Visualization
+          </Link>
+          <Link
+            to="/calculator"
+            className={`nav-link ${isActive("/calculator") ? "active" : ""}`}
+          >
+            Severity Score Calculator
+          </Link>
             {showHelpButton && (
               <button
                 className="nav-link nav-help-button"
@@ -73,20 +73,20 @@ const Navbar = ({ title, current, onHelpClick, showHelpButton }) => {
         {/* Mobile Menu */}
         <div className={`mobile-menu ${isMenuOpen ? "active" : ""}`}>
           <nav className="mobile-nav">
-            <Link
-              to="/"
-              className={`mobile-nav-link ${isActive("/") ? "active" : ""}`}
-              onClick={closeMenu}
-            >
-              Visualize Our Data
-            </Link>
-            <Link
-              to="/calculator"
-              className={`mobile-nav-link ${isActive("/calculator") ? "active" : ""}`}
-              onClick={closeMenu}
-            >
-              Calculate Severity Score
-            </Link>
+          <Link
+            to="/"
+            className={`mobile-nav-link ${isActive("/") ? "active" : ""}`}
+            onClick={closeMenu}
+          >
+            Data Visualization
+          </Link>
+          <Link
+            to="/calculator"
+            className={`mobile-nav-link ${isActive("/calculator") ? "active" : ""}`}
+            onClick={closeMenu}
+          >
+            Severity Score Calculator
+          </Link>
             {showHelpButton && (
               <button
                 className="mobile-nav-link mobile-help-button"
@@ -101,9 +101,6 @@ const Navbar = ({ title, current, onHelpClick, showHelpButton }) => {
           </nav>
         </div>
       </header>
-      
-      {/* Button row spacer */}
-      <div className="navbar-button-spacer"></div>
     </>
   );
 };

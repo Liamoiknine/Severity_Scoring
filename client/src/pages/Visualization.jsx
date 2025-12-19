@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import InputFields from '../components/InputFields';
 import TrackingList from '../components/TrackingList';
 import D3ScatterPlot from '../components/D3ScatterPlot';
 import D3ViolinPlot from '../components/D3ViolinPlot';
@@ -7,6 +6,7 @@ import D3BoxPlot from '../components/D3BoxPlot';
 import StatsTable from '../components/StatsTable';
 import PatientInfoPanel from '../components/PatientInfoPanel';
 import Info from '../components/Info';
+import FilterBar from '../components/FilterBar';
 import { scroller } from 'react-scroll';
 import '../styles/Visualization.css';
 import Navbar from '../components/Navbar';
@@ -15,17 +15,6 @@ import colors from '../config/colors';
 
 
 // Auxialiary Functions:
-
-// Define the input field groups
-const fieldConfig = {
-  Manifestations: {
-    Age_of_Onset_of: ["Diabetes Mellitus", "Optic Atrophy", "Diabetes Insipidus", "Hearing Loss"]
-  },
-  Selectors: {
-    Sex: ["Male", "Female"],
-    Severity_Score: [1, 2, 3, 4, 5, 6]
-  }
-}
 
 // Define the default inputs
 const defaultInputs = {
@@ -227,12 +216,22 @@ function Visualization() {
     let filterTracked = null;
     if (selectedPlot === "scatter") {
       filterTracked = trackedMutations.filter(item => {
+        // sex & severity checks
+        const sexValue =
+          inputs.Selectors.Sex === 'Male' ? 0 :
+            inputs.Selectors.Sex === 'Female' ? 1 :
+              null;
+        const matchesSex = sexValue == null || item.sex === sexValue;
+        const matchesSeverity = !inputs.Selectors.Severity_Score || item.severity === inputs.Selectors.Severity_Score;
+
+        // manifestation checks
         const selectedManifestations = inputs.Manifestations.Age_of_Onset_of || [];
         const selected_1 = getManifestationKey(selectedManifestations[0]);
         const selected_2 = getManifestationKey(selectedManifestations[1]);
 
-        const matchesManifestation = item[selected_1] != null && item[selected_2] != null
-        return matchesManifestation;
+        const matchesManifestation = item[selected_1] != null && item[selected_2] != null;
+        
+        return matchesSex && matchesSeverity && matchesManifestation;
       });
     }
     else {
@@ -381,6 +380,45 @@ function Visualization() {
       onHelpClick={() => setIsInfoClosed(!isInfoClosed)}
     ></Navbar>
     <div className="app">
+    <div className="filter-bar-container-wrapper">
+      <FilterBar
+        inputs={inputs}
+        onInputChange={handleInputChange}
+        selectedPlot={selectedPlot}
+        setInputs={setInputs}
+        onPlotChange={(newPlotType) => {
+          setSelectedPlot(newPlotType);
+
+          // If switching to scatter plot, set default manifestations (keep existing Selectors)
+          if (newPlotType === 'scatter') {
+            setInputs(prev => ({
+              ...prev,
+              Manifestations: {
+                Age_of_Onset_of: ["Diabetes Mellitus", "Optic Atrophy"]
+              }
+            }));
+          }
+          // If switching away from scatter plot, clear all manifestation selections and reset patient info
+          else if (selectedPlot === 'scatter') {
+            setInputs(prev => ({
+              ...prev,
+              Manifestations: {
+                Age_of_Onset_of: null
+              }
+            }));
+            // Reset patient info panel when switching away from scatter plot
+            setSelectedPatient(null);
+            setShouldScrollToPanel(false);
+          }
+        }}
+      />
+      <button
+        className='tracking-toggle-new'
+        onClick={() => setIsTrackingOpen(open => !open)}
+      >
+        {isTrackingOpen ? 'Hide Tracking List' : 'Show Tracking List'}
+      </button>
+    </div>
       
       {/*This section contains the (title and subtite) + the toggle button + visualization container + statistics panel */}
       <section className="visualization-header">
@@ -389,63 +427,8 @@ function Visualization() {
       <section className="visualization-section">
         {/* vis container = container for vis-main */}
         <div className="visualization-container">
-          <button
-            className='tracking-toggle'
-            onClick={() => setIsTrackingOpen(open => !open)}
-          >
-            {isTrackingOpen ? 'Hide Tracking List' : 'Show Tracking List'}
-          </button>
-          {/* vis main =  controls panel + the vis-area + tracking list if opened */}
+          {/* vis main = the vis-area + tracking list if opened */}
           <div className={`visualization-main${isTrackingOpen ? ' with-tracking' : ''}`}>
-            <div className="controls-panel">
-              <div className="plot-selector">
-                <h4>Visualization Type</h4>
-                <select
-                  value={selectedPlot}
-                  onChange={(e) => {
-                    const newPlotType = e.target.value;
-                    setSelectedPlot(newPlotType);
-
-                    // If switching to scatter plot, set default manifestations
-                    if (newPlotType === 'scatter') {
-                      setInputs(prev => ({
-                        ...prev,
-                        Selectors: {
-                          Sex: null,
-                          Severity_Score: null
-                        },
-                        Manifestations: {
-                          Age_of_Onset_of: ["Diabetes Mellitus", "Optic Atrophy"]
-                        }
-                      }));
-                    }
-                    // If switching away from scatter plot, clear all manifestation selections and reset patient info
-                    else if (selectedPlot === 'scatter') {
-                      setInputs(prev => ({
-                        ...prev,
-                        Manifestations: {
-                          Age_of_Onset_of: null
-                        }
-                      }));
-                      // Reset patient info panel when switching away from scatter plot
-                      setSelectedPatient(null);
-                      setShouldScrollToPanel(false);
-                    }
-                  }}
-                >
-                  <option value="scatter">Scatter Plot</option>
-                  <option value="box">Box Plot</option>
-                  <option value="violin">Violin Plot</option>
-                </select>
-              </div>
-              <InputFields
-                config={selectedPlot === 'scatter' ? { Manifestations: fieldConfig.Manifestations } : fieldConfig}
-                inputs={inputs}
-                onInputChange={handleInputChange}
-                selectedPlot={selectedPlot}
-              />
-            </div>
-
             <div className="visualization-area">
               {renderVisualization()}
             </div>

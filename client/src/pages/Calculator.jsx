@@ -1,5 +1,5 @@
 // src/Calculator.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import MutationForm from "../components/MutationForm";
 import ScoreCard from "../components/ScoreCard";
 import "../styles/Calculator.css";
@@ -13,6 +13,8 @@ const Calculator = () => {
   const [isCalculating, setIsCalculating] = useState(false);
   const [error, setError] = useState();
   const [showInfo, setShowInfo] = useState(false);
+  const [isInfoClosed, setIsInfoClosed] = useState(true);
+  const infoRef = useRef(null);
 
   const calculateMutationScore = async (m1, m2) => {
     setError(null);
@@ -42,10 +44,25 @@ const Calculator = () => {
     }
   };
 
+  useEffect(() => {
+    if (showInfo && infoRef.current) {
+      // Small delay to ensure DOM has updated
+      setTimeout(() => {
+        infoRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }, [showInfo]);
+
   return (
     <>
-      <Navbar title="Severity Score Calculator" current="calc"></Navbar>
+      <Navbar 
+        title="Severity Score Calculator" 
+        current="calc"
+        showHelpButton={true}
+        onHelpClick={() => setIsInfoClosed(!isInfoClosed)}
+      ></Navbar>
       <div className="page-container">
+        <Info2 isClosed={isInfoClosed} onToggle={() => setIsInfoClosed(true)} variant="calculator" />
         <main className="main">
           <section className="card">
             {error && <div id="error">{error}</div>}
@@ -60,7 +77,7 @@ const Calculator = () => {
           </section>
         </main>
 
-        <div className="info">
+        <div className="info" ref={infoRef}>
           {showInfo ? (
             <div className="info-expanded">
   <button onClick={() => setShowInfo(false)}>Hide Expected Mutation Form</button>

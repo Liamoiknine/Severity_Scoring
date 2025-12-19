@@ -492,6 +492,16 @@ export default function D3ScatterPlot({
                         }}
                         onClick={(e) => e.stopPropagation()}
                     >
+                        <div style={{ 
+                            marginBottom: '12px', 
+                            fontSize: '14px', 
+                            fontWeight: '600',
+                            color: colors.primary,
+                            borderBottom: `1px solid ${colors.borderPrimary}`,
+                            paddingBottom: '8px'
+                        }}>
+                            Selected Data Point
+                        </div>
                         <div style={{ marginBottom: '4px', fontSize: '13px' }}>
                             <strong>Allele 1:</strong> {selectedPoint.patientData.allele_1 || '—'}
                         </div>
@@ -519,7 +529,7 @@ export default function D3ScatterPlot({
                                 fontWeight: '500'
                             }}
                         >
-                            See All
+                            See All Info
                             <span style={{ fontSize: '12px' }}>›</span>
                         </button>
                     </div>

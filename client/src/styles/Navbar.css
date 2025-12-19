@@ -275,30 +275,6 @@
   }
 }
 
-/* Button row spacer - positioned below the fixed navbar */
-.navbar-button-spacer {
-  position: fixed;
-  top: 72px; /* Approximate navbar height */
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 60px;
-  background-color: transparent;
-  z-index: 999;
-  pointer-events: none;
-}
-
-@media (max-width: 768px) {
-  .navbar-button-spacer {
-    top: 64px; /* Adjusted for smaller navbar on mobile */
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar-button-spacer {
-    top: 56px; /* Adjusted for even smaller navbar on small mobile */
-  }
-}
 
 /* Navbar height is approximately 70-80px depending on screen size */
 /* Pages should account for this with margin-top (already handled in their respective CSS files) */

@@ -1,0 +1,216 @@
+.filter-bar-container-wrapper {
+  position: relative;
+  background-color: transparent;
+  padding: 1rem 20px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0;
+  margin-top: 2.2rem; /* Space below fixed navbar */
+  margin-bottom: 0; /* Space above visualization section */
+  width: 100%;
+}
+
+.filter-bar {
+  background-color: transparent;
+  padding: 0;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  flex: 1;
+  width: 100%;
+}
+
+.filter-bar-container {
+  width: 100%;
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filter-dropdown {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.filter-dropdown-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  min-width: 120px;
+  height: 32px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter-dropdown-button:hover {
+  background-color: #f5f5f5;
+}
+
+.filter-dropdown-button.open {
+  background-color: #f5f5f5;
+}
+
+.filter-dropdown-button.has-selection {
+  color: var(--primary-color);
+}
+
+.filter-value {
+  flex: 1;
+  text-align: left;
+  color: #4a4a4a;
+  font-weight: 500;
+}
+
+.filter-arrow {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--text-secondary);
+  transition: transform 0.2s ease;
+  margin-left: 0.25rem;
+}
+
+.filter-dropdown-button.open .filter-arrow {
+  transform: rotate(180deg);
+}
+
+.filter-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px var(--shadow-md);
+  min-width: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  padding: 0.5rem 0;
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  text-align: left;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.filter-option:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.filter-option.selected {
+  background-color: var(--primary-lighter);
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.filter-option.disabled {
+  opacity: 0.4;
+  color: #999;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.filter-option.disabled:hover {
+  background-color: transparent;
+}
+
+.checkmark {
+  color: var(--primary-color);
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.tracking-toggle-new {
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 6px;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  height: 32px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tracking-toggle-new:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .filter-bar-container-wrapper {
+    margin-top: 2.2rem; /* Adjusted for smaller navbar on mobile */
+    padding: 0.75rem 20px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-bar {
+    padding: 0;
+  }
+
+  .filter-bar-container {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+  }
+
+  .filter-dropdown-button {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .filter-dropdown-menu {
+    width: 100%;
+    left: 0;
+  }
+
+  .tracking-toggle-new {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-bar-container-wrapper {
+    margin-top: 2.2rem; 
+    padding: 0.5rem 20px;
+  }
+
+  .filter-bar {
+    padding: 0;
+  }
+}

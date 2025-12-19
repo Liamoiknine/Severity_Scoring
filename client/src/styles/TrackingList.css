@@ -10,11 +10,27 @@
   overflow-y: scroll;
   position: relative;
 }
+
+.tracking-list h3 {
+  margin-top: 0.8rem;
+  margin-bottom: 0.75rem;
+  color: var(--primary-color);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.tracking-instruction {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
 .tracking-inputs {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 1.5rem;
   width: 100%;
 }
 

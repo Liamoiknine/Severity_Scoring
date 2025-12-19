@@ -1,6 +1,7 @@
  /* Layout */
  .page-container {
      min-height: 100vh;
+     height: auto;
      padding: 2rem;
      background: linear-gradient(to bottom, var(--bg-gradient-start), var(--bg-gradient-end));
      font-family: sans-serif;
