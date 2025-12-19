@@ -31,11 +31,10 @@ function StartupPopup() {
         <div className="startup-popup-body">
           <h2>Welcome!</h2>
           <p>
-            Please note that this application is running on a free-tier server that spins down after inactivity.
-            The first load may take 30-60 seconds while the server starts up.
+            Please note, the application may take 30-60 seconds to load initially as the server starts up. After that it will function normally.
           </p>
           <p>
-            Thank you for your patience!
+            Thanks for your patience!
           </p>
           <button className="startup-popup-button" onClick={handleClose}>
             Got it!
